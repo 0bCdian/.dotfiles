@@ -1,0 +1,9 @@
+img="/tmp/hyprlock"
+grim -c -o eDP-1 $img-eDP-1.png &
+grim -c -o HDMI-A-1 $img-HDMI-A-1.png &
+wait
+convert $img-eDP-1.png -background black -vignette "0x010%10%" -scale 10% -blur 0x3 -resize 100% $img-eDP-1.png &
+convert $img-HDMI-A-1.png -blur 0x3 -resize 100% -background black -vignette 0x3 $img-HDMI-A-1.png &
+wait
+
+hyprlock
