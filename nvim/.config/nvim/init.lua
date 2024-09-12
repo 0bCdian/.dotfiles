@@ -12,3 +12,4 @@ end
 vim.g.gruvbox_material_background = "medium" -- hard, soft, medium
 vim.g.gruvbox_material_sign_column_background = "none"
 vim.lsp.inlay_hint.enable(false)
+vim.g.loaded_netrwPlugin = 0
