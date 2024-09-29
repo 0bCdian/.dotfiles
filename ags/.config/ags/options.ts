@@ -1,7 +1,7 @@
-import { opt, mkOptions } from "lib/option"
-import { distro } from "lib/variables"
-import { icon } from "lib/utils"
-import icons from "lib/icons"
+import { opt, mkOptions } from "lib/option";
+import { distro } from "lib/variables";
+import { icon } from "lib/utils";
+import icons from "lib/icons";
 
 const options = mkOptions(OPTIONS, {
   autotheme: opt(false),
@@ -75,9 +75,7 @@ const options = mkOptions(OPTIONS, {
         "expander",
         "messages",
       ]),
-      center: opt<Array<import("widget/bar/Bar").BarWidget>>([
-        "date",
-      ]),
+      center: opt<Array<import("widget/bar/Bar").BarWidget>>(["date"]),
       end: opt<Array<import("widget/bar/Bar").BarWidget>>([
         "media",
         "expander",
@@ -125,10 +123,7 @@ const options = mkOptions(OPTIONS, {
       action: opt(() => App.toggleWindow("datemenu")),
     },
     systray: {
-      ignore: opt([
-        "KDE Connect Indicator",
-        "spotify-client",
-      ]),
+      ignore: opt(["KDE Connect Indicator", "spotify-client"]),
     },
     media: {
       monochrome: opt(true),
@@ -203,10 +198,12 @@ const options = mkOptions(OPTIONS, {
       interval: opt(60_000),
       unit: opt<"metric" | "imperial" | "standard">("metric"),
       key: opt<string>(
-        JSON.parse(Utils.readFile(`${App.configDir}/weather.json`) || "{}")?.key || "",
+        JSON.parse(Utils.readFile(`${App.configDir}/weather.json`) || "{}")
+          ?.key || "",
       ),
       cities: opt<Array<number>>(
-        JSON.parse(Utils.readFile(`${App.configDir}/weather.json`) || "{}")?.cities || [],
+        JSON.parse(Utils.readFile(`${App.configDir}/weather.json`) || "{}")
+          ?.cities || [],
       ),
     },
   },
@@ -238,7 +235,7 @@ const options = mkOptions(OPTIONS, {
     inactiveBorder: opt("#282828"),
     gapsWhenOnly: opt(false),
   },
-})
+});
 
-globalThis["options"] = options
-export default options
+globalThis["options"] = options;
+export default options;
