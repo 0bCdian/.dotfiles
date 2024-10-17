@@ -35,15 +35,28 @@ return {
           for _, win in ipairs(vim.api.nvim_list_wins()) do
             local buf = vim.api.nvim_win_get_buf(win)
             if vim.bo[buf].filetype == "minifiles" then
-              print("true")
               return true
             end
           end
           return false
         end
+
+        local function is_neo_tree_open()
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            local buf = vim.api.nvim_win_get_buf(win)
+            if vim.bo[buf].filetype == "neo-tree" then
+              return true
+            end
+          end
+          return false
+        end
+
         if is_mini_files_open() then
           require("mini.files").close()
         else
+          if is_neo_tree_open() then
+            vim.cmd("Neotree close")
+          end
           require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
         end
       end,
