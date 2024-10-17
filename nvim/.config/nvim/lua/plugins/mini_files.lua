@@ -1,6 +1,6 @@
 return {
   "echasnovski/mini.files",
-  lazy = false,
+  lazy = true,
   opts = {
     windows = {
       preview = true,
@@ -31,7 +31,21 @@ return {
     {
       "<leader>e",
       function()
-        require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+        local function is_mini_files_open()
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            local buf = vim.api.nvim_win_get_buf(win)
+            if vim.bo[buf].filetype == "minifiles" then
+              print("true")
+              return true
+            end
+          end
+          return false
+        end
+        if is_mini_files_open() then
+          require("mini.files").close()
+        else
+          require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+        end
       end,
       desc = "Open mini.files (Directory of Current File)",
     },
