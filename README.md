@@ -3,13 +3,13 @@
 Here's where I will store all of my relevant configurations for things like fish,
 nvim, kitty, hyprland etc. To use this dotfiles follow the instructions:
 
-Clone this repo into your `$HOME` directory:
+1. Clone this repo into your `$HOME` directory:
 
 ```bash
 git clone git@github.com:0bCdian/.dotfiles.git
 ```
 
-Install [stow](https://www.gnu.org/software/stow/) if you haven't already:
+2. Install [stow](https://www.gnu.org/software/stow/) if you haven't already:
 
 ```bash
   sudo pacman -S stow
@@ -24,13 +24,13 @@ yay stow
 > [!NOTE]
 > Go to the gnu stow link for more information on how to install on distros.
 
-CD into the downloaded .dotfiles directory:
+3. CD into the downloaded .dotfiles directory:
 
 ```bash
 cd .dotfiles
 ```
 
-Stow what you want, for example:
+4. Stow what you want, for example:
 
 ```bash
 # This copies the contents of the hypr directory in $HOME/.config/hypr

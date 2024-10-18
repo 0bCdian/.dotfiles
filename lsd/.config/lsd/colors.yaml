@@ -1,0 +1,29 @@
+#  Gruvbox Material
+#  ┬  ┌─┐┌┬┐
+#  │  └─┐ ││
+#  ┴─┘└─┘─┴┘
+
+user: 6 # cyan (color6 #89b482)
+group: 7 # foreground (color7 #d4be98)
+permission:
+  read: 4 # blue (color4 #7daea3)
+  write: 5 # magenta (color5 #d3869b)
+  exec: 6 # cyan (color6 #89b482)
+  exec-sticky: 6 # cyan (color6 #89b482)
+  no-access: 1 # red (color1 #ea6962)
+date:
+  hour-old: 8 # bright black (color8 #5a524c)
+  day-old: 8 # bright black (color8 #5a524c)
+  older: 8 # bright black (color8 #5a524c)
+size:
+  none: 8 # bright black (color8 #5a524c)
+  small: 2 # green (color2 #a9b665)
+  medium: 3 # yellow (color3 #d8a657)
+  large: 1 # red (color1 #ea6962)
+inode:
+  valid: 7 # foreground (color7 #d4be98)
+  invalid: 1 # red (color1 #ea6962)
+links:
+  valid: 6 # cyan (color6 #89b482)
+  invalid: 1 # red (color1 #ea6962)
+tree-edge: 4 # blue (color4 #7daea3)
