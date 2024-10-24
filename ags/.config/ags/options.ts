@@ -14,8 +14,8 @@ const options = mkOptions(OPTIONS, {
   theme: {
     dark: {
       primary: {
-        bg: opt("#51a4e7"),
-        fg: opt("#141414"),
+        bg: opt("#323232"),
+        fg: opt("#ebdbb2"),
       },
       error: {
         bg: opt("#e55f86"),
@@ -43,19 +43,19 @@ const options = mkOptions(OPTIONS, {
 
     blur: opt(0),
     scheme: opt<"dark" | "light">("dark"),
-    widget: { opacity: opt(100) },
+    widget: { opacity: opt(94) },
     border: {
       width: opt(1),
-      opacity: opt(100),
+      opacity: opt(96),
     },
 
     shadows: opt(true),
     padding: opt(7),
-    spacing: opt(3),
+    spacing: opt(12),
     radius: opt(11),
   },
 
-  transition: opt(100),
+  transition: opt(200),
 
   font: {
     size: opt(13),
@@ -65,7 +65,7 @@ const options = mkOptions(OPTIONS, {
   bar: {
     flatButtons: opt(true),
     position: opt<"top" | "bottom">("top"),
-    corners: opt(true),
+    corners: opt(50),
     transparent: opt(false),
     layout: {
       start: opt<Array<import("widget/bar/Bar").BarWidget>>([
@@ -81,8 +81,8 @@ const options = mkOptions(OPTIONS, {
         "expander",
         "systray",
         "colorpicker",
-        "language",
         "wallpaper",
+        "language",
         "screenrecord",
         "system",
         "battery",
@@ -181,12 +181,12 @@ const options = mkOptions(OPTIONS, {
 
   quicksettings: {
     avatar: {
-      image: opt(`/var/lib/AccountsService/icons/${Utils.USER}.png`),
+      image: opt(`/var/lib/AccountsService/icons/${Utils.USER}`),
       size: opt(70),
     },
     width: opt(380),
     position: opt<"left" | "center" | "right">("right"),
-    networkSettings: opt("gtk-launch nm-connection-editor"),
+    networkSettings: opt("gtk-launch gnome-control-center"),
     media: {
       monochromeIcon: opt(true),
       coverSize: opt(100),
@@ -199,11 +199,11 @@ const options = mkOptions(OPTIONS, {
       interval: opt(60_000),
       unit: opt<"metric" | "imperial" | "standard">("metric"),
       key: opt<string>(
-        JSON.parse(Utils.readFile(`${App.configDir}/weather.json`) || "{}")
-          ?.key || "",
+        JSON.parse(Utils.readFile(`${App.configDir}/.weather`) || "{}")?.key ||
+          "",
       ),
       cities: opt<Array<number>>(
-        JSON.parse(Utils.readFile(`${App.configDir}/weather.json`) || "{}")
+        JSON.parse(Utils.readFile(`${App.configDir}/.weather`) || "{}")
           ?.cities || [],
       ),
     },

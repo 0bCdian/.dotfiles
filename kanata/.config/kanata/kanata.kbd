@@ -35,7 +35,7 @@
   tab  q    w    e    r    t    y    pgup up   pgdn p    [    ]    \
   @escaps @a @s @d @f    g    home left down rght end  '    ret
   @lsft z    x    c    v    b    n    m    ,    .    up   @rsft
-  @lctl @lmet @laltbase           spc            left down rght
+  @lctl @lmet lalt           spc            left down rght
 )
 
 (deflayer nomods
@@ -80,8 +80,7 @@
   raltlayer (layer-switch combos)
   raltbase (layer-switch base)
 
-  laltlayer (layer-switch arrows)
-  laltbase (layer-switch base)
+  laltlayer (layer-while-held arrows)
 
   ;; Home row mods
   a (tap-hold-release 200 200 a lmet)

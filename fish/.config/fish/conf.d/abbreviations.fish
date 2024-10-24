@@ -5,5 +5,5 @@ abbr -a ga git add -A
 abbr -a gc git commit
 abbr -a gs git status
 abbr -a gg lazygit
-abbr -a ls lsd --group-directories-first
+abbr -a ls lsd
 abbr -a cat bat
