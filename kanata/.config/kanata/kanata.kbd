@@ -13,17 +13,7 @@
 
 (defvar
   tap-time 200
-  hold-time 150
-  left-hand-keys (
-    q w e r t
-    a s d f g
-    z x c v b
-  )
-  right-hand-keys (
-    y u i o p
-    h j k l ;
-    n m , . /
-  )
+  hold-time 200
 )
 
 (deflayer base
@@ -31,29 +21,21 @@
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   @escaps @a @s @d @f    g    h    @j   @k   @l   @;   '    ret
   @lsft z    x    c    v    b    n    m    ,    .    /    @rsft
-  @lctl @lmet lalt           @spc           @raltlayer lmet @rctl
+  @lctl @lmet @laltlayer            spc            @raltlayer @lmet @rctl
 )
 (deflayer combos
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    @emoji    r    t    y    u    i    o    p    [    ]    \
   @escaps @a @s @d @f    g    h    @j   @k   @l   @;   '    ret
   @lsft z    x    @csc    @csv    b    n    m    ,    .    /    @rsft
-  @lctl @lmet lalt           @spc           @raltbase lmet @rctl
+  @lctl @lmet @laltlayer           spc           @raltbase lmet @rctl
 )
 (deflayer arrows
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @escaps @a @s @d @f    g    h    @j   @k   @l   @;   '    ret
-  @lsft z    x    c    v    b    n    m    ,    .    up    @rsft
-  @lctl @lmet lalt           @spc           left down  rght
-)
-
-(deflayer space_arrows
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    up    o    p    [    ]    \
-  @escaps @a @s @d @f    g    h left down rght   @;   '    ret
-  @lsft z    x    c    v    b    n    m    ,    .    up    @rsft
-  @lctl @lmet lalt           @spc           left down  rght
+  tab  q    w    e    r    t    y    pgup up   pgdn p    [    ]    \
+  @escaps @a @s @d @f    g    home left down rght end  '    ret
+  @lsft z    x    c    v    b    n    m    ,    .    up   @rsft
+  @lctl @lmet @laltbase           spc            left down rght
 )
 
 (deflayer nomods
@@ -61,46 +43,56 @@
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   @escaps a  s  d  f    g    h    j    k    l    ;    '    ret
   @lsft z    x    c    v    b    n    m    ,    .    /    @rsft
-  @lctl @lmet lalt           spc            @raltlayer comp @rctl
+  @lctl @lmet @laltlayer           spc            @raltlayer @lmet @rctl
 )
 
 (deffakekeys
   to-base (layer-switch base)
 )
-
 (defalias
-  tap (multi
+
+   tap (multi
     (layer-switch nomods)
-    (on-idle-fakekey to-base tap 100)
+    (on-idle-fakekey to-base tap 50)
   )
- csc (multi
+  csc (multi
     (multi lctl lsft c)
-    (on-idle-fakekey to-base tap 50)  ;; Wait 50ms before switching back
+    (on-idle-fakekey to-base tap 50)
   )
   csv (multi
     (multi lctl lsft v)
-    (on-idle-fakekey to-base tap 50)  ;; Wait 50ms before switching back
+    (on-idle-fakekey to-base tap 50)
   )
   emoji (multi
     (multi lmet lsft e)
-    (on-idle-fakekey to-base tap 50)  ;; Wait 50ms before switching back
+    (on-idle-fakekey to-base tap 50)
   )
+
+  ;; Basic modifier aliases
   lsft (one-shot 1000 lsft)
   lctl (one-shot 1000 lctl)
   rsft (one-shot 1000 rsft)
   rctl (one-shot 1000 rctl)
-  capsword (caps-word 2000)
-  escaps (tap-hold-press $tap-time $hold-time esc @capsword)
-  lmet (multi lmet (layer-while-held arrows))
+  
+  ;; Layer management
   raltlayer (layer-switch combos)
   raltbase (layer-switch base)
-  spc (tap-hold $tap-time $hold-time spc (layer-while-held space_arrows))
-  a (tap-hold-release-keys $tap-time $hold-time (multi a @tap) lmet $left-hand-keys)
-  s (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lalt $left-hand-keys)
-  d (tap-hold-release-keys $tap-time $hold-time (multi d @tap) lctl $left-hand-keys)
-  f (tap-hold-release-keys $tap-time $hold-time (multi f @tap) lsft $left-hand-keys)
-  j (tap-hold-release-keys $tap-time $hold-time (multi j @tap) rsft $right-hand-keys)
-  k (tap-hold-release-keys $tap-time $hold-time (multi k @tap) rctl $right-hand-keys)
-  l (tap-hold-release-keys $tap-time $hold-time (multi l @tap) ralt $right-hand-keys)
-  ; (tap-hold-release-keys $tap-time $hold-time (multi ; @tap) lmet $right-hand-keys)
+
+  laltlayer (layer-switch arrows)
+  laltbase (layer-switch base)
+
+  ;; Home row mods
+  a (tap-hold-release 200 200 a lmet)
+  s (tap-hold-release 200 200 s lalt)
+  d (tap-hold-release 200 200 d lctl)
+  f (tap-hold-release 200 200 f lsft)
+  j (tap-hold-release 200 200 j rsft)
+  k (tap-hold-release 200 200 k rctl)
+  l (tap-hold-release 200 200 l ralt)
+  ; (tap-hold-release 200 200 ; rmet)
+  
+  ;; Special keys
+  capsword (caps-word 2000)
+  escaps (tap-hold 200 200 esc @capsword)
+  lmet (multi lmet (layer-while-held arrows))
 )

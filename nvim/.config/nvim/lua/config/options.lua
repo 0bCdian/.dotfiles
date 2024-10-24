@@ -17,7 +17,8 @@ opt.cmdheight = 0
 opt.conceallevel = 0
 opt.laststatus = 3
 opt.showtabline = 0
-
+opt.columns = 80
+opt.textwidth = 80
 -- Files and others
 opt.smartindent = true
 opt.autoindent = true

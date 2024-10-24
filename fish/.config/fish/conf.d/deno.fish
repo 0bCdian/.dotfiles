@@ -1,0 +1,1 @@
+source "/home/obsy/.deno/env.fish"

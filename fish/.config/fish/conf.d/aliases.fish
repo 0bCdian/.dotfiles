@@ -1,8 +1,0 @@
-alias 'f'='ya'
-alias 'v'='nvim'
-alias 'gcl'='git clone'
-alias 'ga'= 'git add -A'
-alias 'gc'='git commit'
-alias 'gg'='lazygit'
-alias 'ls'='lsd --group-directories-first'
-alias 'cat'='bat'

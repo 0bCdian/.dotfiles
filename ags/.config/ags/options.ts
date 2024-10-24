@@ -43,19 +43,19 @@ const options = mkOptions(OPTIONS, {
 
     blur: opt(0),
     scheme: opt<"dark" | "light">("dark"),
-    widget: { opacity: opt(94) },
+    widget: { opacity: opt(100) },
     border: {
       width: opt(1),
-      opacity: opt(96),
+      opacity: opt(100),
     },
 
     shadows: opt(true),
     padding: opt(7),
-    spacing: opt(12),
+    spacing: opt(3),
     radius: opt(11),
   },
 
-  transition: opt(200),
+  transition: opt(100),
 
   font: {
     size: opt(13),
@@ -181,7 +181,7 @@ const options = mkOptions(OPTIONS, {
 
   quicksettings: {
     avatar: {
-      image: opt(`/var/lib/AccountsService/icons/${Utils.USER}`),
+      image: opt(`/var/lib/AccountsService/icons/${Utils.USER}.png`),
       size: opt(70),
     },
     width: opt(380),
