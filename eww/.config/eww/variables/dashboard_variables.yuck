@@ -1,0 +1,9 @@
+; Dashboard variables
+(defpoll volume :interval "1ms" "pamixer --get-volume")
+(defpoll brightness :interval "1ms" "brightnessctl get")
+(defpoll mic_volume :interval "1ms" "pamixer --get-volume --default-source")
+(defvar mic_icon "")
+(defvar sink_icon "")
+(defvar notification_icon "")
+(defvar mic_volume_visibility "false")
+

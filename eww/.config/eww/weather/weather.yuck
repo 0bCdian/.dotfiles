@@ -1,0 +1,29 @@
+(defwindow weather
+  :class "dashboard"
+  :stacking "fg"
+  :wm-ignore true
+  :monitor 0
+  :geometry (geometry
+    :x "34%"
+  )
+  (weather)
+)
+
+;(defpoll weather :interval "1h" "/home/obsy/.config/eww/weather/src/weather.js")
+(deflisten greeting :initial "initial" `/home/obsy/.config/eww/weather/src/example.js`)
+
+(defwidget weather []
+  
+  (box
+    :orientation "v"
+    "hoal"
+    (label :text greeting)
+    
+    (another)
+  )
+  
+)
+
+(defwidget another []
+  (label :text "second child widget")
+)

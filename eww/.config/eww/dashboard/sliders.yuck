@@ -1,0 +1,77 @@
+(defwidget sliders []
+  (box
+    :class "sliders_container"
+    :orientation "v"
+    
+    (box
+      :class "slider_box"
+      :space-evenly false
+      (button
+        :class "volume_button"
+        :onclick "./dashboard/src/toggle_sink_mute.sh"
+        :onrightclick "pavucontrol & disown"
+        (label
+          :style {sink_icon ==" "? "" : "color:#AA9D84"}
+          :text sink_icon
+        )
+      )
+      (scale
+        :class "dashboard_slider volume_slider"
+        :value volume
+        :draw-value false
+        :orientation "horizontal"
+        :min 0
+        :max 101
+        :hexpand true
+        :onchange "pamixer --set-volume {}"
+      )
+      (button
+        :class "toggle_mic_slider"
+        :onclick "./dashboard/src/toggle_mic_volume_visibility.sh ${mic_volume_visibility}"
+        (label
+        :text "")
+      )
+    )
+    (box
+      :class "slider_box"
+      :space-evenly false
+      :visible mic_volume_visibility
+      (button
+        :class "microphone_button"
+        :onclick "./dashboard/src/toggle_mute_microphone.sh"
+        (label
+          :style {mic_icon ==""? "" : "color:#AA9D84"}
+          :text mic_icon
+          :xalign 0.1
+          
+        )
+      )
+      (scale
+        :class "dashboard_slider microphone_slider"
+        :value mic_volume
+        :draw-value false
+        :orientation "horizontal"
+        :min 0
+        :max 101
+        :hexpand true
+        :onchange "pamixer --default-source --set-volume {}"
+      )
+    )
+    
+    (box
+      :class "slider_box brightness"
+      :space-evenly false
+      (label :text "󰃠 ")
+      (scale
+        :class "dashboard_slider brightness_slider"
+        :value brightness
+        :draw-value false
+        :orientation "horizontal"
+        :min 1
+        :max 256
+        :hexpand true
+        :onchange "brightnessctl set {}"
+      )
+    ))
+  
+)

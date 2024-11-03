@@ -1,0 +1,7 @@
+.env
+node_modules
+.ssh
+tmux/.config/tmux/plugins/*
+yazi/.config/yazi/plugins/*
+btop.log
+weather.json

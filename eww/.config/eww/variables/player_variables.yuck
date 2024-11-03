@@ -1,0 +1,19 @@
+; Player variables
+(deflisten play_status
+`playerctl status -F`)
+(deflisten shuffle_status
+`playerctl shuffle -F`)
+(deflisten loop_status
+`playerctl loop -F`)
+(defpoll progress_song :interval "1s" :initial 0 "./player/src/song_progress.fish")
+(deflisten metadata :initial '{
+  "url": "none",
+  "shadow": "#ebdbb2",
+  "tint": "#d4be98",
+  "dark": "#d4be98",
+  "title": "Unknown",
+  "artist": "Unknown",
+  "current_player": "audio-player"
+  }'
+"./player/src/metadata.py")
+

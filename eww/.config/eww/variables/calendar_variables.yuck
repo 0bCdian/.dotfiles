@@ -1,0 +1,4 @@
+; Calendar Variables
+(defvar day_number "")
+(defvar day_name "")
+(defvar month "")

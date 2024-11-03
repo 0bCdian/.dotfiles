@@ -1,0 +1,188 @@
+@import url("./colors-waybar.css");
+
+* {
+  all: unset;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 17px;
+  /* font-weight: bold; */
+  border-radius: 0px;
+  margin: 0;
+}
+
+menu {
+  background-color: #504945;
+  border-radius: 10px;
+  color: #d4be98;
+  /*  border: 3px solid #3c3836; */
+  padding: 0.1em;
+}
+separator {
+  border: 1px solid #3c3836;
+}
+menuitem:hover {
+  background: rgba(212, 190, 152, 0.621);
+  color: #3c3836;
+}
+
+window#waybar {
+  background-color: transparent;
+}
+
+window#waybar > box {
+  border-radius: 8px;
+  margin: 5px 60px 5px 60px;
+  /*background-color: rgba(32, 32, 32, 0);*/
+  background-color: #504947;
+  box-shadow: 3px 3px 3px 1px rgba(29, 29, 29, 0.608);
+}
+
+tooltip {
+  background: #504945;
+  border-radius: 10px;
+}
+
+tooltip label {
+  color: #d4be98;
+  background-color: #504945;
+  border-radius: 10px;
+}
+
+tooltip * {
+  border-radius: 10px;
+}
+
+#workspaces {
+  padding-left: 0.5rem;
+  background-color: #3c3836;
+  color: rgba(212, 190, 153, 0.381);
+  font-weight: bolder;
+  padding-right: 0.5rem;
+}
+
+#taskbar {
+  color: #d4be98;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.818);
+  transition: all 0.5s ease-in-out;
+  font-size: 15px;
+  background-color: #3c3836;
+  font-weight: bolder;
+  font-style: oblique;
+}
+#taskbar button {
+  margin-left: 1rem;
+}
+
+#workspaces button {
+  font-style: italic;
+  margin-left: 0.1rem;
+  padding: 0 0.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+#workspaces button:hover {
+  box-shadow: inherit;
+  text-shadow: inherit;
+  font-style: normal;
+  color: #d4be98;
+  transition: all 0.3s ease-in-out;
+}
+
+#workspaces button.active {
+  color: #ebdbb2;
+  text-shadow: 0 0 5px rgba(235, 191, 62, 0.939);
+  transition: all 0.1s ease-in-out;
+  font-style: normal;
+  border-bottom: 3px solid #7daea3;
+}
+
+#clock,
+#custom-weather {
+  font-family: "GE Inspira";
+  font-weight: bolder;
+  color: #d4be98;
+  background-color: #3c3836;
+}
+
+#clock,
+#custom-weather {
+  background-color: #3c3836;
+  color: #d4be98;
+  text-shadow: 0 0 5px #000000;
+}
+#clock {
+  padding-right: 0.5rem;
+}
+#custom-weather {
+  padding-right: 0.5rem;
+}
+#custom-updates {
+  font-family: "JetBrains Mono Nerd Font";
+  padding-left: 1rem;
+  color: #d4be98;
+  font-size: 1.1rem;
+  border-radius: 10px 0 0 10px;
+  background-color: #3c3836;
+  text-shadow: 0 0 3px rgb(0, 0, 0);
+}
+
+#custom-left-slant-right {
+  background-color: #504945;
+  font-size: 1.5rem;
+  color: #3c3836;
+  margin: 0;
+  padding-right: 17px;
+}
+
+#custom-center-slant-left {
+  background-color: #3c3836;
+  font-size: 1.5rem;
+  color: #504945;
+  margin: 0;
+  padding-right: 1rem;
+}
+#custom-center-slant-right {
+  background-color: #504945;
+  color: #3c3836;
+  font-size: 1.5rem;
+  margin: 0;
+  padding-right: 1.2rem;
+}
+#window {
+  color: #d4be98;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.818);
+  transition: all 0.5s ease-in-out;
+  font-size: 15px;
+  background-color: #3c3836;
+  font-weight: bolder;
+  font-style: oblique;
+}
+
+#custom-colorPicker,
+#custom-cycle_wall,
+#language,
+#tray,
+#memory,
+#disk,
+#backlight,
+#battery,
+#pulseaudio,
+#custom-screenshot,
+#cpu,
+#custom-toggle_dashboard,
+#custom-notifications {
+  background-color: #3c3836;
+  padding-left: 0.7rem;
+  color: #d4be98;
+}
+#custom-right-slant-right {
+  background-color: #3c3836;
+  color: #504945;
+  font-size: 1.5rem;
+  margin: 0;
+  padding-right: 0.2rem;
+}
+#custom-toggle_dashboard {
+  border-radius: 0 10px 10px 0;
+  font-size: 1.1rem;
+  padding-right: 0.5rem;
+}

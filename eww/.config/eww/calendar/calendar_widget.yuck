@@ -1,0 +1,23 @@
+(defwidget calendar_widget[day_number day_name month]
+  (box
+    :orientation "h"
+    :space-evenly false
+    (box
+      :orientation "v"
+      :class "mini_calendar_container"
+      :space-evenly false
+      (label :class "day_number" :text day_number )
+      (label :class "day_name" :text day_name )
+      (label :class "month" :text month )
+      
+    )
+    (calendar
+      :class "calendar"
+      :show-heading false
+      :onclick "./calendar/src/update_calendar.sh {0} {1} {2}"
+    )
+    
+  )
+)
+
+

@@ -1,0 +1,14 @@
+(include "./dashboard/performance_indicators.yuck")
+(include "./dashboard/sliders.yuck")
+;;(include "./dashboard/quick_buttons.yuck")
+(defwidget dashboard_widget [sink_icon volume brightness mic_icon mic_volume_visibility mic_volume]
+  (box
+    :orientation "v"
+    :space-evenly false
+    ;;(quick_buttons)
+    (sliders)
+    (performance_indicators)
+    
+  )
+)
+

@@ -1,0 +1,12 @@
+(include "./calendar/calendar_widget.yuck")
+(defwindow calendar
+  :class "dashboard"
+  :stacking "fg"
+  :wm-ignore true
+  :monitor 1
+  :geometry (geometry
+    :x "34%"
+  )
+  (calendar_widget :day_number day_number :day_name day_name :month month)
+)
+

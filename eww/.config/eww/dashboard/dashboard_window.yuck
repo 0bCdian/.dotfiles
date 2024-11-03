@@ -1,0 +1,11 @@
+(include "./dashboard/dashboard_widget.yuck")
+(defwindow dashboard
+  :class "dashboard"
+  :stacking "fg"
+  :wm-ignore true
+  :monitor '["<primary>"," 0x09AE","S22D300"]'
+  :geometry (geometry
+    :width "26%"
+  :x "1400")
+  (dashboard_widget :sink_icon sink_icon :volume volume :brightness brightness :mic_icon mic_icon :notification_icon notification_icon :mic_volume_visibility mic_volume_visibility :mic_volume mic_volume)
+)

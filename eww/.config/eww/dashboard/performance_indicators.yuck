@@ -1,0 +1,136 @@
+(defwidget performance_indicators []
+  (box
+    :orientation "h"
+    :halign "fill"
+    :class "performance_indicator_container"
+    (box
+      :orientation "v"
+      :space-evenly false
+      (eventbox
+        :onclick "./dashboard/src/open_system_info.sh"
+        (overlay
+          :class "performance_item"
+          :orientation "horizontal"
+          :valing "start"
+          :halign "start"
+          (label
+            :class "cpu_label"
+          :text "󰒇")
+          (circular-progress
+            :class "circular_indicator_cpu"
+            :value {EWW_CPU.avg}
+            :dynamic true
+            :thickness 10
+            :start-at 25
+          )
+        )
+      )
+      (label
+        :class "performance_numbers"
+        :xalign 0.39
+        :text {round(EWW_CPU.avg, 2) + "%"}
+      )
+    )
+    (box
+      :space-evenly false
+      :orientation "v"
+      (eventbox
+        :onclick "./dashboard/src/open_system_info.sh"
+        (overlay :class "performance_item"
+          :orientation "horizontal"
+          :valing "start"
+          :halign "start"
+          (label :text "" :class "ram" )
+          (circular-progress
+            :class "circular_indicator_ram"
+            :value {EWW_RAM.used_mem_perc}
+            :dynamic true
+            :thickness 10
+            :start-at 25
+          )
+        )
+      )
+      (label
+        :class "performance_numbers"
+        :text {round(EWW_RAM.used_mem_perc, 2) + "%"}
+        :xalign 0.39
+      )
+    )
+    (box
+      :orientation "v"
+      :space-evenly false
+      (eventbox
+        :onclick "./dashboard/src/open_system_info.sh"
+        (overlay :class "performance_item temp"
+          :orientation "horizontal"
+          :valing "start"
+          :halign "start"
+          (label
+          :text "" :class "temp_text" )
+          (circular-progress
+            :class "circular_indicator_temp"
+            :value {EWW_TEMPS.K10TEMP_TCTL}
+            :dynamic true
+            :thickness 10
+            :start-at 25
+          )
+        )
+      )
+      (label
+        :class "performance_numbers"
+        :text {round(EWW_TEMPS.K10TEMP_TCTL, 2) + "℃"}
+        :xalign 0.39
+      )
+    )
+    (box
+      :space-evenly false
+      :orientation "v"
+      (eventbox
+        :onclick "./dashboard/src/open_disk_info.sh"
+        (overlay :class "performance_item disk_usage"
+          :orientation "horizontal"
+          :valing "start"
+          :halign "start"
+          (label :text "󰋊" :class "disk_usage" )
+          (circular-progress
+            :class "circular_indicator_disk"
+            :value {EWW_DISK["/"].used_perc}
+            :dynamic true
+            :thickness 10
+            :start-at 25
+          )
+        )
+      )
+      (label
+        :class "performance_numbers"
+        :text {round(EWW_DISK["/"].used_perc, 2) + "%"}
+        :xalign 0.39
+      )
+    )
+    (box
+      :space-evenly false
+      :orientation "v"
+      (eventbox
+        :onclick "./dashboard/src/open_system_info.sh"
+        (overlay :class "performance_item"
+          :orientation "horizontal"
+          :valing "start"
+          :halign "start"
+          (label :text {EWW_BATTERY["BAT0"].status == "Not charging"? "": ""} :class "battery_indicator" )
+          (circular-progress
+            :class "circular_indicator_battery"
+            :value {round(EWW_BATTERY.total_avg, 2)}
+            :dynamic true
+            :thickness 10
+            :start-at 25
+          )
+        )
+      )
+      (label
+        :class "performance_numbers"
+        :text {round(EWW_BATTERY.total_avg, 2) + "%"}
+        :xalign 0.39
+      )
+    )
+  )
+)

@@ -1,0 +1,126 @@
+(defcfg
+  process-unmapped-keys yes
+  log-layer-changes no
+)
+
+(defsrc
+  esc  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt comp rctl
+)
+
+(defvar
+  ;; Faster timings for the left hand
+  tap-time-l 150
+  hold-time-l 150
+  ;; Even faster timings for the right hand
+  tap-time-r 130
+  hold-time-r 130
+
+ left-hand-keys (
+    q w e r t
+    a s d f g
+    z x c v b
+  )
+  right-hand-keys (
+    y u i o p
+    h j k l ;
+    n m , . /
+  )
+)
+
+(deflayer base
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @escaps @a @s @d @f    g    h    @j   @k   @l   @;   '    ret
+  @lsft z    x    c    v    b    n    m    ,    .    /    @rsft
+  @lctl @lmet @laltlayer            @spc            @raltlayer @lmet @rctl
+)
+
+(deflayer combos
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    @emoji    r    t    y    u    i    o    p    [    ]    \
+  @escaps @a @s @d @f    g    h    @j   @k   @l   @;   '    ret
+  @lsft z    x    @csc    @csv    b    n    m    ,    .    /    @rsft
+  @lctl @lmet @laltlayer           @spc           @raltbase lmet @rctl
+)
+
+(deflayer arrows
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    pgup up   pgdn p    [    ]    \
+  @escaps a    s    d    f    g    home left down rght end  '    ret
+  @lsft z    x    c    v    b    n    m    ,    .    up   @rsft
+  @lctl @lmet @laltlayer           @spc            left down rght
+)
+
+(deflayer nav
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u i   o p    [    ]    \
+  @escaps a    s    d    f    g    h j k l ;  '    ret
+  @lsft z    x    c    v    b    n    m    ,    .    up   @rsft
+  @lctl @lmet @laltlayer           @spc            left down rght
+)
+
+(deflayer nomods
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @escaps a    s    d    f    g    h    j    k    l    ;    '    ret
+  @lsft z    x    c    v    b    n    m    ,    .    /    @rsft
+  @lctl @lmet @laltlayer           spc            @raltlayer @lmet @rctl
+)
+
+(deffakekeys
+  to-base (layer-switch base)
+)
+
+(defalias
+  tap (multi
+    (layer-switch nomods)
+    (on-idle-fakekey to-base tap 50)
+  )
+  
+  ;; left hand
+  a (tap-hold-release-keys $tap-time-l $hold-time-l (multi a @tap) lmet $left-hand-keys)
+  s (tap-hold-release-keys $tap-time-l $hold-time-l (multi s @tap) lalt $left-hand-keys)
+  d (tap-hold-release-keys $tap-time-l $hold-time-l (multi d @tap) lctl $left-hand-keys)
+  f (tap-hold-release-keys $tap-time-l $hold-time-l (multi f @tap) lsft $left-hand-keys)
+  ;; right hand
+  j (tap-hold-release-keys $tap-time-r $hold-time-r (multi j @tap) rsft $right-hand-keys)
+  k (tap-hold-release-keys $tap-time-r $hold-time-r (multi k @tap) rctl $right-hand-keys)
+  l (tap-hold-release-keys $tap-time-r $hold-time-r (multi l @tap) ralt $right-hand-keys)
+  ; (tap-hold-release-keys $tap-time-r $hold-time-r (multi ; @tap) rmet $right-hand-keys)
+
+  ;; Shortcuts and command aliases
+  csc (multi
+    (multi lctl lsft c)
+    (on-idle-fakekey to-base tap 50)
+  )
+  csv (multi
+    (multi lctl lsft v)
+    (on-idle-fakekey to-base tap 50)
+  )
+  emoji (multi
+    (multi lmet lsft e)
+    (on-idle-fakekey to-base tap 50)
+  )
+  
+  ;; One-shot modifiers
+  osmet (one-shot 1000 lmet)
+  lsft (one-shot 1000 lsft)
+  lctl (one-shot 1000 lctl)
+  rsft (one-shot 1000 rsft)
+  rctl (one-shot 1000 rctl)
+  
+  ;; Layer management
+  raltlayer (layer-switch combos)
+  raltbase (layer-switch base)
+  laltlayer (tap-hold 200 200 (one-shot 500 lalt) (one-shot 500 (layer-while-held arrows)))
+  spc (tap-hold $tap-time-l $hold-time-l spc (layer-while-held arrows) )
+  
+  ;; Special keys
+  capsword (caps-word 2000)
+  escaps (tap-hold 200 200 esc @capsword)
+  lmet (multi (one-shot 500 lmet) (one-shot 500 (layer-while-held nav)))
+)

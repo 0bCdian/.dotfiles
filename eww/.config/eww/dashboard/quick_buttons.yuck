@@ -1,0 +1,48 @@
+(defwidget quick_buttons []
+  (box
+    :orientation "v"
+    (box
+      :space-evenly true
+      :halign "center"
+      :class "quick_buttons_container"
+      (button
+        :class "quick_button notif"
+        :onclick "./dashboard/src/toggle_notifications.sh"
+        :style {notification_icon == "󰂚"? "background-color:#d4be98;" : "background-color:#504945;color:#AA9D84"}
+        (label
+          :xalign {notification_icon == "󰂚"? 0.49 : 0.45}
+        :text notification_icon)
+      )
+      (button
+        :class "quick_button mic"
+        :onclick "./dashboard/src/toggle_mute_microphone.sh"
+        :style {mic_icon == ""? "background-color:#d4be98;" : "background-color:#504945;color:#AA9D84"}
+        (label
+          :xalign {mic_icon == ""? 0.52 : 0.49}
+        :text mic_icon)
+      )
+      (button
+        :class "quick_button obs"
+        (label :text ""
+        :xalign 0.44)
+      )
+      (button
+        :class "quick_button"
+        ;:style {notification_icon == "󰂚"? "background-color:#d4be98;" : "background-color:#504945;color:#AA9D84"}
+        (label :text "wifi")
+      )
+      (button
+        :class "quick_button"
+        ;:style {notification_icon == "󰂚"? "background-color:#d4be98;" : "background-color:#504945;color:#AA9D84"}
+        (label :text "wifi")
+      )
+      (button
+        :class "quick_button"
+        ;:style {notification_icon == "󰂚"? "background-color:#d4be98;" : "background-color:#504945;color:#AA9D84"}
+        (label :text "wifi")
+      )
+      
+    )
+  )
+  
+)

@@ -1,0 +1,13 @@
+(include "./player/player_widget.yuck")
+(defwindow player
+  :class "player"
+  :stacking "fg"
+  :wm-ignore true
+  :monitor 0
+  :geometry (geometry
+    :width "25%"
+    :x "730"
+    :y "1"
+  )
+  (player_widget :loop_status loop_status :shuffle_status shuffle_status :play_status play_status :progress_song progress_song :metadata metadata)
+)
