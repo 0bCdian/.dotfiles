@@ -13,11 +13,11 @@
 
 (defvar
   ;; Faster timings for the left hand
-  tap-time-l 150
-  hold-time-l 150
+  tap-time-l 200
+  hold-time-l 200
   ;; Even faster timings for the right hand
-  tap-time-r 130
-  hold-time-r 130
+  tap-time-r 150
+  hold-time-r 150
 
  left-hand-keys (
     q w e r t
