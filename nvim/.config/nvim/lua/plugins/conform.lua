@@ -4,12 +4,17 @@ return {
     formatters = {
       ["markdown-toc"] = {
         condition = function(_, ctx)
-          for _, line in ipairs(vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false)) do
+          for _, line in
+            ipairs(vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false))
+          do
             if line:find("<!%-%- toc %-%->") then
               return true
             end
           end
         end,
+        biome = {
+          require_cwd = true,
+        },
       },
       ["markdownlint-cli2"] = {
         condition = function(_, ctx)
@@ -23,6 +28,12 @@ return {
     formatters_by_ft = {
       ["markdown"] = { "markdownlint-cli2", "markdown-toc" },
       ["markdown.mdx"] = { "markdownlint-cli2", "markdown-toc" },
+      ["javascript"] = { "biome" },
+      ["javascriptreact"] = { "biome" },
+      ["typescript"] = { "biome" },
+      ["typescriptreact"] = { "biome" },
+      ["json"] = { "biome" },
+      ["jsonc"] = { "biome" },
     },
   },
 }

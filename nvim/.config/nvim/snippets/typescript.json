@@ -1,0 +1,8 @@
+{
+  "arrow function": {
+    "scope": "typescript",
+    "prefix": "arr",
+    "body": ["($1)=>{\n$2}"],
+    "description": "Boilerplate arrow function body"
+  }
+}

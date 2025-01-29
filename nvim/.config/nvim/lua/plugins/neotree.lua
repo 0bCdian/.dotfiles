@@ -56,6 +56,9 @@ return {
         -- Had to disable this option, because when I open neotree it was
         -- jumping around to random dirs when I opened a dir
         follow_current_file = { enabled = false },
+        window = {
+          position = "right",
+        },
 
         -- ###################################################################
         --                     custom delete command
@@ -67,9 +70,15 @@ return {
           delete = function(state)
             if vim.fn.executable("trash") == 0 then
               vim.api.nvim_echo({
-                { "- Trash utility not installed. Make sure to install it first\n", nil },
+                {
+                  "- Trash utility not installed. Make sure to install it first\n",
+                  nil,
+                },
                 { "- In macOS run `brew install trash`\n", nil },
-                { "- Or delete the `custom delete command` section in neo-tree", nil },
+                {
+                  "- Or delete the `custom delete command` section in neo-tree",
+                  nil,
+                },
               }, false, {})
               return
             end
@@ -89,9 +98,15 @@ return {
           delete_visual = function(state, selected_nodes)
             if vim.fn.executable("trash") == 0 then
               vim.api.nvim_echo({
-                { "- Trash utility not installed. Make sure to install it first\n", nil },
+                {
+                  "- Trash utility not installed. Make sure to install it first\n",
+                  nil,
+                },
                 { "- In macOS run `brew install trash`\n", nil },
-                { "- Or delete the `custom delete command` section in neo-tree", nil },
+                {
+                  "- Or delete the `custom delete command` section in neo-tree",
+                  nil,
+                },
               }, false, {})
               return
             end

@@ -10,18 +10,18 @@
 }
 
 menu {
-  background-color: #504945;
+  background-color: #323232;
   border-radius: 10px;
-  color: #d4be98;
-  /*  border: 3px solid #3c3836; */
-  padding: 0.1em;
+  color: #ddc7a1;
+  padding: 0.8em;
 }
 separator {
-  border: 1px solid #3c3836;
+  border: 2px solid #ddc7a1;
+  margin: 0.5rem 0 0.5rem 0;
 }
 menuitem:hover {
-  background: rgba(212, 190, 152, 0.621);
-  color: #3c3836;
+  background: #ddc7a1;
+  color: #323232;
 }
 
 window#waybar {
@@ -31,40 +31,40 @@ window#waybar {
 window#waybar > box {
   border-radius: 8px;
   margin: 5px 60px 5px 60px;
-  /*background-color: rgba(32, 32, 32, 0);*/
-  background-color: #504947;
-  box-shadow: 3px 3px 3px 1px rgba(29, 29, 29, 0.608);
+  padding: 0.2rem;
+  background-color: #323232;
+  box-shadow: 4px 5px 2px rgba(29, 29, 29, 0.7);
 }
 
 tooltip {
-  background: #504945;
+  background: #323232;
   border-radius: 10px;
 }
 
 tooltip label {
-  color: #d4be98;
-  background-color: #504945;
-  border-radius: 10px;
+  color: #ddc7a1;
+  background-color: #323232;
+  border-radius: 8px;
 }
 
 tooltip * {
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 #workspaces {
   padding-left: 0.5rem;
-  background-color: #3c3836;
+  background-color: #323232;
   color: rgba(212, 190, 153, 0.381);
   font-weight: bolder;
   padding-right: 0.5rem;
 }
 
 #taskbar {
-  color: #d4be98;
+  color: #ddc7a1;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.818);
   transition: all 0.5s ease-in-out;
   font-size: 15px;
-  background-color: #3c3836;
+  background-color: #323232;
   font-weight: bolder;
   font-style: oblique;
 }
@@ -76,6 +76,7 @@ tooltip * {
   font-style: italic;
   margin-left: 0.1rem;
   padding: 0 0.5rem;
+  border-radius: 8px;
   transition: all 0.3s ease-in-out;
 }
 
@@ -83,30 +84,31 @@ tooltip * {
   box-shadow: inherit;
   text-shadow: inherit;
   font-style: normal;
-  color: #d4be98;
+  color: #ddc7a1;
   transition: all 0.3s ease-in-out;
 }
 
 #workspaces button.active {
-  color: #ebdbb2;
+  color: #323232;
   text-shadow: 0 0 5px rgba(235, 191, 62, 0.939);
   transition: all 0.1s ease-in-out;
+  background-color: #ebdbb2;
   font-style: normal;
-  border-bottom: 3px solid #7daea3;
+  /* border-bottom: 3px solid #ddc7a1; */
 }
 
 #clock,
 #custom-weather {
   font-family: "GE Inspira";
   font-weight: bolder;
-  color: #d4be98;
-  background-color: #3c3836;
+  color: #ddc7a1;
+  background-color: #323232;
 }
 
 #clock,
 #custom-weather {
-  background-color: #3c3836;
-  color: #d4be98;
+  background-color: #323232;
+  color: #ddc7a1;
   text-shadow: 0 0 5px #000000;
 }
 #clock {
@@ -118,15 +120,15 @@ tooltip * {
 #custom-updates {
   font-family: "JetBrains Mono Nerd Font";
   padding-left: 1rem;
-  color: #d4be98;
+  color: #ddc7a1;
   font-size: 1.1rem;
   border-radius: 10px 0 0 10px;
-  background-color: #3c3836;
+  background-color: #323232;
   text-shadow: 0 0 3px rgb(0, 0, 0);
 }
 
 #custom-left-slant-right {
-  background-color: #504945;
+  background-color: #323232;
   font-size: 1.5rem;
   color: #3c3836;
   margin: 0;
@@ -134,25 +136,25 @@ tooltip * {
 }
 
 #custom-center-slant-left {
-  background-color: #3c3836;
+  background-color: #282828;
   font-size: 1.5rem;
-  color: #504945;
+  color: #323232;
   margin: 0;
   padding-right: 1rem;
 }
 #custom-center-slant-right {
-  background-color: #504945;
-  color: #3c3836;
+  background-color: #323232;
+  color: #282828;
   font-size: 1.5rem;
   margin: 0;
   padding-right: 1.2rem;
 }
 #window {
-  color: #d4be98;
+  color: #ddc7a1;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.818);
   transition: all 0.5s ease-in-out;
   font-size: 15px;
-  background-color: #3c3836;
+  background-color: #323232;
   font-weight: bolder;
   font-style: oblique;
 }
@@ -169,10 +171,39 @@ tooltip * {
 #custom-screenshot,
 #cpu,
 #custom-toggle_dashboard,
+#custom-screenrecorder,
 #custom-notifications {
-  background-color: #3c3836;
+  background-color: #323232;
   padding-left: 0.7rem;
-  color: #d4be98;
+  padding-right: 0;
+  color: #ddc7a1;
+}
+#custom-screenrecorder {
+  color: #ddc7a1;
+}
+#custom-screenrecorder.enabled {
+  color: #ea6962;
+}
+#volume {
+  padding-left: 0rem;
+  padding-right: 0rem;
+}
+#cpu {
+  padding-left: 0rem;
+  padding-right: 0rem;
+}
+#battery {
+  padding-right: 0.7rem;
+  padding-left: 0.8rem;
+}
+#memory {
+  padding-right: 0rem;
+  padding-left: 0rem;
+}
+#custom-notifications {
+  border-radius: 0 10px 10px 0;
+  padding-left: 0.2rem;
+  padding-right: 1rem;
 }
 #custom-right-slant-right {
   background-color: #3c3836;

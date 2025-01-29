@@ -1,3 +1,25 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
+
+-- Remap 'a' to behave like 'i'
+-- vim.keymap.set("n", "a", "i", { silent = true, noremap = true })
+-- -- Remap 'i' to behave like 'a'
+-- vim.keymap.set("n", "i", "a", { silent = true, noremap = true })
+--
+-- -- Remap 'A' to behave like 'I'
+-- vim.keymap.set("n", "A", "I", { silent = true, noremap = true })
+-- -- Remap 'I' to behave like 'A'
+-- vim.keymap.set("n", "I", "A", { silent = true, noremap = true })
+--
+-- -- Optional: Remap for visual mode if needed
+-- vim.keymap.set("v", "a", "i", { silent = true, noremap = true })
+-- vim.keymap.set("v", "i", "a", { silent = true, noremap = true })
+-- vim.keymap.set("v", "A", "I", { silent = true, noremap = true })
+-- vim.keymap.set("v", "I", "A", { silent = true, noremap = true })
+--
+-- -- Optional: Remap for operator-pending mode if needed
+-- vim.keymap.set("o", "a", "i", { silent = true, noremap = true })
+-- vim.keymap.set("o", "i", "a", { silent = true, noremap = true })
+-- vim.keymap.set("o", "A", "I", { silent = true, noremap = true })
+-- vim.keymap.set("o", "I", "A", { silent = true, noremap = true })

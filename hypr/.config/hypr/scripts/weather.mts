@@ -1,4 +1,3 @@
-import { readFileSync } from "node:fs";
 const WEATHER_ICON = {
   "01d": " ",
   "01n": " ",
