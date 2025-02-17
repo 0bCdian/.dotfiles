@@ -29,7 +29,7 @@ return {
   },
   keys = {
     {
-      "<leader>e",
+      "<leader>r",
       function()
         local function is_mini_files_open()
           for _, win in ipairs(vim.api.nvim_list_wins()) do
@@ -63,7 +63,7 @@ return {
       desc = "Open mini.files (Directory of Current File)",
     },
     {
-      "<leader>E",
+      "<leader>R",
       function()
         require("mini.files").open(vim.uv.cwd(), true)
       end,
@@ -136,10 +136,30 @@ return {
           { buffer = args.data.buf_id, desc = "Set cwd" }
         )
 
-        map_split(buf_id, opts.mappings and opts.mappings.go_in_horizontal or "<C-w>s", "horizontal", false)
-        map_split(buf_id, opts.mappings and opts.mappings.go_in_vertical or "<C-w>v", "vertical", false)
-        map_split(buf_id, opts.mappings and opts.mappings.go_in_horizontal_plus or "<C-w>S", "horizontal", true)
-        map_split(buf_id, opts.mappings and opts.mappings.go_in_vertical_plus or "<C-w>V", "vertical", true)
+        map_split(
+          buf_id,
+          opts.mappings and opts.mappings.go_in_horizontal or "<C-w>s",
+          "horizontal",
+          false
+        )
+        map_split(
+          buf_id,
+          opts.mappings and opts.mappings.go_in_vertical or "<C-w>v",
+          "vertical",
+          false
+        )
+        map_split(
+          buf_id,
+          opts.mappings and opts.mappings.go_in_horizontal_plus or "<C-w>S",
+          "horizontal",
+          true
+        )
+        map_split(
+          buf_id,
+          opts.mappings and opts.mappings.go_in_vertical_plus or "<C-w>V",
+          "vertical",
+          true
+        )
       end,
     })
 
@@ -199,7 +219,11 @@ return {
           vim.g.content = content.stdout
         end
       end
-      vim.system({ "git", "status", "--ignored", "--porcelain" }, { text = true, cwd = cwd }, on_exit)
+      vim.system(
+        { "git", "status", "--ignored", "--porcelain" },
+        { text = true, cwd = cwd },
+        on_exit
+      )
     end
 
     local function escapePattern(str)
@@ -287,7 +311,10 @@ return {
       end
       local cwd = vim.fn.expand("%:p:h")
       local currentTime = os.time()
-      if gitStatusCache[cwd] and currentTime - gitStatusCache[cwd].time < cacheTimeout then
+      if
+        gitStatusCache[cwd]
+        and currentTime - gitStatusCache[cwd].time < cacheTimeout
+      then
         updateMiniWithGit(buf_id, gitStatusCache[cwd].statusMap)
       else
         fetchGitStatus(cwd, function(content)
