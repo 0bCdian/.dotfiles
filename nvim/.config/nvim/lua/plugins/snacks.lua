@@ -12,22 +12,27 @@ return {
     explorer = { enabled = true },
     indent = {
       enabled = true,
+      only_scope = false,
+      animate = {
+        enabled = false,
+      },
       indent = {
-        hl = {
-          "SnacksIndent1",
-          "SnacksIndent2",
-          "SnacksIndent3",
-          "SnacksIndent4",
-          "SnacksIndent5",
-          "SnacksIndent6",
-          "SnacksIndent7",
-          "SnacksIndent8",
-        },
+        hl = "SnacksIndent",
+        -- hl = {
+        --   "SnacksIndent1",
+        --   "SnacksIndent2",
+        --   "SnacksIndent3",
+        --   "SnacksIndent4",
+        --   "SnacksIndent5",
+        --   "SnacksIndent6",
+        --   "SnacksIndent7",
+        --   "SnacksIndent8",
+        -- },
       },
       chunk = {
         enabled = true,
       },
-      scope = { enabled = false },
+      scope = { enabled = true },
     },
     input = { enabled = true },
     picker = {
@@ -36,7 +41,7 @@ return {
         explorer = {
           layout = {
             layout = {
-              position = "right",
+              position = "left",
             },
           },
         },

@@ -26,8 +26,8 @@ return {
       },
     },
     formatters_by_ft = {
-      ["markdown"] = { "markdownlint-cli2", "markdown-toc" },
-      ["markdown.mdx"] = { "markdownlint-cli2", "markdown-toc" },
+      ["markdown"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
+      ["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
       ["javascript"] = { "biome" },
       ["javascriptreact"] = { "biome" },
       ["typescript"] = { "biome" },

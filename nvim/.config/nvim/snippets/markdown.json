@@ -31,31 +31,42 @@
     ],
     "description": "Adds the template for the AstroPaper Blog post. You will need to trigger the snippet modal on the 'frontmatter' line to insert the other snipper."
   },
-
   "bash code block": {
     "prefix": "bash",
-    "body": ["```bash", "$1", "```"],
+    "body": [
+      "```bash",
+      "$1",
+      "```"
+    ],
     "description": "Insert a bash code block"
   },
-
   "yaml code block": {
     "prefix": "yaml",
-    "body": ["```yaml", "$1", "```"],
+    "body": [
+      "```yaml",
+      "$1",
+      "```"
+    ],
     "description": "Insert a yaml code block"
   },
-
   "go code block": {
     "prefix": "go",
-    "body": ["```go", "$1", "```"],
+    "body": [
+      "```go",
+      "$1",
+      "```"
+    ],
     "description": "Insert a go code block"
   },
-
   "sql code block": {
     "prefix": "sql",
-    "body": ["```sql", "$1", "```"],
+    "body": [
+      "```sql",
+      "$1",
+      "```"
+    ],
     "description": "Insert a sql code block"
   },
-
   "chirpy tip": {
     "prefix": "chirpy",
     "body": [
@@ -73,7 +84,6 @@
     ],
     "description": "Insert a chirpy theme tip"
   },
-
   "markdownlint": {
     "prefix": "markdownlint",
     "body": [
@@ -86,7 +96,6 @@
     ],
     "description": "Markdownlint disable range"
   },
-
   "prettier ignore": {
     "prefix": "prettier-ignore",
     "body": [
@@ -99,28 +108,39 @@
     ],
     "description": "Prettier ignore range"
   },
-
   "regular link": {
     "prefix": "link",
-    "body": ["[$1]($2)"],
+    "body": [
+      "[$1]($2)"
+    ],
     "description": "Create a new link"
   },
-
   "link in new tab": {
     "prefix": "linkt",
-    "body": ["[$1]($2){:target=\"_blank\"}"],
+    "body": [
+      "[$1]($2){:target=\"_blank\"}"
+    ],
     "description": "Open a link in a new tab (chirpy theme)"
   },
-
   "todo item": {
     "prefix": "todo",
-    "body": ["<!-- TODO: $1 -->"],
+    "body": [
+      "<!-- TODO: $1 -->"
+    ],
     "description": "Create a todo item"
   },
-
   "markdown workflow 25": {
     "prefix": "lam",
-    "body": ["lamw25wmal"],
+    "body": [
+      "lamw25wmal"
+    ],
     "description": "markdown workflow 25"
+  },
+  "insert current ISO Date": {
+    "prefix": "isodate",
+    "body": [
+      "$CURRENT_YEAR-$CURRENT_MONTH-${CURRENT_DATE}T$CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND.000$CURRENT_TIMEZONE_OFFSET"
+    ],
+    "description": "Inserts the current date in ISO format"
   }
 }
