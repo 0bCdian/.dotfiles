@@ -9,7 +9,7 @@ return {
     -- refer to the configuration section below
     bigfile = { enabled = true },
     dashboard = { enabled = true },
-    explorer = { enabled = true },
+    explorer = { enabled = false },
     indent = {
       enabled = true,
       only_scope = false,
@@ -36,7 +36,7 @@ return {
     },
     input = { enabled = true },
     picker = {
-      enabled = true,
+      enabled = false,
       sources = {
         explorer = {
           layout = {
@@ -54,7 +54,7 @@ return {
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = {
-      enabled = true,
+      enabled = false,
       animate = {
         duration = {
           steps = 100,

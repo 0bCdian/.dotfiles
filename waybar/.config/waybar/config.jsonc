@@ -1,7 +1,7 @@
 {
 	"layer": "top", // Waybar at top layer
 	"position": "top", // Waybar position (top|bottom|left|right)
-	"width": 1920,
+	"width": 2560,
 	"margin-bottom": 0,
 	"margin-top": 0,
 	"spacing": 0,
@@ -15,6 +15,7 @@
 		"hyprland/workspaces",
 		"hyprland/window"
 	],
+  "output": "DP-1",
 	"modules-right": [
 		"tray",
 		"custom/cycle_wall",
@@ -74,13 +75,13 @@
 	},
 	"custom/colorPicker": {
 		"format": "󱏞 ",
-		"on-click": "sleep 0.1 && exec ~/.config/waybar/colorpicker.sh & disown",
+		"on-click": "sleep 0.1 && exec ~/.config/waybar/scripts/colorpicker.sh & disown",
 		"restart-interval": 1
 	},
 	"custom/updates": {
 		"format": "󰮯 ",
 		"return-type": "json",
-		"exec": "~/.config/waybar/updates.sh",
+		"exec": "~/.config/waybar/scripts/updates.sh",
 		"interval": 3600,
 		"on-click": "sleep 0.1 && exec kitty  --class calendar -e yay -Syu",
 		"on-click-right": "sleep 0.1 && exec ~/.config/waybar/updates.sh",
@@ -90,26 +91,26 @@
 		"format": " {}",
 		"tooltip": true,
 		"interval": 600,
-		"on-click": "/home/obsy/.config/hypr/scripts/weather.mts && notify-send -a 'Weather' -i 'weather' 'Weather' 'Updated weather!'",
+		"on-click": "bun /home/obsy/.config/hypr/scripts/weather.mts && notify-send -a 'Weather' -i 'weather' 'Weather' 'Updated weather!'",
 		"exec": "bun /home/obsy/.config/hypr/scripts/weather.mts",
 		"return-type": "json"
 	},
 	"custom/screenshot": {
 		"format": "󰄄 ",
 		"tooltip": false,
-		"on-click": "exec ~/.config/waybar/screenshot.sh",
+		"on-click": "exec ~/.config/waybar/scripts/screenshot.sh",
 		"on-click-right": "exec ~/.config/rofi/applets/bin/screenshot.sh",
 		"restart-interval": 1
 	},
 	"custom/screenrecorder": {
-		"exec": "$HOME/.config/waybar/record.sh status",
+		"exec": "$HOME/.config/waybar/scripts/record.sh status",
 		"interval": "once",
 		"signal": 1,
 		"return-type": "json",
 		"tooltip": true,
 		"format": "{}",
-		"on-click": "exec $HOME/.config/waybar/record.sh toggle fullscreen",
-		"on-click-right": "exec $HOME/.config/waybar/record.sh toggle region"
+		"on-click": "exec $HOME/.config/waybar/scripts/record.sh toggle fullscreen",
+		"on-click-right": "exec $HOME/.config/waybar/acripts/record.sh toggle region"
 	},
 	"custom/toggle_dashboard": {
 		"format": " ",
@@ -185,7 +186,8 @@
 		"interval": 60,
 		"format": "   {:%H:%M}",
 		"max-length": 25,
-		"on-click": "sleep 0.1 && exec gnome-calendar"
+		"on-click": "sleep 0.1 && exec gnome-calendar",
+    "on-click-right":"hyprctl dispatch togglespecialworkspace clipboard"
 	},
 	"cpu": {
 		"interval": 1,

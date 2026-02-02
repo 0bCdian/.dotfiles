@@ -2,7 +2,7 @@
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
-[manager]
+[mgr]
 
 keymap = [
   { on = [
@@ -121,7 +121,7 @@ keymap = [
   ], run = "arrow top", desc = "Move cursor to the top" },
   { on = [
     "G",
-  ], run = "arrow bottom", desc = "Move cursor to the bottom" },
+  ], run = "arrow bot", desc = "Move cursor to the bottom" },
 
   # Selection
   { on = [
