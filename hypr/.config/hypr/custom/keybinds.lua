@@ -61,7 +61,10 @@ hl.bind(mod_ctl .. " + I", hl.dsp.window.move({ direction = "up" }))
 hl.bind(mod_ctl .. " + K", hl.dsp.window.move({ direction = "down" }))
 
 -- Misc system keys
-hl.bind("Print",               hl.dsp.exec_cmd(home .. "/.config/rofi/applets/bin/screenshot.sh"))
+-- ROLLBACK: swap back to hl.dsp.exec_cmd(home .. "/.config/rofi/applets/bin/screenshot.sh")
+hl.bind("Print",             hl.dsp.exec_cmd("omarchy-menu toggle capture"), { description = "Capture menu (screenshot/record/text/color)" })
+hl.bind(mod_alt .. " + Print", hl.dsp.exec_cmd("omarchy-capture-screenrecording --stop-recording || omarchy-menu toggle trigger.capture.screenrecord"), { description = "Screenrecord (stop if running)" })
+hl.bind(mod_ctl .. " + Print",  hl.dsp.exec_cmd("omarchy-capture-text"), { description = "Extract text (OCR) from screenshot" })
 hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl set 30+"))
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 30-"))
 hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("amixer set Master 5%+"))
