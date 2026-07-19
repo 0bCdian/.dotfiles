@@ -1,0 +1,4 @@
+-- custom/env.lua  (translated from custom/env.conf)
+-- Put your extra environment variables here, e.g.:
+--   hl.env("MOZ_ENABLE_WAYLAND", "1")
+-- Docs: https://wiki.hypr.land/Configuring/Environment-variables/

@@ -1,0 +1,5 @@
+-- custom/general.lua  (translated from custom/general.conf)
+-- Put general settings overrides here. They run AFTER hyprland/general.lua,
+-- so anything you set wins. Example:
+--   hl.config({ general = { gaps_in = 8 } })
+-- Every variable: https://wiki.hypr.land/Configuring/Variables/

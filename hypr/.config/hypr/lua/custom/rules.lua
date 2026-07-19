@@ -1,0 +1,5 @@
+-- custom/rules.lua  (translated from custom/rules.conf)
+-- Put your custom window / layer / workspace rules here. Example:
+--   hl.window_rule({ match = { class = "^(mpv)$" }, float = true })
+-- Window rules:    https://wiki.hypr.land/Configuring/Window-Rules/
+-- Workspace rules: https://wiki.hypr.land/Configuring/Workspace-Rules/
