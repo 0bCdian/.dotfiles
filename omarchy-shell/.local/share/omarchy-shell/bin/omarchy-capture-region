@@ -85,6 +85,12 @@ pick() {
 
 FREEZE_PID=""
 freeze_screen() {
+  # Fork: give a just-closed omarchy overlay (the Capture menu itself, most
+  # commonly) time to finish its fade-out before hyprpicker grabs the frame.
+  # Without this, the freeze can capture mid-fade, baking the closing menu
+  # into the screenshot. ~135ms is what the menu layer took to clear in
+  # testing; 200ms leaves margin.
+  sleep 0.2
   hyprpicker -r -z >/dev/null 2>&1 &
   FREEZE_PID=$!
   sleep .1
