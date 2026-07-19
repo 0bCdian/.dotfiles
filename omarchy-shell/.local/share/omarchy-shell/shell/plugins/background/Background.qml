@@ -314,8 +314,9 @@ Item {
         anchors.fill: parent
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         onDoubleClicked: function(mouse) {
-          if (mouse.button === Qt.RightButton) root.openThemeSwitcher()
-          else root.openSelector()
+          // Fork: waypaper-engine owns the wallpaper and omarchy's theme
+          // backgrounds are stripped, so openSelector()/openThemeSwitcher()
+          // just showed an empty dark backdrop. Disabled — double-click is a no-op.
           mouse.accepted = true
         }
       }
