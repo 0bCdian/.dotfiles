@@ -8,9 +8,9 @@ base-size = 16
 
 [launcher]
 # Lighter scrim + slightly translucent card so the Hyprland blur shows through.
-scrim-alpha      = 0.20
+scrim-alpha      = 0.0
 background-alpha  = 0.85
 
 [menu]
-scrim-alpha      = 0.20
+scrim-alpha      = 0.0
 background-alpha  = 0.90
