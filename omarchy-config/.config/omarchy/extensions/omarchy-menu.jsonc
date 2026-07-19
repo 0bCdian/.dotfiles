@@ -1,0 +1,8 @@
+{
+  // User overrides layered on default/omarchy/omarchy-menu.jsonc.
+  // The web-app *system* (install/manage PWAs) is out of scope for this fork;
+  // hide those rows. `when: "false"` runs the shell `false` command -> exit 1
+  // -> condition fails -> row hidden. (learn.* rows just open URLs and are kept.)
+  "install.webapp": { "when": "false" },
+  "remove.webapp":  { "when": "false" }
+}

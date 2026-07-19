@@ -1,0 +1,4 @@
+# uwsm login environment. Adjust to taste.
+export TERMINAL=ghostty
+export BROWSER=omarchy-launch-browser
+export EDITOR="nvim"
