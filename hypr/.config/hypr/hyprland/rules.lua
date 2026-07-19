@@ -138,6 +138,14 @@ hl.layer_rule({ match = { namespace = "notifications" },   blur = true, ignore_a
 -- inside a comment, so it did nothing. Restoring the intended blur here:
 hl.layer_rule({ match = { namespace = "logout_dialog" },   blur = true })
 
+-- Omarchy shell overlays: blur behind the summoned panels (frosted-glass look
+-- like ii). Paired with lowered scrim/background alpha in the theme shell.toml.
+hl.layer_rule({ match = { namespace = "omarchy-launcher" },     blur = true, ignore_alpha = 0.1 })
+hl.layer_rule({ match = { namespace = "omarchy-menu" },         blur = true, ignore_alpha = 0.1 })
+hl.layer_rule({ match = { namespace = "omarchy-clipboard" },    blur = true, ignore_alpha = 0.1 })
+hl.layer_rule({ match = { namespace = "omarchy-emojis" },       blur = true, ignore_alpha = 0.1 })
+hl.layer_rule({ match = { namespace = "omarchy-notifications" }, blur = true, ignore_alpha = 0.1 })
+
 -- ags-era layers
 hl.layer_rule({ match = { namespace = "sideleft.*" },  animation = "slide left" })
 hl.layer_rule({ match = { namespace = "sideright.*" }, animation = "slide right" })

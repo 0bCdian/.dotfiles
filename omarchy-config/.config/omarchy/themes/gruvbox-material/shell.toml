@@ -1,0 +1,16 @@
+# gruvbox-material shell surfaces (partial override; unset keys use shell defaults).
+# Colors come from colors.toml; this file only tunes sizes/alpha.
+
+[font]
+# rem root for the whole type scale. Bar height scales with this (scale-with-font).
+# 12 was too small on a 1440p 27"; 16 is comfortable.
+base-size = 16
+
+[launcher]
+# Lighter scrim + slightly translucent card so the Hyprland blur shows through.
+scrim-alpha      = 0.20
+background-alpha  = 0.85
+
+[menu]
+scrim-alpha      = 0.20
+background-alpha  = 0.90
