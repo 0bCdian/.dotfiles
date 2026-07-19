@@ -70,8 +70,10 @@ selection-fill-alpha = 0.35
 # enabled, those dimensions grow/shrink with [font] base-size too. Per-token
 # overrides (in px) below pin individual values without affecting the rest
 # of the scale. Uncomment any to tune a specific surface.
+# Fork: decoupled from [font] base-size (16) so bumping the bar's font
+# doesn't also inflate menu row-height/padding/card-width.
 scale = 1.0
-scale-with-font = true
+scale-with-font = false
 # xxs                       = 2
 # xs                        = 3
 # sm                        = 4
