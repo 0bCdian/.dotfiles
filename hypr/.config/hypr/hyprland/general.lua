@@ -208,12 +208,13 @@ hl.animation({ leaf = "windowsOut", enabled = true, speed = 2,  bezier = "emphas
 hl.animation({ leaf = "fadeOut",    enabled = true, speed = 2,  bezier = "emphasizedDecel" })
 hl.animation({ leaf = "windowsMove",enabled = true, speed = 3,  bezier = "emphasizedDecel", style = "slide" })
 hl.animation({ leaf = "border",     enabled = true, speed = 10, bezier = "emphasizedDecel" })
--- layers: follow the exact same rules as windows (windowsIn/Out + fadeIn/Out).
-hl.animation({ leaf = "layersIn",   enabled = true, speed = 3, bezier = "emphasizedDecel", style = "popin 80%" })
-hl.animation({ leaf = "layersOut",  enabled = true, speed = 2, bezier = "emphasizedDecel", style = "popin 90%" })
+-- layers: fast fade (independent of windows). A quick fade also clears overlays
+-- before a menu-triggered screenshot freezes the screen (no menu in the shot).
+hl.animation({ leaf = "layersIn",   enabled = true, speed = 1.5, bezier = "standardDecel", style = "fade" })
+hl.animation({ leaf = "layersOut",  enabled = true, speed = 1,   bezier = "standardDecel", style = "fade" })
 -- fade
-hl.animation({ leaf = "fadeLayersIn",  enabled = true, speed = 3, bezier = "emphasizedDecel" })
-hl.animation({ leaf = "fadeLayersOut", enabled = true, speed = 2, bezier = "emphasizedDecel" })
+hl.animation({ leaf = "fadeLayersIn",  enabled = true, speed = 1.5, bezier = "standardDecel" })
+hl.animation({ leaf = "fadeLayersOut", enabled = true, speed = 1,   bezier = "standardDecel" })
 -- workspaces
 hl.animation({ leaf = "workspaces", enabled = true, speed = 7, bezier = "menu_decel", style = "slide" })
 -- special workspace
