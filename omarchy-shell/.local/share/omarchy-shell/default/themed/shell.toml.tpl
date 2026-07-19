@@ -229,6 +229,8 @@ border           = "hyprland.active-border"
 border-active    = "hyprland.active-border"
 border-error     = "{{ red }}"
 border-alpha     = 1.0
+# Fork: match Hyprland window border_size (1).
+border-width     = 1
 # selection is the text-selection tint inside the input field.
 selection        = "{{ accent }}"
 selection-alpha  = 0.45

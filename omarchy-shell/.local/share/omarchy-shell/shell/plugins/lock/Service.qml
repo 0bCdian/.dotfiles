@@ -244,6 +244,7 @@ Item {
         authenticatingPassword: root.authenticatingPassword
         failureMessage: root.failureMessage
         failedAttempts: root.failedAttempts
+        userName: root.userName
         inputEnabled: root.lockRequested
         loadBackground: root.locked
         passwordText: root.enteredPassword
@@ -274,6 +275,7 @@ Item {
       authenticatingPassword: false
       failureMessage: ""
       failedAttempts: 0
+      userName: root.userName
       inputEnabled: false
       loadBackground: root.previewVisible
       passwordText: ""

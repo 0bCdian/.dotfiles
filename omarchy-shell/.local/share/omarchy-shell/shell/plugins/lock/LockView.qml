@@ -1,5 +1,8 @@
 import QtQuick
 import QtQuick.Effects
+import Quickshell
+import Quickshell.Hyprland
+import Quickshell.Io
 import qs.Commons
 import qs.Ui
 
@@ -16,6 +19,10 @@ Item {
   property bool loadBackground: true
   property string passwordText: ""
   property bool syncingPasswordText: false
+  property string userName: ""
+  property real shakeOffset: 0
+  property string keyboardLabel: ""
+  property string keyboardFull: ""
 
   readonly property string placeholderText: "Enter Password"
   readonly property int fieldWidth: 381
@@ -63,9 +70,53 @@ Item {
   onInputEnabledChanged: {
     if (inputEnabled) Qt.callLater(forcePasswordFocus)
   }
+  onErrorStateChanged: if (errorState) shakeAnim.restart()
   Component.onCompleted: {
     syncPasswordText()
     if (inputEnabled) Qt.callLater(forcePasswordFocus)
+    refreshKeyboardLayout()
+  }
+
+  function refreshKeyboardLayout() {
+    if (!keyboardQueryProc.running) keyboardQueryProc.running = true
+  }
+
+  Connections {
+    target: Hyprland
+    function onRawEvent(event) {
+      if (!event || !event.name) return
+      if (String(event.name).indexOf("activelayout") !== -1) root.refreshKeyboardLayout()
+    }
+  }
+
+  Process {
+    id: keyboardQueryProc
+    command: ["bash", "-lc", "hyprctl -j devices 2>/dev/null | sed -n '/keyboards/,$p' | head -200"]
+    stdout: StdioCollector {
+      waitForEnd: true
+      onStreamFinished: {
+        var match = String(text || "").match(/"active_keymap":\s*"([^"]+)"/)
+        if (!match) return
+        root.keyboardFull = match[1]
+        root.keyboardLabel = match[1].split(/\s+/)[0].substring(0, 3).toUpperCase()
+      }
+    }
+  }
+
+  Timer {
+    interval: 10000
+    running: true
+    repeat: true
+    onTriggered: root.refreshKeyboardLayout()
+  }
+
+  SequentialAnimation {
+    id: shakeAnim
+    NumberAnimation { target: root; property: "shakeOffset"; to: -14; duration: 50 }
+    NumberAnimation { target: root; property: "shakeOffset"; to: 14; duration: 50 }
+    NumberAnimation { target: root; property: "shakeOffset"; to: -7; duration: 40 }
+    NumberAnimation { target: root; property: "shakeOffset"; to: 7; duration: 40 }
+    NumberAnimation { target: root; property: "shakeOffset"; to: 0; duration: 30 }
   }
 
   Rectangle {
@@ -101,11 +152,77 @@ Item {
       onPositionChanged: root.wakeRequested()
     }
 
+    Row {
+      id: islands
+      anchors {
+        horizontalCenter: parent.horizontalCenter
+        horizontalCenterOffset: root.shakeOffset
+        verticalCenter: parent.verticalCenter
+      }
+      spacing: 10
+
+      BorderSurface {
+        id: leftIsland
+        height: root.fieldHeight
+        anchors.verticalCenter: parent.verticalCenter
+        color: Color.lock.background
+        borderSpec: Border.surfaceSpec("lock", "border", Color.lock.border, root.outlineThickness, "border-alpha")
+        radius: Style.cornerRadius
+        padding: 18
+        implicitWidth: leftContent.implicitWidth + leftPadding + rightPadding + borderLeft + borderRight
+        width: implicitWidth
+        clip: true
+
+        Row {
+          id: leftContent
+          anchors.centerIn: parent
+          spacing: 8
+
+          Text {
+            anchors.verticalCenter: parent.verticalCenter
+            text: ""
+            color: Color.lock.text
+            font.family: Style.font.family
+            font.pixelSize: root.fieldFontSize
+          }
+          Text {
+            anchors.verticalCenter: parent.verticalCenter
+            text: root.userName
+            color: Color.lock.text
+            font.family: Style.font.family
+            font.pixelSize: root.fieldFontSize
+          }
+          Rectangle {
+            visible: root.keyboardLabel.length > 0
+            anchors.verticalCenter: parent.verticalCenter
+            width: 1
+            height: parent.height * 0.5
+            color: Color.lock.text
+            opacity: 0.3
+          }
+          Text {
+            visible: root.keyboardLabel.length > 0
+            anchors.verticalCenter: parent.verticalCenter
+            text: "󰌌"
+            color: Color.lock.text
+            font.family: Style.font.family
+            font.pixelSize: root.fieldFontSize
+          }
+          Text {
+            visible: root.keyboardLabel.length > 0
+            anchors.verticalCenter: parent.verticalCenter
+            text: root.keyboardLabel
+            color: Color.lock.text
+            font.family: Style.font.family
+            font.pixelSize: root.fieldFontSize
+          }
+        }
+      }
+
     BorderSurface {
       id: inputField
       width: root.fieldWidth
       height: root.fieldHeight
-      anchors.centerIn: parent
       color: Color.lock.background
       borderSpec: root.inputBorderSpec
       radius: Style.cornerRadius
@@ -175,6 +292,7 @@ Item {
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
       }
+    }
     }
   }
 }
