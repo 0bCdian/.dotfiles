@@ -103,7 +103,8 @@ scale-with-font = true
 # derives from it (e.g. body = base, subtitle ≈ base * 1.083,
 # heading ≈ base * 1.333). The shell only floors this at 1px; increase it
 # as much as you want.
-base-size = 12
+# Fork: bumped 12 -> 16 (bar/font too small on 1440p).
+base-size = 16
 # Per-token overrides, in px. Uncomment any to pin a specific size without
 # affecting the rest of the scale. Useful for stylistic emphasis (a
 # minimalist theme that wants a bigger heading without scaling everything).
@@ -157,12 +158,14 @@ countdown        = "{{ accent }}"
 # dim layer behind the card; background is the card itself. Defaults
 # mirror [menu] with the card at 0.95 to preserve the legacy translucency.
 background                = "{{ bg }}"
-background-alpha          = 0.95
+background-alpha          = 0.85
 text                      = "{{ fg }}"
 border                    = "hyprland.active-border-foreground"
 border-alpha              = 1.0
 scrim                     = "{{ bg }}"
-scrim-alpha               = 0.5
+# Fork: scrim removed (0.5 -> 0) so the bar shows through overlays; card kept
+# translucent (0.85) so the Hyprland blur is visible behind it.
+scrim-alpha               = 0.0
 selected-background       = "{{ fg }}"
 selected-background-alpha = 0.08
 selected-text             = "{{ accent }}"
@@ -174,12 +177,13 @@ selected-border-alpha     = 0.25
 # go from 0 (invisible) to 1 (opaque). scrim is the full-screen dim layer
 # behind the card. Clipboard and emojis inherit these tokens.
 background                = "{{ bg }}"
-background-alpha          = 1.0
+background-alpha          = 0.90
 text                      = "{{ fg }}"
 border                    = "hyprland.active-border-foreground"
 border-alpha              = 1.0
 scrim                     = "{{ bg }}"
-scrim-alpha               = 0.5
+# Fork: scrim removed (0.5 -> 0); card slightly translucent for blur.
+scrim-alpha               = 0.0
 selected-background       = "{{ fg }}"
 selected-background-alpha = 0.08
 selected-text             = "{{ accent }}"
