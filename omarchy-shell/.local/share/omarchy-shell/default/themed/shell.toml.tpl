@@ -34,14 +34,14 @@ active-border-foreground = "{{ shell_gradient hyprland_active_border fg }}"
 normal-color        = "{{ fg }}"
 normal-fill-alpha   = 0.04
 normal-border       = "{{ fg }}"
-normal-border-width = 1
+normal-border-width = 0
 normal-border-alpha = 0.4
 
 # Hover-cursor: mouse hover and the panel keyboard cursor.
 hover-cursor-color        = "{{ fg }}"
 hover-cursor-fill-alpha   = 0.08
 hover-cursor-border       = "{{ fg }}"
-hover-cursor-border-width = 1
+hover-cursor-border-width = 0
 hover-cursor-border-alpha = 0.25
 
 # Focus: Qt activeFocus. Mirror the hover-cursor values by default so
@@ -50,7 +50,7 @@ hover-cursor-border-alpha = 0.25
 focus-color        = "{{ fg }}"
 focus-fill-alpha   = 0.08
 focus-border       = "{{ fg }}"
-focus-border-width = 1
+focus-border-width = 0
 focus-border-alpha = 0.25
 
 # Selected: persistent chosen/current state.
@@ -130,7 +130,8 @@ background-alpha = 1.0
 text             = "{{ fg }}"
 border           = "hyprland.active-border"
 border-alpha     = 1.0
-# border-width     = 2
+# Fork: match Hyprland window border_size (1).
+border-width     = 1
 
 [tooltip]
 # Hover tooltips across the bar, panels, and buttons. background-alpha of
@@ -149,7 +150,8 @@ text             = "{{ fg }}"
 # either a solid color or the full active-border gradient.
 border           = "hyprland.active-border"
 border-alpha     = 1.0
-# border-width     = 2
+# Fork: match Hyprland window border_size (1).
+border-width     = 1
 countdown        = "{{ accent }}"
 
 [launcher]
@@ -162,6 +164,8 @@ background-alpha          = 0.85
 text                      = "{{ fg }}"
 border                    = "hyprland.active-border-foreground"
 border-alpha              = 1.0
+# Fork: match Hyprland window border_size (1).
+border-width              = 1
 scrim                     = "{{ bg }}"
 # Fork: scrim removed (0.5 -> 0) so the bar shows through overlays; card kept
 # translucent (0.85) so the Hyprland blur is visible behind it.
@@ -181,6 +185,8 @@ background-alpha          = 0.90
 text                      = "{{ fg }}"
 border                    = "hyprland.active-border-foreground"
 border-alpha              = 1.0
+# Fork: match Hyprland window border_size (1).
+border-width              = 1
 scrim                     = "{{ bg }}"
 # Fork: scrim removed (0.5 -> 0); card slightly translucent for blur.
 scrim-alpha               = 0.0
