@@ -25,6 +25,9 @@
         },
         {
           "id": "omarchy.weather"
+        },
+        {
+          "id": "omarchy.indicators"
         }
       ],
       "right": [
