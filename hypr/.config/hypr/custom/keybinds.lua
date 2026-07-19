@@ -79,7 +79,8 @@ hl.bind(mod_shift .. " + K", hl.dsp.exec_cmd("hyprctl kill"))
 hl.bind(mod .. " + M",       hl.dsp.exec_cmd("omarchy-menu toggle power-menu"), { description = "Power menu (lock/suspend/hibernate/logout/restart/shutdown)" })
 hl.bind(mod .. " + F",       hl.dsp.window.float({ action = "toggle" }))
 
-hl.bind("Insert", hl.dsp.workspace.toggle_special("clipboard"))
+-- ROLLBACK: swap back to hl.dsp.workspace.toggle_special("clipboard")
+hl.bind("Insert", hl.dsp.exec_cmd("omarchy-shell shell toggle omarchy.clipboard"), { description = "Clipboard history" })
 
 -- Workspace nav by relative index
 hl.bind(mod .. " + left",  hl.dsp.focus({ workspace = "r-1" }))
@@ -123,7 +124,8 @@ hl.bind("ALT + Tab", function()
 end)
 
 hl.bind(mod_shift .. " + T", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"))
-hl.bind(mod .. " + R",       hl.dsp.exec_cmd("ags -r 'recorder.start()'"))
+-- ROLLBACK: ags is not installed; this bind was already dead. Swap back to hl.dsp.exec_cmd("ags -r 'recorder.start()'") if ags returns.
+hl.bind(mod .. " + R",       hl.dsp.exec_cmd("omarchy-capture-screenrecording --stop-recording || omarchy-menu toggle trigger.capture.screenrecord"), { description = "Screenrecord (stop if running)" })
 
 -- Laptop lid switch (bindl -> locked)
 hl.bind("switch:on:Lid Switch",  hl.dsp.exec_cmd("systemctl suspend"), { locked = true })
@@ -148,7 +150,8 @@ hl.bind(mod .. " + E",      hl.dsp.exec_cmd("[float] nautilus"))
 -- ROLLBACK: swap the next line back to: hl.dsp.exec_cmd("vicinae toggle")
 hl.bind(mod .. " + space",  hl.dsp.exec_cmd("omarchy-shell shell toggle omarchy.launcher"))
 hl.bind(mod .. " + Return", hl.dsp.exec_cmd("ghostty"))
-hl.bind(mod_shift .. " + E", hl.dsp.exec_cmd("bemoji -n"))
+-- ROLLBACK: swap back to hl.dsp.exec_cmd("bemoji -n")
+hl.bind(mod_shift .. " + E", hl.dsp.exec_cmd("omarchy-shell shell toggle omarchy.emojis"), { description = "Emoji picker" })
 
 ------------------------------ Omarchy shell ------------------------------
 hl.bind(mod .. " + Escape", hl.dsp.exec_cmd("omarchy-menu"),                               { description = "Omarchy command menu" })
