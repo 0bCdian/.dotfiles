@@ -360,7 +360,7 @@ BarWidget {
         opacity: chip.pct >= 0.9 ? 0.75 : 1
       }
 
-      Text {
+      AppText {
         text: root.formatUsagePercent(chip.modelData)
         color: chip.pct >= 0.9 ? urgent : foreground
         font.family: fontFamily
@@ -387,7 +387,7 @@ BarWidget {
         opacity: chip.pct >= 0.9 ? 0.75 : 1
       }
 
-      Text {
+      AppText {
         width: root.barSize
         text: root.formatUsagePercent(chip.modelData)
         color: chip.pct >= 0.9 ? urgent : foreground
@@ -459,7 +459,7 @@ BarWidget {
       function onBarChanged() { emptyChip.syncClickRegistration() }
     }
 
-    Text {
+    AppText {
       id: emptyLabel
       anchors.centerIn: parent
       text: "AI"
@@ -613,7 +613,7 @@ BarWidget {
             width: flick.width
             spacing: 10
 
-            Text {
+            AppText {
               visible: !root.settingsMode && !root.selectedProvider
               Layout.fillWidth: true
               Layout.topMargin: 24
@@ -645,7 +645,7 @@ BarWidget {
     Layout.fillWidth: true
     spacing: 8
 
-    Text {
+    AppText {
       text: "Model Usage Settings"
       color: foreground
       font.family: fontFamily
@@ -687,7 +687,7 @@ BarWidget {
     Layout.fillWidth: true
     spacing: 8
 
-    Text {
+    AppText {
       Layout.fillWidth: true
       text: {
         var sync = root.syncSummary(root.selectedProvider)
@@ -806,7 +806,7 @@ BarWidget {
           onModified: function(value) { root.setDraftValue("refreshIntervalSec", value) }
         }
 
-        Text {
+        AppText {
           Layout.fillWidth: true
           text: "How often the widget refreshes local usage scans and sync snapshots."
           color: dim
@@ -874,7 +874,7 @@ BarWidget {
       }
     }
 
-    Text {
+    AppText {
       visible: root.settingsStatusText !== ""
       Layout.fillWidth: true
       text: root.settingsStatusText
@@ -884,7 +884,7 @@ BarWidget {
       horizontalAlignment: Text.AlignHCenter
     }
 
-    Text {
+    AppText {
       Layout.fillWidth: true
       text: "s saves · esc closes"
       color: dim
@@ -894,7 +894,7 @@ BarWidget {
     }
   }
 
-  component FieldLabel: Text {
+  component FieldLabel: AppText {
     color: dim
     font.family: fontFamily
     font.pixelSize: 10
@@ -917,7 +917,7 @@ BarWidget {
       Layout.alignment: Qt.AlignVCenter
     }
 
-    Text {
+    AppText {
       text: provider ? provider.providerName + " Usage" : ""
       color: foreground
       font.family: fontFamily
@@ -1016,9 +1016,9 @@ BarWidget {
         delegate: RowLayout {
           required property var modelData
           Layout.fillWidth: true
-          Text { text: usageMain.friendlyModelName(modelData.modelId); color: dim; font.family: fontFamily; font.pixelSize: 11 }
+          AppText { text: usageMain.friendlyModelName(modelData.modelId); color: dim; font.family: fontFamily; font.pixelSize: 11 }
           Item { Layout.fillWidth: true }
-          Text { text: usageMain.formatTokenCount(modelData.count) + " tokens"; color: foreground; font.family: fontFamily; font.pixelSize: 11; font.bold: true }
+          AppText { text: usageMain.formatTokenCount(modelData.count) + " tokens"; color: foreground; font.family: fontFamily; font.pixelSize: 11; font.bold: true }
         }
       }
     }
@@ -1045,7 +1045,7 @@ BarWidget {
             for (var i = 0; i < days.length; i++) if (Number(days[i].messageCount || 0) > max) max = Number(days[i].messageCount || 0)
             return max
           }
-          Text {
+          AppText {
             text: {
               var d = modelData.date
               if (!d) return ""
@@ -1073,7 +1073,7 @@ BarWidget {
               Behavior on width { NumberAnimation { duration: 160; easing.type: Easing.OutCubic } }
             }
           }
-          Text {
+          AppText {
             text: usageMain.formatTokenCount(count)
             color: foreground
             font.family: fontFamily
@@ -1116,7 +1116,7 @@ BarWidget {
           required property var modelData
           Layout.fillWidth: true
           spacing: 4
-          Text { text: usageMain.friendlyModelName(modelData.modelId); color: foreground; font.family: fontFamily; font.pixelSize: 11; font.bold: true }
+          AppText { text: usageMain.friendlyModelName(modelData.modelId); color: foreground; font.family: fontFamily; font.pixelSize: 11; font.bold: true }
           GridLayout {
             Layout.leftMargin: 10
             columns: 2
@@ -1165,7 +1165,7 @@ BarWidget {
         fontFamily: root.fontFamily
         fontSize: 11
       }
-      Text {
+      AppText {
         visible: section.subtitle !== ""
         Layout.fillWidth: true
         text: section.subtitle
@@ -1187,14 +1187,14 @@ BarWidget {
 
     RowLayout {
       Layout.fillWidth: true
-      Text {
+      AppText {
         text: "Pace"
         color: dim
         font.family: fontFamily
         font.pixelSize: 10
       }
       Item { Layout.fillWidth: true }
-      Text {
+      AppText {
         text: pace.text
         color: pace.deficit ? urgent : foreground
         font.family: fontFamily
@@ -1203,7 +1203,7 @@ BarWidget {
       }
     }
 
-    Text {
+    AppText {
       Layout.fillWidth: true
       text: pace.detail
       color: dim
@@ -1222,9 +1222,9 @@ BarWidget {
 
     RowLayout {
       Layout.fillWidth: true
-      Text { text: label; color: dim; font.family: fontFamily; font.pixelSize: 11 }
+      AppText { text: label; color: dim; font.family: fontFamily; font.pixelSize: 11 }
       Item { Layout.fillWidth: true }
-      Text {
+      AppText {
         text: value < 0 ? "—" : Math.round(value * 100) + "%"
         color: value >= 0.9 ? urgent : foreground
         font.family: fontFamily
@@ -1247,21 +1247,21 @@ BarWidget {
         Behavior on width { NumberAnimation { duration: 160; easing.type: Easing.OutCubic } }
       }
     }
-    Text { visible: resetText !== ""; text: resetText; color: dim; font.family: fontFamily; font.pixelSize: 10 }
+    AppText { visible: resetText !== ""; text: resetText; color: dim; font.family: fontFamily; font.pixelSize: 10 }
   }
 
   component StatBlock: ColumnLayout {
     property string value: "0"
     property string label: ""
     spacing: 2
-    Text { text: value; color: foreground; font.family: fontFamily; font.pixelSize: 18; font.bold: true }
-    Text { text: label; color: dim; font.family: fontFamily; font.pixelSize: 10 }
+    AppText { text: value; color: foreground; font.family: fontFamily; font.pixelSize: 18; font.bold: true }
+    AppText { text: label; color: dim; font.family: fontFamily; font.pixelSize: 10 }
   }
 
   component DetailPair: RowLayout {
     property string name: ""
     property string value: ""
-    Text { text: name; color: dim; font.family: fontFamily; font.pixelSize: 10; Layout.preferredWidth: 76 }
-    Text { text: value; color: foreground; font.family: fontFamily; font.pixelSize: 10; font.bold: true }
+    AppText { text: name; color: dim; font.family: fontFamily; font.pixelSize: 10; Layout.preferredWidth: 76 }
+    AppText { text: value; color: foreground; font.family: fontFamily; font.pixelSize: 10; font.bold: true }
   }
 }

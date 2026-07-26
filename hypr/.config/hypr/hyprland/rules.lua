@@ -144,7 +144,9 @@ hl.layer_rule({ match = { namespace = "omarchy-launcher" },     blur = true, ign
 hl.layer_rule({ match = { namespace = "omarchy-menu" },         blur = true, ignore_alpha = 0.1 })
 hl.layer_rule({ match = { namespace = "omarchy-clipboard" },    blur = true, ignore_alpha = 0.1 })
 hl.layer_rule({ match = { namespace = "omarchy-emojis" },       blur = true, ignore_alpha = 0.1 })
-hl.layer_rule({ match = { namespace = "omarchy-notifications" }, blur = true, ignore_alpha = 0.1 })
+-- No scrim behind toasts (unlike the other omarchy-* overlays), so blurring
+-- the live desktop here just looks soft/blurry instead of frosted-glass.
+hl.layer_rule({ match = { namespace = "omarchy-notifications" }, blur = false })
 
 -- ags-era layers
 hl.layer_rule({ match = { namespace = "sideleft.*" },  animation = "slide left" })

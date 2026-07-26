@@ -807,7 +807,7 @@ Panel {
         width: parent.width
         implicitHeight: Math.max(heroIcon.implicitHeight, heroLabels.implicitHeight)
 
-        Text {
+        AppText {
           id: heroIcon
           text: root.icon
           color: root.bar.foreground
@@ -855,7 +855,7 @@ Panel {
             }
             readonly property string detail: root.headerDetail()
 
-            Text {
+            AppText {
               text: heroSsid.title
               width: Math.min(implicitWidth, Math.max(0, parent.width - (heroDetailPill.visible ? heroDetailPill.implicitWidth + Style.space(8) : 0)))
               color: root.bar.foreground
@@ -877,7 +877,7 @@ Panel {
               borderSpec: Border.controlSpec("normal", root.bar.foreground, Color.accent)
               radius: Style.cornerRadius
 
-              Text {
+              AppText {
                 id: heroDetail
                 anchors.centerIn: parent
                 text: heroSsid.detail
@@ -889,7 +889,7 @@ Panel {
             }
           }
 
-          Text {
+          AppText {
             id: heroMeta
             width: parent.width
             text: {
@@ -1306,7 +1306,7 @@ Panel {
       anchors.rightMargin: Style.space(10)
       implicitHeight: Math.max(networkIcon.implicitHeight, networkInfo.implicitHeight, rightAction.implicitHeight) + Style.spacing.rowPaddingX
 
-      Text {
+      AppText {
         id: networkIcon
         text: row.net ? root.wifiIconFor(row.net.signal) : ""
         color: row.statusColor
@@ -1326,7 +1326,7 @@ Panel {
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
 
-        Text {
+        AppText {
           id: lockIndicator
           width: parent.width
           anchors.verticalCenter: parent.verticalCenter
@@ -1374,7 +1374,7 @@ Panel {
         anchors.rightMargin: rightAction.visible ? Style.space(8) : 0
         anchors.verticalCenter: parent.verticalCenter
 
-        Text {
+        AppText {
           text: row.net ? (row.net.ssid || "Hidden") : ""
           color: root.bar.foreground
           font.family: root.bar.fontFamily
@@ -1382,7 +1382,7 @@ Panel {
           elide: Text.ElideRight
           width: parent.width
         }
-        Text {
+        AppText {
           // Signal strength is conveyed by the wifi-bars icon and the
           // right-edge glyph/buttons carry protection or forget affordances,
           // so the second line only carries action status (Connecting…,
@@ -1464,7 +1464,7 @@ Panel {
         borderSpec: Border.controlSpec("normal", root.bar.foreground, Color.accent)
         radius: Style.cornerRadius
 
-        Text {
+        AppText {
           anchors.fill: parent
           horizontalAlignment: Text.AlignHCenter
           verticalAlignment: Text.AlignVCenter
@@ -1535,14 +1535,14 @@ Panel {
     }
   }
 
-  component InfoLabel: Text {
+  component InfoLabel: AppText {
     color: root.bar.foreground
     opacity: 0.6
     font.family: root.bar.fontFamily
     font.pixelSize: Style.font.bodySmall
   }
 
-  component InfoValue: Text {
+  component InfoValue: AppText {
     color: root.bar.foreground
     font.family: root.bar.fontFamily
     font.pixelSize: Style.font.bodySmall

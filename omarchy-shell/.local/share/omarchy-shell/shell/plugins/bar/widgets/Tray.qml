@@ -328,7 +328,7 @@ BarWidget {
       anchors.fill: parent
       spacing: Style.space(8)
 
-      Text {
+      AppText {
         text: "Tray icons"
         color: root.foreground
         font.family: root.fontFamily
@@ -336,7 +336,7 @@ BarWidget {
         font.bold: true
       }
 
-      Text {
+      AppText {
         text: "Pinned icons stay visible. Hidden icons never show."
         color: Qt.darker(root.foreground, 1.4)
         font.family: root.fontFamily
@@ -345,7 +345,7 @@ BarWidget {
         width: parent.width
       }
 
-      Text {
+      AppText {
         visible: root.allItems.length === 0
         text: "No tray items reporting."
         color: Qt.darker(root.foreground, 1.5)
@@ -385,7 +385,7 @@ BarWidget {
             icon: rowRoot.modelData.icon
           }
 
-          Text {
+          AppText {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: rowIcon.right
             anchors.leftMargin: Style.space(10)
@@ -490,7 +490,7 @@ BarWidget {
             color: rowMouse.containsMouse && menuRow.modelData.enabled ? Style.hoverFillFor(root.foreground, root.foreground) : "transparent"
           }
 
-          Text {
+          AppText {
             visible: !menuRow.modelData.isSeparator && menuRow.modelData.buttonType !== QsMenuButtonType.None
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
@@ -514,7 +514,7 @@ BarWidget {
             source: menuRow.modelData.icon
           }
 
-          Text {
+          AppText {
             visible: !menuRow.modelData.isSeparator
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
@@ -528,7 +528,7 @@ BarWidget {
             elide: Text.ElideRight
           }
 
-          Text {
+          AppText {
             id: submenuGlyph
             visible: !menuRow.modelData.isSeparator && menuRow.modelData.hasChildren
             anchors.verticalCenter: parent.verticalCenter

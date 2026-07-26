@@ -69,7 +69,7 @@ Item {
     NumberAnimation { duration: 140; easing.type: Easing.OutCubic }
   }
 
-  Text {
+  AppText {
     id: label
     visible: root.labelVisible
     anchors.centerIn: parent

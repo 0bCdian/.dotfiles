@@ -480,7 +480,7 @@ Panel {
           anchors.verticalCenter: parent.verticalCenter
           spacing: Style.space(16)
 
-          Text {
+          AppText {
             id: heroIcon
             anchors.verticalCenter: parent.verticalCenter
             anchors.verticalCenterOffset: 5
@@ -496,7 +496,7 @@ Panel {
             anchors.verticalCenter: parent.verticalCenter
             spacing: Style.space(2)
 
-            Text {
+            AppText {
               id: tempBig
               text: root.reportTempNum || "—"
               color: root.bar.foreground
@@ -506,7 +506,7 @@ Panel {
               font.pixelSize: 56
               font.bold: true
             }
-            Text {
+            AppText {
               text: root.current ? root.tempUnit : ""
               color: root.bar.foreground
               font.family: root.bar.fontFamily
@@ -536,14 +536,14 @@ Panel {
               cursorShape: Qt.PointingHandCursor
             }
 
-            Text {
+            AppText {
               text: ""  // nf-fa-map_marker
               color: Qt.darker(root.bar.foreground, 1.4)
               font.family: root.bar.fontFamily
               font.pixelSize: Style.font.body
               anchors.verticalCenter: parent.verticalCenter
             }
-            Text {
+            AppText {
               text: (root.reportLocation || "").toUpperCase()
               color: Qt.darker(root.bar.foreground, 1.4)
               font.family: root.bar.fontFamily
@@ -593,7 +593,7 @@ Panel {
               radius: Math.min(4, Style.cornerRadius)
               color: !root.savingLocation && clearLocationArea.containsMouse ? Style.hoverFillFor(root.bar.foreground, Color.accent) : "transparent"
 
-              Text {
+              AppText {
                 anchors.centerIn: parent
                 text: root.savingLocation ? "󰦖" : "✕"
                 font.family: root.bar.fontFamily
@@ -626,14 +626,14 @@ Panel {
 
             Column {
               spacing: Style.space(5)
-              Text {
+              AppText {
                 text: "FEELS"
                 color: Qt.darker(root.bar.foreground, 1.5)
                 font.family: root.bar.fontFamily
                 font.pixelSize: Style.font.bodySmall
                 font.letterSpacing: 1
               }
-              Text {
+              AppText {
                 text: root.reportFeels
                 color: root.bar.foreground
                 font.family: root.bar.fontFamily
@@ -643,14 +643,14 @@ Panel {
 
             Column {
               spacing: Style.space(5)
-              Text {
+              AppText {
                 text: "WIND"
                 color: Qt.darker(root.bar.foreground, 1.5)
                 font.family: root.bar.fontFamily
                 font.pixelSize: Style.font.bodySmall
                 font.letterSpacing: 1
               }
-              Text {
+              AppText {
                 text: root.reportWind
                 color: root.bar.foreground
                 font.family: root.bar.fontFamily
@@ -660,14 +660,14 @@ Panel {
 
             Column {
               spacing: Style.space(5)
-              Text {
+              AppText {
                 text: "HUMID"
                 color: Qt.darker(root.bar.foreground, 1.5)
                 font.family: root.bar.fontFamily
                 font.pixelSize: Style.font.bodySmall
                 font.letterSpacing: 1
               }
-              Text {
+              AppText {
                 text: root.reportHumidity
                 color: root.bar.foreground
                 font.family: root.bar.fontFamily
@@ -702,13 +702,13 @@ Panel {
               anchors.verticalCenter: parent.verticalCenter
               spacing: Style.space(8)
 
-              Text {
+              AppText {
                 text: modelData.name
                 color: index === root.suggestionIndex ? Style.hoverStateColor(root.bar.foreground, Color.accent) : root.bar.foreground
                 font.family: root.bar.fontFamily
                 font.pixelSize: Style.font.body
               }
-              Text {
+              AppText {
                 visible: text !== ""
                 text: modelData.description
                 color: Qt.darker(root.bar.foreground, 1.5)
@@ -729,7 +729,7 @@ Panel {
         }
       }
 
-      Text {
+      AppText {
         visible: !root.current
         text: "Fetching forecast…"
         color: Qt.darker(root.bar.foreground, 1.5)
@@ -767,7 +767,7 @@ Panel {
               required property int index
               spacing: Style.space(10)
 
-              Text {
+              AppText {
                 anchors.verticalCenter: parent.verticalCenter
                 text: root.dayIcon(modelData)
                 color: root.bar.foreground
@@ -779,7 +779,7 @@ Panel {
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: Style.space(2)
 
-                Text {
+                AppText {
                   text: root.dayName(modelData.date).toUpperCase()
                   color: Qt.darker(root.bar.foreground, 1.4)
                   font.family: root.bar.fontFamily
@@ -790,13 +790,13 @@ Panel {
                 Row {
                   spacing: Style.space(6)
 
-                  Text {
+                  AppText {
                     text: root.bareTempForDay(modelData, "max")
                     color: root.bar.foreground
                     font.family: root.bar.fontFamily
                     font.pixelSize: Style.font.body
                   }
-                  Text {
+                  AppText {
                     text: root.bareTempForDay(modelData, "min")
                     color: Qt.darker(root.bar.foreground, 1.5)
                     font.family: root.bar.fontFamily

@@ -73,7 +73,7 @@ BorderSurface {
       spacing: Style.spacing.xs
       anchors.verticalCenter: parent.verticalCenter
 
-      Text {
+      AppText {
         text: root.label
         color: root.foreground
         font.family: root.fontFamily
@@ -83,7 +83,7 @@ BorderSurface {
         width: parent.width
       }
 
-      Text {
+      AppText {
         visible: root.description !== ""
         text: root.description
         color: Qt.darker(root.foreground, 1.5)

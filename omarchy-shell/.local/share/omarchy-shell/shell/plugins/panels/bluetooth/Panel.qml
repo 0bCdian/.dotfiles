@@ -514,7 +514,7 @@ Panel {
           width: parent.width
           implicitHeight: Math.max(heroIcon.implicitHeight, heroLabels.implicitHeight)
 
-          Text {
+          AppText {
             id: heroIcon
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
@@ -548,7 +548,7 @@ Panel {
             anchors.verticalCenter: parent.verticalCenter
             spacing: Style.space(2)
 
-            Text {
+            AppText {
               text: "Bluetooth"
               color: root.bar.foreground
               font.family: root.bar.fontFamily
@@ -558,7 +558,7 @@ Panel {
               width: parent.width
             }
 
-            Text {
+            AppText {
               id: heroStatus
               text: root.heroStatusText.toUpperCase()
               color: Qt.darker(root.bar.foreground, 1.4)
@@ -676,7 +676,7 @@ Panel {
               }
             }
 
-            Text {
+            AppText {
               visible: root.connectedDevices.length === 0
                        && root.knownDevices.length === 0
                        && (!root.adapter || !root.adapter.discovering || root.discoveredDevices.length === 0)
@@ -788,7 +788,7 @@ Panel {
       anchors.rightMargin: Style.space(10)
       implicitHeight: Math.max(deviceIcon.implicitHeight, info.implicitHeight, forgetBtn.implicitHeight)
 
-      Text {
+      AppText {
         id: deviceIcon
         text: row.isConnected ? "󰂱" : "󰂯"
         color: row.statusColor
@@ -807,7 +807,7 @@ Panel {
         anchors.rightMargin: forgetBtn.visible ? Style.space(8) : 0
         anchors.verticalCenter: parent.verticalCenter
 
-        Text {
+        AppText {
           text: root.deviceLabel(row.dev) || "Device"
           color: root.bar.foreground
           font.family: root.bar.fontFamily
@@ -815,7 +815,7 @@ Panel {
           elide: Text.ElideRight
           width: parent.width
         }
-        Text {
+        AppText {
           visible: row.statusText !== ""
           text: row.statusText
           color: row.statusColor

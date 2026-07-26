@@ -599,7 +599,7 @@ Panel {
             width: parent.width
             implicitHeight: Math.max(heroIcon.implicitHeight, heroLabels.implicitHeight)
 
-            Text {
+            AppText {
               id: heroIcon
               text: root.outputIcon()
               color: root.bar.foreground
@@ -624,7 +624,7 @@ Panel {
               anchors.verticalCenter: parent.verticalCenter
               spacing: Style.space(2)
 
-              Text {
+              AppText {
                 text: "Audio"
                 color: root.bar.foreground
                 font.family: root.bar.fontFamily
@@ -634,7 +634,7 @@ Panel {
                 width: parent.width
               }
 
-              Text {
+              AppText {
                 id: heroLabel
                 text: root.outputVolumeName(
                   outputSlider.dragging ? outputSlider.liveValue : root.outputVolume,
@@ -673,7 +673,7 @@ Panel {
                 anchors.verticalCenter: parent.verticalCenter
               }
 
-              Text {
+              AppText {
                 id: outputPercent
                 text: Math.round((outputSlider.dragging ? outputSlider.liveValue : root.outputVolume) * 100) + "%"
                 color: Qt.darker(root.bar.foreground, 1.4)
@@ -758,7 +758,7 @@ Panel {
                 anchors.verticalCenter: parent.verticalCenter
               }
 
-              Text {
+              AppText {
                 id: microphonePercent
                 text: Math.round((inputSlider.dragging ? inputSlider.liveValue : root.inputVolume) * 100) + "%"
                 color: Qt.darker(root.bar.foreground, 1.4)
@@ -902,7 +902,7 @@ Panel {
       anchors.rightMargin: Style.space(6)
       spacing: Style.space(8)
 
-      Text {
+      AppText {
         text: root.sinkGlyph(sinkRow.node)
         color: root.bar.foreground
         font.family: root.bar.fontFamily
@@ -912,7 +912,7 @@ Panel {
         anchors.verticalCenter: parent.verticalCenter
       }
 
-      Text {
+      AppText {
         text: root.nodeLabel(sinkRow.node)
         color: root.bar.foreground
         font.family: root.bar.fontFamily
@@ -961,7 +961,7 @@ Panel {
       anchors.rightMargin: Style.space(6)
       spacing: Style.space(8)
 
-      Text {
+      AppText {
         text: root.sourceGlyph(sourceRow.node)
         color: root.bar.foreground
         font.family: root.bar.fontFamily
@@ -971,7 +971,7 @@ Panel {
         anchors.verticalCenter: parent.verticalCenter
       }
 
-      Text {
+      AppText {
         text: root.nodeLabel(sourceRow.node)
         color: root.bar.foreground
         font.family: root.bar.fontFamily
@@ -1030,7 +1030,7 @@ Panel {
         width: parent.width
         spacing: Style.space(8)
 
-        Text {
+        AppText {
           id: streamMuteIcon
           text: streamRow.streamMuted ? "󰝟" : "󰕾"
           color: root.bar.foreground
@@ -1051,7 +1051,7 @@ Panel {
           }
         }
 
-        Text {
+        AppText {
           text: root.streamLabel(streamRow.node)
           color: root.bar.foreground
           font.family: root.bar.fontFamily
@@ -1062,7 +1062,7 @@ Panel {
           anchors.verticalCenter: parent.verticalCenter
         }
 
-        Text {
+        AppText {
           id: streamPct
           text: Math.round(streamRow.streamVolume * 100) + "%"
           color: Qt.darker(root.bar.foreground, 1.5)

@@ -396,7 +396,7 @@ Panel {
             visible: root.brightnessAvailable
             implicitHeight: Math.max(heroIcon.implicitHeight, heroLabels.implicitHeight)
 
-            Text {
+            AppText {
               id: heroIcon
               text: root.displays.length > 1 ? "󰍺" : "󰍹"
               color: root.bar.foreground
@@ -414,7 +414,7 @@ Panel {
               anchors.verticalCenter: parent.verticalCenter
               spacing: Style.space(2)
 
-              Text {
+              AppText {
                 text: "Display"
                 color: root.bar.foreground
                 font.family: root.bar.fontFamily
@@ -424,7 +424,7 @@ Panel {
                 width: parent.width
               }
 
-              Text {
+              AppText {
                 id: heroLabel
                 text: root.brightnessName(brightnessSlider.dragging ? brightnessSlider.liveValue : root.brightnessPercent).toUpperCase()
                 color: Qt.darker(root.bar.foreground, 1.4)
@@ -462,7 +462,7 @@ Panel {
                 anchors.verticalCenter: parent.verticalCenter
               }
 
-              Text {
+              AppText {
                 id: brightnessPercent
                 text: Math.round(brightnessSlider.dragging ? brightnessSlider.liveValue : root.brightnessPercent) + "%"
                 color: Qt.darker(root.bar.foreground, 1.4)
@@ -512,7 +512,7 @@ Panel {
             }
           }
 
-          Text {
+          AppText {
             visible: !root.brightnessAvailable
             text: "No controllable backlight found"
             color: Qt.darker(root.bar.foreground, 1.5)
@@ -651,7 +651,7 @@ Panel {
       anchors.rightMargin: Style.space(6)
       spacing: Style.space(8)
 
-      Text {
+      AppText {
         text: "󰍹"
         color: root.bar.foreground
         font.family: root.bar.fontFamily
@@ -661,7 +661,7 @@ Panel {
         anchors.verticalCenter: parent.verticalCenter
       }
 
-      Text {
+      AppText {
         text: monitorRow.display.name + (monitorRow.display.focused ? " · focused" : "")
         color: root.bar.foreground
         font.family: root.bar.fontFamily
@@ -671,7 +671,7 @@ Panel {
         anchors.verticalCenter: parent.verticalCenter
       }
 
-      Text {
+      AppText {
         text: monitorRow.display.enabled ? "󰄬" : ""
         color: root.bar.foreground
         font.family: root.bar.fontFamily

@@ -178,14 +178,14 @@ Item {
           anchors.centerIn: parent
           spacing: 8
 
-          Text {
+          AppText {
             anchors.verticalCenter: parent.verticalCenter
             text: ""
             color: Color.lock.text
             font.family: Style.font.family
             font.pixelSize: root.fieldFontSize
           }
-          Text {
+          AppText {
             anchors.verticalCenter: parent.verticalCenter
             text: root.userName
             color: Color.lock.text
@@ -200,7 +200,7 @@ Item {
             color: Color.lock.text
             opacity: 0.3
           }
-          Text {
+          AppText {
             visible: root.keyboardLabel.length > 0
             anchors.verticalCenter: parent.verticalCenter
             text: "󰌌"
@@ -208,7 +208,7 @@ Item {
             font.family: Style.font.family
             font.pixelSize: root.fieldFontSize
           }
-          Text {
+          AppText {
             visible: root.keyboardLabel.length > 0
             anchors.verticalCenter: parent.verticalCenter
             text: root.keyboardLabel
@@ -280,7 +280,7 @@ Item {
         }
       }
 
-      Text {
+      AppText {
         anchors.fill: passwordInput
         text: root.authenticatingPassword ? "Checking…" : (root.failureMessage.length > 0 ? root.failureMessage : root.placeholderText)
         visible: passwordInput.text.length === 0

@@ -257,7 +257,7 @@ Item {
         anchors.leftMargin: card.contentLeftInset
         spacing: Style.space(14)
 
-        Text {
+        AppText {
           text: "\uf023"
           color: root.errorFlash ? Color.polkit.textError : root.accent
           font.family: root.fontFamily
@@ -298,7 +298,7 @@ Item {
             }
           }
 
-          Text {
+          AppText {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
@@ -339,7 +339,7 @@ Item {
       radius: root.cornerRadius
       color: root.background
 
-      Text {
+      AppText {
         id: justificationText
         anchors.fill: parent
         anchors.leftMargin: Style.space(12)

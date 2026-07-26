@@ -24,7 +24,7 @@ Column {
 
   spacing: Style.spacing.md
 
-  Text {
+  AppText {
     visible: root.label !== ""
     text: root.label
     color: Qt.darker(root.foreground, 1.4)

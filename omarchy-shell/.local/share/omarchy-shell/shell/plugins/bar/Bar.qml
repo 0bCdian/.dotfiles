@@ -947,7 +947,7 @@ Item {
         borderSpec: Border.surfaceSpec("tooltip", "border", Color.tooltip.border, 1)
         radius: Style.cornerRadius
 
-        Text {
+        AppText {
           id: tooltipLabel
           anchors.centerIn: parent
           text: root.tooltipText

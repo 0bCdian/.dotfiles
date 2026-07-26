@@ -881,7 +881,7 @@ Item {
           radius: root.cornerRadius
           color: "transparent"
 
-          Text {
+          AppText {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
@@ -961,7 +961,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
               }
 
-              Text {
+              AppText {
                 id: iconText
                 visible: row.hasIcon
                 text: row.icon
@@ -985,7 +985,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: Style.space(3)
 
-                Text {
+                AppText {
                   id: labelText
                   width: parent.width
                   text: row.label
@@ -996,7 +996,7 @@ Item {
                   elide: Text.ElideRight
                 }
 
-                Text {
+                AppText {
                   width: parent.width
                   text: row.detail
                   visible: root.filterText && row.detail.length > 0
@@ -1016,7 +1016,7 @@ Item {
                 y: contentColumn.y + labelText.y + (labelText.height - height) / 2
                 spacing: 0
 
-                Text {
+                AppText {
                   visible: false
                   text: row.childCount
                   color: root.foreground
@@ -1026,7 +1026,7 @@ Item {
                   anchors.verticalCenter: parent.verticalCenter
                 }
 
-                Text {
+                AppText {
                   text: row.kind === "menu" || row.kind === "link" ? "›" : ""
                   color: row.hasCursor ? root.selectedText : root.foreground
                   opacity: row.kind === "menu" || row.kind === "link" ? 0.36 : 0
@@ -1059,7 +1059,7 @@ Item {
             spacing: Style.space(8)
             visible: displayModel.count === 0 && root.mode !== "input"
 
-            Text {
+            AppText {
               text: "󰈉"
               color: root.selectedText
               opacity: 0.8
@@ -1069,7 +1069,7 @@ Item {
               width: Style.space(320)
             }
 
-            Text {
+            AppText {
               text: root.filterText ? "No matches for “" + root.filterText + "”" : "Nothing here yet"
               color: root.foreground
               opacity: 0.7

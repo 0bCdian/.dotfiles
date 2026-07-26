@@ -416,7 +416,7 @@ Item {
           radius: root.cornerRadius
           color: "transparent"
 
-          Text {
+          AppText {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
@@ -484,7 +484,7 @@ Item {
                       smooth: true
                     }
 
-                    Text {
+                    AppText {
                       width: parent.width - (parent.parent.previewImage.length > 0 ? parent.height + parent.spacing : 0)
                       height: parent.height
                       text: parent.parent.previewText
@@ -530,7 +530,7 @@ Item {
                 color: Util.alpha(root.border, 0.28)
               }
 
-              Text {
+              AppText {
                 visible: parent.activeRow && !parent.activeRow.previewImage
                 anchors.fill: parent
                 anchors.leftMargin: root.contentMargin
@@ -567,7 +567,7 @@ Item {
             spacing: Style.space(8)
             visible: displayModel.count === 0
 
-            Text {
+            AppText {
               text: "󰅌"
               color: root.selectedText
               opacity: 0.8
@@ -577,7 +577,7 @@ Item {
               width: parent.width
             }
 
-            Text {
+            AppText {
               text: root.history.length === 0 ? "Clipboard is empty" : "No matches for “" + root.filterText + "”"
               color: root.foreground
               opacity: 0.7

@@ -344,14 +344,14 @@ Item {
             width: parent.width
             spacing: Style.space(4)
 
-            Text {
+            AppText {
               text: "Omarchy shell · dev gallery"
               color: root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.iconLarge
               font.bold: true
             }
-            Text {
+            AppText {
               text: "Live previews of every type exported from qs.Ui. Use this as the visual reference when porting panels or building plugins. j/k or arrows to walk; h/l within rows; Enter to activate; Esc to close."
               color: Qt.darker(root.foreground, 1.4)
               font.family: root.fontFamily
@@ -368,7 +368,7 @@ Item {
             width: parent.width
             spacing: Style.space(8)
 
-            Text {
+            AppText {
               text: "Conventions"
               color: root.foreground
               font.family: root.fontFamily
@@ -392,7 +392,7 @@ Item {
                 anchors.rightMargin: Style.space(14)
                 spacing: Style.space(8)
 
-                Text {
+                AppText {
                   width: parent.width
                   wrapMode: Text.WordWrap
                   color: Qt.darker(root.foreground, 1.4)
@@ -400,7 +400,7 @@ Item {
                   font.pixelSize: Style.font.bodySmall
                   text: "Theme. qs.Commons.Style exposes cornerRadius plus shared normal / hover-cursor / selected / focus state tokens (state colors, fill alphas, border widths, and border alphas), spacing tokens, typography, and bar dimensions. Focus defaults to hover-cursor; selected borders are off by default. Border widths are the theme-level on/off switch for state borders. qs.Commons.Color exposes foreground / background / accent / urgent plus per-surface roles. Components default-bind to these so a caller with no overrides matches the active theme."
                 }
-                Text {
+                AppText {
                   width: parent.width
                   wrapMode: Text.WordWrap
                   color: Qt.darker(root.foreground, 1.4)
@@ -408,7 +408,7 @@ Item {
                   font.pixelSize: Style.font.bodySmall
                   text: "Single cursor. Most reusable panel primitives expose hasCursor: bool and emit hovered(bool); composed rows (including sliders) wrap their content in CursorSurface. The panel root owns cursorActive + focusSection + selectedIndex; each element binds hasCursor: root.cursorActive && root.focusSection === 'X' && root.selectedIndex === N, and onHovered flips cursorActive on while updating the same state. No initial highlight, then one highlight on screen once the keyboard or mouse enters. See plugins/panels/audio/Panel.qml for the canonical recipe."
                 }
-                Text {
+                AppText {
                   width: parent.width
                   wrapMode: Text.WordWrap
                   color: Qt.darker(root.foreground, 1.4)
@@ -416,7 +416,7 @@ Item {
                   font.pixelSize: Style.font.bodySmall
                   text: "Popups + editors. Dropdown / SearchableDropdown expose popupOpen plus open() / close() / toggle(); inline TextField uses activeFocus. While any of those own the keys, set PanelKeyCatcher.blocked so the panel's cursor model freezes and the active widget handles input."
                 }
-                Text {
+                AppText {
                   width: parent.width
                   wrapMode: Text.WordWrap
                   color: Qt.darker(root.foreground, 1.4)
@@ -435,14 +435,14 @@ Item {
             width: parent.width
             spacing: Style.space(8)
 
-            Text {
+            AppText {
               text: "Typography"
               color: root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.subtitle
               font.bold: true
             }
-            Text {
+            AppText {
               text: "Style.font.* is the shell-wide type scale. Themes ship a single "
                 + "[font] base-size in shell.toml; every token derives from it via a "
                 + "fixed multiplier, so changing base-size rescales the whole shell "
@@ -473,7 +473,7 @@ Item {
                 anchors.rightMargin: Style.space(14)
                 spacing: Style.space(10)
 
-                Text {
+                AppText {
                   text: "Scale"
                   color: Qt.darker(root.foreground, 1.4)
                   font.family: root.fontFamily
@@ -509,13 +509,13 @@ Item {
                       anchors.verticalCenter: parent.verticalCenter
                       width: Style.space(140)
                       spacing: Style.space(1)
-                      Text {
+                      AppText {
                         text: "Style.font." + modelData.key
                         color: root.foreground
                         font.family: root.fontFamily
                         font.pixelSize: Style.font.bodySmall
                       }
-                      Text {
+                      AppText {
                         text: modelData.size + " px"
                         color: Qt.darker(root.foreground, 1.5)
                         font.family: root.fontFamily
@@ -523,7 +523,7 @@ Item {
                       }
                     }
 
-                    Text {
+                    AppText {
                       id: sampleText
                       anchors.left: metaCol.right
                       anchors.right: parent.right
@@ -544,7 +544,7 @@ Item {
                   color: Qt.rgba(root.foreground.r, root.foreground.g, root.foreground.b, 0.10)
                 }
 
-                Text {
+                AppText {
                   text: "Theme tokens"
                   color: Qt.darker(root.foreground, 1.4)
                   font.family: root.fontFamily
@@ -558,91 +558,91 @@ Item {
                   rowSpacing: Style.space(4)
                   width: parent.width
 
-                  Text {
+                  AppText {
                     text: "Style.font.family"
                     color: Qt.darker(root.foreground, 1.5)
                     font.family: root.fontFamily
                     font.pixelSize: Style.font.bodySmall
                   }
-                  Text {
+                  AppText {
                     text: Style.font.family
                     color: root.foreground
                     font.family: root.fontFamily
                     font.pixelSize: Style.font.bodySmall
                   }
 
-                  Text {
+                  AppText {
                     text: "Style.font.resolvedFamily"
                     color: Qt.darker(root.foreground, 1.5)
                     font.family: root.fontFamily
                     font.pixelSize: Style.font.bodySmall
                   }
-                  Text {
+                  AppText {
                     text: Style.font.resolvedFamily
                     color: root.foreground
                     font.family: root.fontFamily
                     font.pixelSize: Style.font.bodySmall
                   }
 
-                  Text {
+                  AppText {
                     text: "Style.font.baseSize"
                     color: Qt.darker(root.foreground, 1.5)
                     font.family: root.fontFamily
                     font.pixelSize: Style.font.bodySmall
                   }
-                  Text {
+                  AppText {
                     text: Style.font.baseSize + " px"
                     color: root.foreground
                     font.family: root.fontFamily
                     font.pixelSize: Style.font.bodySmall
                   }
 
-                  Text {
+                  AppText {
                     text: "Style.bar.sizeHorizontal"
                     color: Qt.darker(root.foreground, 1.5)
                     font.family: root.fontFamily
                     font.pixelSize: Style.font.bodySmall
                   }
-                  Text {
+                  AppText {
                     text: Style.bar.sizeHorizontal + " px"
                     color: root.foreground
                     font.family: root.fontFamily
                     font.pixelSize: Style.font.bodySmall
                   }
 
-                  Text {
+                  AppText {
                     text: "Style.bar.sizeVertical"
                     color: Qt.darker(root.foreground, 1.5)
                     font.family: root.fontFamily
                     font.pixelSize: Style.font.bodySmall
                   }
-                  Text {
+                  AppText {
                     text: Style.bar.sizeVertical + " px"
                     color: root.foreground
                     font.family: root.fontFamily
                     font.pixelSize: Style.font.bodySmall
                   }
 
-                  Text {
+                  AppText {
                     text: "Style.spacing.scale"
                     color: Qt.darker(root.foreground, 1.5)
                     font.family: root.fontFamily
                     font.pixelSize: Style.font.bodySmall
                   }
-                  Text {
+                  AppText {
                     text: Style.spacing.scale.toFixed(2)
                     color: root.foreground
                     font.family: root.fontFamily
                     font.pixelSize: Style.font.bodySmall
                   }
 
-                  Text {
+                  AppText {
                     text: "Style.spacing.panelPadding"
                     color: Qt.darker(root.foreground, 1.5)
                     font.family: root.fontFamily
                     font.pixelSize: Style.font.bodySmall
                   }
-                  Text {
+                  AppText {
                     text: Style.spacing.panelPadding + " px"
                     color: root.foreground
                     font.family: root.fontFamily
@@ -660,14 +660,14 @@ Item {
             width: parent.width
             spacing: Style.space(8)
 
-            Text {
+            AppText {
               text: "PanelSectionHeader"
               color: root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.subtitle
               font.bold: true
             }
-            Text {
+            AppText {
               text: "Small-caps-style intro label for a section."
               color: Qt.darker(root.foreground, 1.5)
               font.family: root.fontFamily
@@ -715,14 +715,14 @@ Item {
             width: parent.width
             spacing: Style.space(8)
 
-            Text {
+            AppText {
               text: "PanelSeparator"
               color: root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.subtitle
               font.bold: true
             }
-            Text {
+            AppText {
               text: "1px horizontal rule. Default 0.12 alpha on foreground; tweak via strength."
               color: Qt.darker(root.foreground, 1.5)
               font.family: root.fontFamily
@@ -757,14 +757,14 @@ Item {
             width: parent.width
             spacing: Style.space(8)
 
-            Text {
+            AppText {
               text: "CursorSurface"
               color: root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.subtitle
               font.bold: true
             }
-            Text {
+            AppText {
               text: "Single highlight chrome for keyboard+mouse navigable items. Press h/l (anywhere in this window) to move the demo cursor. The middle item is also marked `current` to show how the two states layer."
               color: Qt.darker(root.foreground, 1.5)
               font.family: root.fontFamily
@@ -807,7 +807,7 @@ Item {
                     fill: Style.hoverFillFor(root.foreground, root.accent)
                     onHasCursorChanged: if (hasCursor) root.ensureCursorVisible(this)
 
-                    Text {
+                    AppText {
                       id: csLabel
                       anchors.left: parent.left
                       anchors.right: parent.right
@@ -841,14 +841,14 @@ Item {
             width: parent.width
             spacing: Style.space(8)
 
-            Text {
+            AppText {
               text: "Button"
               color: root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.subtitle
               font.bold: true
             }
-            Text {
+            AppText {
               text: "The kit's only button. State flags compose from shared tokens: hasCursor / hover paints the hover-cursor fill; active/selected add the selected fill; selected borders are off by default; bordered opts into normal/hover-cursor borders; focusable uses the same defaults as hover-cursor. Click below or press h/l to walk the demo cursor."
               color: Qt.darker(root.foreground, 1.5)
               font.family: root.fontFamily
@@ -887,7 +887,7 @@ Item {
                     }
                     onHasCursorChanged: if (hasCursor) root.ensureCursorVisible(this)
                   }
-                  Text {
+                  AppText {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: "idle"
                     color: Qt.darker(root.foreground, 1.5)
@@ -909,7 +909,7 @@ Item {
                     }
                     onHasCursorChanged: if (hasCursor) root.ensureCursorVisible(this)
                   }
-                  Text {
+                  AppText {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: "active"
                     color: Qt.darker(root.foreground, 1.5)
@@ -932,7 +932,7 @@ Item {
                     }
                     onHasCursorChanged: if (hasCursor) root.ensureCursorVisible(this)
                   }
-                  Text {
+                  AppText {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: "icon only"
                     color: Qt.darker(root.foreground, 1.5)
@@ -955,7 +955,7 @@ Item {
                     }
                     onHasCursorChanged: if (hasCursor) root.ensureCursorVisible(this)
                   }
-                  Text {
+                  AppText {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: "icon + active"
                     color: Qt.darker(root.foreground, 1.5)
@@ -977,7 +977,7 @@ Item {
                     }
                     onHasCursorChanged: if (hasCursor) root.ensureCursorVisible(this)
                   }
-                  Text {
+                  AppText {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: "bordered + focusable"
                     color: Qt.darker(root.foreground, 1.5)
@@ -997,14 +997,14 @@ Item {
             readonly property bool focused: root.focusSection === "button-group"
             onFocusedChanged: if (focused) root.ensureCursorVisible(this)
 
-            Text {
+            AppText {
               text: "ButtonGroup"
               color: root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.subtitle
               font.bold: true
             }
-            Text {
+            AppText {
               text: "Mutually-exclusive row of Buttons. Each chip uses Button's bordered chrome; selected and cursor states come from the same shared Style tokens as every other control. Click to pick or press h/l + Enter."
               color: Qt.darker(root.foreground, 1.5)
               font.family: root.fontFamily
@@ -1047,14 +1047,14 @@ Item {
             width: parent.width
             spacing: Style.space(8)
 
-            Text {
+            AppText {
               text: "PanelActionButton"
               color: root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.subtitle
               font.bold: true
             }
-            Text {
+            AppText {
               text: "22×22 right-edge action button. Two flavors via hoverColor: default (foreground tint, e.g. confirm) and urgent (red tint, e.g. forget/unpair). Hover and click states are intrinsic; the row that owns it stays responsible for the cursor highlight."
               color: Qt.darker(root.foreground, 1.5)
               font.family: root.fontFamily
@@ -1138,14 +1138,14 @@ Item {
             width: parent.width
             spacing: Style.space(8)
 
-            Text {
+            AppText {
               text: "PanelToolTip"
               color: root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.subtitle
               font.bold: true
             }
-            Text {
+            AppText {
               text: "Hover the swatch below to see the styled tooltip. Use this whenever a custom button or row needs a hover hint."
               color: Qt.darker(root.foreground, 1.5)
               font.family: root.fontFamily
@@ -1168,7 +1168,7 @@ Item {
               radius: Style.cornerRadius
               onFocusedChanged: if (focused) root.ensureCursorVisible(this)
 
-              Text {
+              AppText {
                 anchors.centerIn: parent
                 text: "hover me"
                 color: root.foreground
@@ -1202,14 +1202,14 @@ Item {
             width: parent.width
             spacing: Style.space(8)
 
-            Text {
+            AppText {
               text: "Slider"
               color: root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.subtitle
               font.bold: true
             }
-            Text {
+            AppText {
               text: "Volume / progress slider. Drag, click anywhere on the track, or scroll the wheel."
               color: Qt.darker(root.foreground, 1.5)
               font.family: root.fontFamily
@@ -1244,7 +1244,7 @@ Item {
                 spacing: Style.space(10)
                 property real demoVolume: 0.45
 
-                Text {
+                AppText {
                   text: "󰕾"
                   color: root.foreground
                   font.family: root.fontFamily
@@ -1263,7 +1263,7 @@ Item {
                   onMoved: function(v) { sliderRow.demoVolume = v }
                 }
 
-                Text {
+                AppText {
                   text: Math.round((demoSlider.dragging ? demoSlider.liveValue : sliderRow.demoVolume) * 100) + "%"
                   color: root.foreground
                   font.family: root.fontFamily
@@ -1281,14 +1281,14 @@ Item {
             width: parent.width
             spacing: Style.space(8)
 
-            Text {
+            AppText {
               text: "TextField"
               color: root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.subtitle
               font.bold: true
             }
-            Text {
+            AppText {
               text: "Single-line input. Inherits Qt Quick Controls TextField, swaps in the kit's focus chrome and selection styling. Toggle `password: true` for masked entry."
               color: Qt.darker(root.foreground, 1.5)
               font.family: root.fontFamily
@@ -1364,14 +1364,14 @@ Item {
             width: parent.width
             spacing: Style.space(8)
 
-            Text {
+            AppText {
               text: "NumberField"
               color: root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.subtitle
               font.bold: true
             }
-            Text {
+            AppText {
               text: "Labeled spin box for integer settings. Up/down arrows step the value; the field accepts typed input. Pair with `from`/`to`/`stepSize` to constrain range."
               color: Qt.darker(root.foreground, 1.5)
               font.family: root.fontFamily
@@ -1414,14 +1414,14 @@ Item {
             width: parent.width
             spacing: Style.space(8)
 
-            Text {
+            AppText {
               text: "Toggle"
               color: root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.subtitle
               font.bold: true
             }
-            Text {
+            AppText {
               text: "Title + description + switch. Click anywhere on the row to flip; caller updates `checked` in response. Uses the same normal / hover-cursor / focus tokens as Button and the checked switch track uses selected tokens."
               color: Qt.darker(root.foreground, 1.5)
               font.family: root.fontFamily
@@ -1475,14 +1475,14 @@ Item {
             width: parent.width
             spacing: Style.space(8)
 
-            Text {
+            AppText {
               text: "Dropdown"
               color: root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.subtitle
               font.bold: true
             }
-            Text {
+            AppText {
               text: "Themed single-select with a panel-styled popup. Tab to focus the trigger, Enter/Space opens, j/k or arrows walk options, Enter selects. Options can be plain strings or { value, label } objects."
               color: Qt.darker(root.foreground, 1.5)
               font.family: root.fontFamily
@@ -1530,14 +1530,14 @@ Item {
             width: parent.width
             spacing: Style.space(8)
 
-            Text {
+            AppText {
               text: "SearchableDropdown"
               color: root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.subtitle
               font.bold: true
             }
-            Text {
+            AppText {
               text: "Dropdown with an embedded filter input. Type to narrow the list, Down to jump from the search to the first match, Enter to select. Use this for long option lists where plain scrolling is friction."
               color: Qt.darker(root.foreground, 1.5)
               font.family: root.fontFamily
@@ -1601,14 +1601,14 @@ Item {
             width: parent.width
             spacing: Style.space(8)
 
-            Text {
+            AppText {
               text: "Composed example"
               color: root.foreground
               font.family: root.fontFamily
               font.pixelSize: Style.font.subtitle
               font.bold: true
             }
-            Text {
+            AppText {
               text: "A miniature wifi-style row built from CursorSurface + PanelActionButton + PanelToolTip. This is what new panel rows should look like — no inline Rectangle/Text/MouseArea reimplementation."
               color: Qt.darker(root.foreground, 1.5)
               font.family: root.fontFamily
@@ -1663,7 +1663,7 @@ Item {
                     anchors.rightMargin: Style.space(10)
                     implicitHeight: 36
 
-                    Text {
+                    AppText {
                       id: composedIcon
                       anchors.left: parent.left
                       anchors.verticalCenter: parent.verticalCenter
@@ -1692,7 +1692,7 @@ Item {
                       anchors.rightMargin: Style.space(8)
                       anchors.verticalCenter: parent.verticalCenter
 
-                      Text {
+                      AppText {
                         text: "HughesWiFi"
                         color: root.foreground
                         font.family: root.fontFamily
@@ -1700,7 +1700,7 @@ Item {
                         elide: Text.ElideRight
                         width: parent.width
                       }
-                      Text {
+                      AppText {
                         text: "Connected"
                         color: root.foreground
                         font.family: root.fontFamily
@@ -1737,7 +1737,7 @@ Item {
                     anchors.rightMargin: Style.space(10)
                     implicitHeight: 36
 
-                    Text {
+                    AppText {
                       anchors.left: parent.left
                       anchors.verticalCenter: parent.verticalCenter
                       text: "󰖩"
@@ -1746,7 +1746,7 @@ Item {
                       font.pixelSize: Style.font.title
                     }
 
-                    Text {
+                    AppText {
                       anchors.left: parent.left
                       anchors.leftMargin: Style.space(24)
                       anchors.verticalCenter: parent.verticalCenter

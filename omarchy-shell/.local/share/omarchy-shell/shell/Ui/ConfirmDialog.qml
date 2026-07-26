@@ -65,7 +65,7 @@ Item {
         anchors.bottomMargin: card.contentBottomInset
         anchors.leftMargin: card.contentLeftInset
 
-        Text {
+        AppText {
           anchors.left: parent.left
           anchors.right: parent.right
           anchors.top: parent.top
@@ -101,7 +101,7 @@ Item {
                 : (selected ? root.selectedText : Util.alpha(root.foreground, 0.38)), Style.normalBorderWidth)
               radius: 0
 
-              Text {
+              AppText {
                 anchors.centerIn: parent
                 text: modelData
                 color: destructive ? (selected ? Color.urgent : root.foreground) : (selected ? root.selectedText : root.foreground)

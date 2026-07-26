@@ -27,7 +27,7 @@ BarWidget {
     anchors.rightMargin: Style.space(8)
     clip: true
 
-    Text {
+    AppText {
       id: labelText
       anchors.verticalCenter: parent.verticalCenter
       anchors.left: parent.left

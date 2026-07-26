@@ -125,23 +125,25 @@ BorderSurface {
 
         // Glyph fallback (Nerd Font character) when no image icon is
         // available. Used by omarchy-notification-send's `-g` flag.
-        Text {
+        AppText {
           anchors.centerIn: parent
           visible: root.hasGlyph && smallIconImage.status !== Image.Ready
           text: root.glyph
           color: Color.notifications.text
           font.family: root.fontFamily
           font.pixelSize: Style.font.iconLarge
+          renderType: Text.NativeRendering
         }
       }
 
-      Text {
+      AppText {
         Layout.alignment: Qt.AlignVCenter
         visible: root.compactGlyph
         text: root.glyph
         color: Color.notifications.text
         font.family: root.fontFamily
         font.pixelSize: Style.font.icon
+        renderType: Text.NativeRendering
       }
 
       ColumnLayout {
@@ -149,28 +151,30 @@ BorderSurface {
         Layout.alignment: Qt.AlignVCenter
         spacing: Style.space(2)
 
-        Text {
+        AppText {
           Layout.fillWidth: true
           visible: root.summary.length > 0
           text: root.summary
-          font.family: "Liberation Sans"
+          font.family: root.fontFamily
           color: Color.notifications.text
           font.pixelSize: Style.font.title
-          font.bold: true
+          font.bold: false
+          renderType: Text.NativeRendering
           wrapMode: Text.WordWrap
           elide: Text.ElideRight
           maximumLineCount: 2
         }
 
-        Text {
+        AppText {
           Layout.fillWidth: true
           Layout.topMargin: Style.space(2)
           visible: root.sanitizedBody.length > 0
           text: root.styledBody
           textFormat: Text.StyledText
-          font.family: "Liberation Sans"
+          font.family: root.fontFamily
           color: root.bodyColor
           font.pixelSize: Style.font.title
+          renderType: Text.NativeRendering
           wrapMode: Text.WordWrap
           elide: Text.ElideRight
           maximumLineCount: 3

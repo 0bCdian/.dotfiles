@@ -92,7 +92,7 @@ Item {
     anchors.fill: parent
     spacing: Style.spacing.labelGap
 
-    Text {
+    AppText {
       visible: root.showLabel && root.label !== ""
       text: root.label
       color: Qt.darker(root.foreground, 1.4)
@@ -131,7 +131,7 @@ Item {
         }
       }
 
-      Text {
+      AppText {
         anchors.left: parent.left
         anchors.right: chevron.left
         anchors.verticalCenter: parent.verticalCenter
@@ -144,7 +144,7 @@ Item {
         elide: Text.ElideRight
       }
 
-      Text {
+      AppText {
         id: chevron
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
@@ -245,7 +245,7 @@ Item {
             width: parent.width
             height: popup.height - searchHeader.height - Style.spacing.xxs - 1
 
-            Text {
+            AppText {
               anchors.centerIn: parent
               visible: resultList.count === 0
               text: root.emptyText
@@ -312,7 +312,7 @@ Item {
                   anchors.rightMargin: Style.spacing.controlPaddingX
                   spacing: Style.spacing.xxs
 
-                  Text {
+                  AppText {
                     text: root.optionLabel(modelData)
                     color: index === resultList.currentIndex ? Style.hoverStateColor(root.foreground, root.accent) : root.foreground
                     font.family: root.fontFamily
@@ -320,7 +320,7 @@ Item {
                     elide: Text.ElideRight
                     width: parent.width
                   }
-                  Text {
+                  AppText {
                     visible: text !== ""
                     text: root.optionDescription(modelData)
                     color: Qt.darker(root.foreground, 1.5)

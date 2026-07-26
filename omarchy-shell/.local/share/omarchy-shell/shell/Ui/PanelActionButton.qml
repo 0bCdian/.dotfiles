@@ -68,7 +68,7 @@ BorderSurface {
 
   Behavior on color { ColorAnimation { duration: 60 } }
 
-  Text {
+  AppText {
     anchors.centerIn: parent
     text: root.iconText
     color: root.enabled

@@ -292,7 +292,7 @@ Panel {
           width: parent.width
           implicitHeight: Math.max(heroIcon.implicitHeight, heroLabels.implicitHeight, heroPercent.implicitHeight)
 
-          Text {
+          AppText {
             id: heroIcon
             text: root.batteryIcon()
             color: root.bar.foreground
@@ -313,7 +313,7 @@ Panel {
             anchors.verticalCenter: parent.verticalCenter
             spacing: Style.space(2)
 
-            Text {
+            AppText {
               text: "Battery"
               color: root.bar.foreground
               font.family: root.bar.fontFamily
@@ -323,7 +323,7 @@ Panel {
               width: parent.width
             }
 
-            Text {
+            AppText {
               id: heroStatus
               text: root.heroStatusText.toUpperCase()
               color: Qt.darker(root.bar.foreground, 1.4)
@@ -336,7 +336,7 @@ Panel {
             }
           }
 
-          Text {
+          AppText {
             id: heroPercent
             text: root.batteryInfo.percentage || "—"
             color: root.bar.foreground
@@ -485,14 +485,14 @@ Panel {
     InfoValue { text: value }
   }
 
-  component InfoLabel: Text {
+  component InfoLabel: AppText {
     color: root.bar.foreground
     opacity: 0.6
     font.family: root.bar.fontFamily
     font.pixelSize: Style.font.bodySmall
   }
 
-  component InfoValue: Text {
+  component InfoValue: AppText {
     color: root.bar.foreground
     font.family: root.bar.fontFamily
     font.pixelSize: Style.font.bodySmall

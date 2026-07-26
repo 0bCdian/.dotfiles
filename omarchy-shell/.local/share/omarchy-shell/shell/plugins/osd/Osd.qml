@@ -99,7 +99,7 @@ Item {
         anchors.bottomMargin: card.borderBottom
         anchors.leftMargin: card.borderLeft + Style.space(16)
         spacing: Style.space(16)
-        Text {
+        AppText {
           width: Style.space(28)
           anchors.verticalCenter: parent.verticalCenter
           horizontalAlignment: Text.AlignHCenter
@@ -120,7 +120,7 @@ Item {
             color: Color.accent
           }
         }
-        Text {
+        AppText {
           width: root.hasProgress ? Style.space(41) : (root.mediaOsd ? root.mediaMessageWidth : root.messageWidth)
           anchors.verticalCenter: parent.verticalCenter
           text: root.message

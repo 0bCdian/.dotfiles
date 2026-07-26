@@ -40,7 +40,7 @@ Item {
       visible: root.title !== "" || detailPill.visible
       width: parent.width
 
-      Text {
+      AppText {
         visible: root.title !== ""
         text: root.title
         width: Math.min(implicitWidth, Math.max(0, parent.width - (detailPill.visible ? detailPill.implicitWidth + Style.space(8) : 0)))
@@ -66,7 +66,7 @@ Item {
         borderSpec: Border.controlSpec("normal", root.foreground, Color.accent)
         radius: Style.cornerRadius
 
-        Text {
+        AppText {
           id: detailText
           anchors.centerIn: parent
           text: root.detail
@@ -78,7 +78,7 @@ Item {
       }
     }
 
-    Text {
+    AppText {
       id: metaText
       width: parent.width
       text: root.meta.toUpperCase()

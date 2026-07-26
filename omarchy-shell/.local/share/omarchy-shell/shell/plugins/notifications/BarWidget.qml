@@ -109,7 +109,7 @@ BarWidget {
         Layout.fillWidth: true
         spacing: Style.space(8)
 
-        Text {
+        AppText {
           text: "Notifications"
           font.family: root.bar ? root.bar.fontFamily : ""
           color: root.colForeground
@@ -133,7 +133,7 @@ BarWidget {
             anchors.centerIn: parent
             spacing: Style.space(4)
 
-            Text {
+            AppText {
               id: dndGlyph
               text: dndPill.dndOn ? "󰂛" : "󰂚"
               font.family: root.bar ? root.bar.fontFamily : ""
@@ -142,7 +142,7 @@ BarWidget {
               anchors.verticalCenter: parent.verticalCenter
             }
 
-            Text {
+            AppText {
               id: dndLabel
               text: dndPill.dndOn ? "DND on" : "DND off"
               font.family: root.bar ? root.bar.fontFamily : ""
@@ -180,7 +180,7 @@ BarWidget {
             Layout.preferredHeight: Math.max(Style.space(30), Style.font.body + Style.spacing.controlPaddingY * 2)
             color: "transparent"
 
-            Text {
+            AppText {
               anchors.centerIn: parent
               text: modelData.label + (modelData.count > 0 ? "  " + modelData.count : "")
               font.family: root.bar ? root.bar.fontFamily : ""
@@ -223,7 +223,7 @@ BarWidget {
           color: actionArea.containsMouse ? root.colBorder : "transparent"
           borderSpec: Border.flat(root.colBorder, Style.normalBorderWidth)
 
-          Text {
+          AppText {
             id: actionLabel
             anchors.centerIn: parent
             text: root.activeTab === "pending" ? "Mark all as seen" : "Clear recent"
@@ -322,7 +322,7 @@ BarWidget {
               Layout.fillWidth: true
               spacing: Style.space(2)
 
-              Text {
+              AppText {
                 Layout.fillWidth: true
                 visible: rowCard.summary.length > 0
                 text: rowCard.summary
@@ -335,7 +335,7 @@ BarWidget {
                 maximumLineCount: 1
               }
 
-              Text {
+              AppText {
                 Layout.fillWidth: true
                 visible: rowCard.sanitizedBody.length > 0
                 text: rowCard.sanitizedBody
@@ -356,7 +356,7 @@ BarWidget {
               radius: Math.min(4, root.cardRadius)
               color: rowCloseArea.containsMouse ? root.colBorder : "transparent"
 
-              Text {
+              AppText {
                 anchors.centerIn: parent
                 text: "✕"
                 font.family: root.bar ? root.bar.fontFamily : ""
@@ -390,7 +390,7 @@ BarWidget {
           anchors.centerIn: parent
           spacing: Style.space(6)
 
-          Text {
+          AppText {
             Layout.alignment: Qt.AlignHCenter
             text: "󰂚"
             font.family: root.bar ? root.bar.fontFamily : ""
@@ -398,7 +398,7 @@ BarWidget {
             font.pixelSize: Style.font.displayLarge
           }
 
-          Text {
+          AppText {
             Layout.alignment: Qt.AlignHCenter
             text: root.activeTab === "pending"
               ? "Nothing waiting for you"

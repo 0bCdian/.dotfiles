@@ -70,7 +70,7 @@ Item {
     anchors.fill: parent
     spacing: Style.spacing.labelGap
 
-    Text {
+    AppText {
       visible: root.showLabel && root.label !== ""
       text: root.label
       color: Qt.darker(root.foreground, 1.4)
@@ -109,7 +109,7 @@ Item {
         }
       }
 
-      Text {
+      AppText {
         anchors.left: parent.left
         anchors.right: chevron.left
         anchors.verticalCenter: parent.verticalCenter
@@ -122,7 +122,7 @@ Item {
         elide: Text.ElideRight
       }
 
-      Text {
+      AppText {
         id: chevron
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
@@ -213,7 +213,7 @@ Item {
               ? Style.hoverFillFor(root.foreground, root.accent)
               : "transparent"
 
-            Text {
+            AppText {
               anchors.left: parent.left
               anchors.right: parent.right
               anchors.verticalCenter: parent.verticalCenter

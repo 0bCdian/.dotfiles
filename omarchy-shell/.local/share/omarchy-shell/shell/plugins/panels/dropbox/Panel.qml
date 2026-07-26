@@ -218,7 +218,7 @@ Panel {
             }
           }
 
-          Text {
+          AppText {
             visible: dropbox.actionStatus !== "" || dropbox.lastError !== ""
             width: parent.width
             text: dropbox.actionStatus !== "" ? dropbox.actionStatus : dropbox.lastError
@@ -261,7 +261,7 @@ Panel {
               fontFamily: root.fontFamily
             }
 
-            Text {
+            AppText {
               visible: dropbox.files.length === 0
               width: parent.width
               text: "No synced files found."
@@ -346,7 +346,7 @@ Panel {
       anchors.rightMargin: Style.space(10)
       spacing: Style.space(8)
 
-      Text {
+      AppText {
         text: ""
         color: root.foreground
         font.family: root.fontFamily
@@ -358,7 +358,7 @@ Panel {
         Layout.fillWidth: true
         spacing: Style.space(1)
 
-        Text {
+        AppText {
           Layout.fillWidth: true
           text: dropbox.installed ? "Login to Dropbox" : "Dropbox CLI is not installed"
           color: root.foreground
@@ -367,7 +367,7 @@ Panel {
           elide: Text.ElideRight
         }
 
-        Text {
+        AppText {
           Layout.fillWidth: true
           text: dropbox.installed ? "Start the authentication flow" : "Install Dropbox from the service menu"
           color: root.dim
@@ -415,7 +415,7 @@ Panel {
       anchors.rightMargin: Style.space(10)
       spacing: Style.space(8)
 
-      Text {
+      AppText {
         text: Model.fileGlyph(fileRow.fileName)
         color: root.foreground
         font.family: root.fontFamily
@@ -428,7 +428,7 @@ Panel {
         Layout.fillWidth: true
         spacing: Style.space(1)
 
-        Text {
+        AppText {
           Layout.fillWidth: true
           text: fileRow.fileName
           color: root.foreground
@@ -437,7 +437,7 @@ Panel {
           elide: Text.ElideRight
         }
 
-        Text {
+        AppText {
           Layout.fillWidth: true
           text: Model.fileMeta(fileRow.file)
           color: root.dim
@@ -461,14 +461,14 @@ Panel {
     InfoValue { text: value }
   }
 
-  component InfoLabel: Text {
+  component InfoLabel: AppText {
     color: root.foreground
     opacity: 0.6
     font.family: root.fontFamily
     font.pixelSize: Style.font.bodySmall
   }
 
-  component InfoValue: Text {
+  component InfoValue: AppText {
     color: root.foreground
     font.family: root.fontFamily
     font.pixelSize: Style.font.bodySmall

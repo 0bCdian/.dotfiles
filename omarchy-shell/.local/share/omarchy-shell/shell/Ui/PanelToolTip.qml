@@ -35,7 +35,7 @@ ToolTip {
     radius: Style.cornerRadius
   }
 
-  contentItem: Text {
+  contentItem: AppText {
     text: root.text
     color: root.panelForeground
     font.family: root.fontFamily

@@ -246,7 +246,7 @@ Item {
           radius: root.cornerRadius
           color: "transparent"
 
-          Text {
+          AppText {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
@@ -283,7 +283,7 @@ Item {
               radius: root.cornerRadius
               color: hasCursor ? root.selectedBackground : "transparent"
 
-              Text {
+              AppText {
                 text: parent.emoji
                 font.family: root.fontFamily
                 font.pixelSize: Style.font.display
@@ -315,7 +315,7 @@ Item {
             spacing: Style.space(8)
             visible: displayModel.count === 0
 
-            Text {
+            AppText {
               text: "󰈉"
               color: root.selectedText
               opacity: 0.8
@@ -325,7 +325,7 @@ Item {
               width: parent.width
             }
 
-            Text {
+            AppText {
               text: "No matches for “" + root.filterText + "”"
               color: root.foreground
               opacity: 0.7

@@ -4,7 +4,7 @@ import qs.Commons
 // Small-caps-style label that introduces a panel section ("DNS provider",
 // "Wi-Fi networks", "Output device", "Paired devices"). Sits between a
 // PanelSeparator and the content rows.
-Text {
+AppText {
   id: root
 
   property color foreground: Color.foreground

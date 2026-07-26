@@ -30,7 +30,7 @@ BarWidget {
     anchors.centerIn: parent
     spacing: Style.space(6)
 
-    Text {
+    AppText {
       id: glyph
       anchors.verticalCenter: parent.verticalCenter
       text: root.playIcon
@@ -51,7 +51,7 @@ BarWidget {
       anchors.verticalCenter: parent.verticalCenter
       visible: !root.bar.vertical && root.title !== ""
 
-      Text {
+      AppText {
         id: labelText
         text: root.title + (root.artist ? "  ·  " + root.artist : "")
         color: root.bar.barForeground
@@ -133,7 +133,7 @@ BarWidget {
             visible: source !== ""
           }
 
-          Text {
+          AppText {
             anchors.centerIn: parent
             visible: !root.activePlayer || !root.activePlayer.trackArtUrl
             text: "󰝚"
@@ -147,7 +147,7 @@ BarWidget {
           spacing: Style.space(4)
           width: parent.width - Style.space(74)
 
-          Text {
+          AppText {
             text: root.title || "Nothing playing"
             color: root.bar.foreground
             font.family: root.bar.fontFamily
@@ -157,7 +157,7 @@ BarWidget {
             width: parent.width
           }
 
-          Text {
+          AppText {
             text: root.artist
             color: Qt.darker(root.bar.foreground, 1.3)
             font.family: root.bar.fontFamily
@@ -167,7 +167,7 @@ BarWidget {
             visible: text !== ""
           }
 
-          Text {
+          AppText {
             text: root.activePlayer && root.activePlayer.trackAlbum ? root.activePlayer.trackAlbum : ""
             color: Qt.darker(root.bar.foreground, 1.6)
             font.family: root.bar.fontFamily
@@ -254,7 +254,7 @@ BarWidget {
               anchors.rightMargin: sourceRow.borderRight + Style.space(8)
               spacing: Style.space(8)
 
-              Text {
+              AppText {
                 text: sourceRow.player && sourceRow.player.isPlaying ? "󰏤" : "󰐊"
                 color: root.bar.foreground
                 font.family: root.bar.fontFamily
@@ -269,7 +269,7 @@ BarWidget {
                 spacing: Style.space(1)
                 anchors.verticalCenter: parent.verticalCenter
 
-                Text {
+                AppText {
                   text: sourceRow.sourceTitle
                   color: root.bar.foreground
                   font.family: root.bar.fontFamily
@@ -279,7 +279,7 @@ BarWidget {
                   width: parent.width
                 }
 
-                Text {
+                AppText {
                   text: sourceRow.sourceDetail
                   color: Qt.darker(root.bar.foreground, 1.5)
                   font.family: root.bar.fontFamily

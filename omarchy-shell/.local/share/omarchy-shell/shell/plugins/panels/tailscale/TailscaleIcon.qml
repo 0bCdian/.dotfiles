@@ -53,7 +53,7 @@ Item {
     anchors.bottom: parent.bottom
     borderSpec: Border.flat(Color.popups.background, 1)
 
-    Text {
+    AppText {
       anchors.centerIn: parent
       text: "!"
       color: Color.background

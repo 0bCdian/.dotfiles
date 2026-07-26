@@ -501,7 +501,7 @@ Panel {
               anchors.rightMargin: Style.space(12)
               spacing: Style.space(2)
 
-              Text {
+              AppText {
                 width: parent.width
                 text: tailscale.needsLogin ? "Authorize this device" : "Connect Tailscale"
                 color: root.foreground
@@ -510,7 +510,7 @@ Panel {
                 font.weight: Font.Medium
               }
 
-              Text {
+              AppText {
                 width: parent.width
                 text: tailscale.needsLogin ? "Open Tailscale to restore this device's access" : "Reconnect with the current Tailscale settings"
                 color: root.dim
@@ -521,7 +521,7 @@ Panel {
             }
           }
 
-          Text {
+          AppText {
             visible: tailscale.actionStatus !== "" || tailscale.lastError !== ""
             width: parent.width
             text: tailscale.actionStatus !== "" ? tailscale.actionStatus : tailscale.lastError
@@ -537,7 +537,7 @@ Panel {
             implicitHeight: missingText.implicitHeight + Style.spacing.rowPaddingX
             foreground: root.foreground
 
-            Text {
+            AppText {
               id: missingText
               anchors.left: parent.left
               anchors.right: parent.right
@@ -658,7 +658,7 @@ Panel {
                   }
                 }
 
-                Text {
+                AppText {
                   visible: root.filteredMullvadRegions.length === 0
                   width: parent.width
                   text: "No Mullvad regions found."
@@ -704,7 +704,7 @@ Panel {
               fontFamily: root.fontFamily
             }
 
-            Text {
+            AppText {
               visible: tailscale.installed && tailscale.running && tailscale.peers.length === 0
               width: parent.width
               text: "No machines found on this tailnet."
@@ -786,7 +786,7 @@ Panel {
       anchors.rightMargin: Style.space(10)
       spacing: Style.space(8)
 
-      Text {
+      AppText {
         text: "󰒃"
         color: root.dim
         font.family: root.fontFamily
@@ -798,7 +798,7 @@ Panel {
         Layout.fillWidth: true
         spacing: Style.space(1)
 
-        Text {
+        AppText {
           Layout.fillWidth: true
           text: "Authorize Tailscale operator"
           color: root.foreground
@@ -807,7 +807,7 @@ Panel {
           elide: Text.ElideRight
         }
 
-        Text {
+        AppText {
           Layout.fillWidth: true
           text: "Allow this user to operate this Tailscale profile"
           color: root.dim
@@ -845,7 +845,7 @@ Panel {
       anchors.rightMargin: Style.space(6)
       spacing: Style.space(8)
 
-      Text {
+      AppText {
         id: accountGlyph
         text: ""
         color: accountRow.selectedAccount || accountRow.switchingAccount ? root.foreground : root.dim
@@ -864,7 +864,7 @@ Panel {
         }
       }
 
-      Text {
+      AppText {
         text: accountRow.accountText
         color: root.foreground
         font.family: root.fontFamily
@@ -956,7 +956,7 @@ Panel {
       anchors.rightMargin: Style.space(8)
       spacing: Style.space(8)
 
-      Text {
+      AppText {
         text: tailscale.osIcon(peer ? peer.OS : "")
         color: root.foreground
         font.family: root.fontFamily
@@ -969,7 +969,7 @@ Panel {
         Layout.fillWidth: true
         spacing: Style.space(1)
 
-        Text {
+        AppText {
           Layout.fillWidth: true
           text: peerRow.peerName
           color: root.foreground
@@ -978,7 +978,7 @@ Panel {
           elide: Text.ElideRight
         }
 
-        Text {
+        AppText {
           Layout.fillWidth: true
           text: {
             var parts = []
@@ -1099,7 +1099,7 @@ Panel {
       anchors.rightMargin: Style.space(12)
       spacing: Style.space(10)
 
-      Text {
+      AppText {
         Layout.fillWidth: true
         text: copyChoice.label
         color: root.foreground
@@ -1108,7 +1108,7 @@ Panel {
         elide: Text.ElideRight
       }
 
-      Text {
+      AppText {
         text: "󰆏"
         color: root.foreground
         font.family: root.fontFamily
@@ -1145,7 +1145,7 @@ Panel {
       anchors.rightMargin: Style.space(6)
       spacing: Style.space(8)
 
-      Text {
+      AppText {
         id: exitNodeGlyph
         text: exitNodeRow.addMullvad ? "+" : (peer && peer.Mullvad === true ? "󰖂" : "󱇢")
         color: exitNodeRow.activeExitNode || exitNodeRow.settingExitNode || exitNodeRow.addMullvad ? root.foreground : root.dim
@@ -1166,7 +1166,7 @@ Panel {
         onRotationChanged: if (!exitNodeRow.settingExitNode && rotation !== 0) rotation = 0
       }
 
-      Text {
+      AppText {
         text: exitNodeRow.peerName
         color: root.foreground
         font.family: root.fontFamily
@@ -1221,7 +1221,7 @@ Panel {
       anchors.rightMargin: Style.space(6)
       spacing: Style.space(8)
 
-      Text {
+      AppText {
         text: "󰖂"
         color: regionRow.current ? root.foreground : root.dim
         font.family: root.fontFamily
@@ -1236,7 +1236,7 @@ Panel {
         anchors.verticalCenter: parent.verticalCenter
         spacing: Style.space(1)
 
-        Text {
+        AppText {
           width: parent.width
           text: regionRow.regionName
           color: root.foreground
@@ -1246,7 +1246,7 @@ Panel {
           elide: Text.ElideRight
         }
 
-        Text {
+        AppText {
           width: parent.width
           text: regionRow.regionDetail
           visible: text !== ""

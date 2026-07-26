@@ -541,7 +541,7 @@ Item {
           radius: 0
           color: root.background
 
-          Text {
+          AppText {
             anchors.left: parent.left
             anchors.leftMargin: 10
             anchors.right: parent.right
@@ -602,7 +602,7 @@ Item {
                   mipmap: true
                 }
 
-                Text {
+                AppText {
                   anchors.centerIn: parent
                   visible: appIcon.status === Image.Error
                   text: "?"
@@ -612,7 +612,7 @@ Item {
                 }
               }
 
-              Text {
+              AppText {
                 anchors.left: iconSlot.right
                 anchors.leftMargin: 14
                 anchors.right: parent.right
@@ -641,7 +641,7 @@ Item {
             }
           }
 
-          Text {
+          AppText {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.leftMargin: 14

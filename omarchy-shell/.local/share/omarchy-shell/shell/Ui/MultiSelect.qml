@@ -258,7 +258,7 @@ Item {
     anchors.fill: parent
     spacing: Style.spacing.labelGap
 
-    Text {
+    AppText {
       visible: root.showLabel && root.label !== ""
       text: root.label
       color: Qt.darker(root.foreground, 1.4)
@@ -297,7 +297,7 @@ Item {
         }
       }
 
-      Text {
+      AppText {
         anchors.left: parent.left
         anchors.right: chevron.left
         anchors.verticalCenter: parent.verticalCenter
@@ -310,7 +310,7 @@ Item {
         elide: Text.ElideRight
       }
 
-      Text {
+      AppText {
         id: chevron
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
@@ -450,7 +450,7 @@ Item {
                   ? Border.controlSpec("hover-cursor", root.foreground, root.accent)
                   : Border.controlSpec("normal", root.foreground, root.accent)
 
-                Text {
+                AppText {
                   anchors.centerIn: parent
                   text: root.loadingOptions ? "󰦖" : "󰑐"
                   color: root.foreground
@@ -485,7 +485,7 @@ Item {
             width: parent.width
             height: popup.height - searchHeader.height - Style.spacing.xxs - 1
 
-            Text {
+            AppText {
               anchors.centerIn: parent
               visible: resultList.count === 0
               text: root.loadingOptions ? "Loading…" : (root.optionsError !== "" ? root.optionsError : root.emptyText)
@@ -564,7 +564,7 @@ Item {
                       ? Border.controlSpec("selected", root.foreground, root.accent)
                       : Border.controlSpec("normal", root.foreground, root.accent)
 
-                    Text {
+                    AppText {
                       anchors.centerIn: parent
                       visible: selected
                       text: "✓"
@@ -580,7 +580,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: Style.spacing.xxs
 
-                    Text {
+                    AppText {
                       text: modelData.label
                       color: index === resultList.currentIndex ? Style.hoverStateColor(root.foreground, root.accent) : root.foreground
                       font.family: root.fontFamily
@@ -588,7 +588,7 @@ Item {
                       elide: Text.ElideRight
                       width: parent.width
                     }
-                    Text {
+                    AppText {
                       visible: text !== ""
                       text: modelData.description
                       color: Qt.darker(root.foreground, 1.5)

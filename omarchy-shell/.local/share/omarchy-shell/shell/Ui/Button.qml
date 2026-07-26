@@ -137,7 +137,7 @@ BorderSurface {
       borderSpec: root._tooltipBorderSpec
       radius: 0
     }
-    contentItem: Text {
+    contentItem: AppText {
       text: root.tooltipText
       color: root.tooltipForeground
       font.family: root.fontFamily
@@ -157,7 +157,7 @@ BorderSurface {
     anchors.horizontalCenter: root.leftAlign ? undefined : parent.horizontalCenter
     spacing: Style.spacing.controlGap
 
-    Text {
+    AppText {
       visible: root.iconText !== ""
       text: root.iconText
       color: root.selected ? root._selectedColor : root.foreground
@@ -176,7 +176,7 @@ BorderSurface {
       }
     }
 
-    Text {
+    AppText {
       visible: root.text !== ""
       text: root.text
       color: root.selected ? root._selectedColor : root.foreground

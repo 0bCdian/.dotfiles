@@ -5,6 +5,7 @@ import QtQuick
 import QtQuick.Effects
 import QtQuick.Shapes
 import qs.Commons
+import qs.Ui
 import "ImagePickerModel.js" as ImagePickerModel
 
 Item {
@@ -544,7 +545,7 @@ Item {
           }
         }
 
-        Text {
+        AppText {
           id: selectedLabel
           visible: root.showLabels
           anchors.top: carousel.bottom
@@ -561,7 +562,7 @@ Item {
           elide: Text.ElideRight
         }
 
-        Text {
+        AppText {
           visible: root.filterable && root.filterText
           anchors.top: selectedLabel.bottom
           anchors.topMargin: Style.space(8)
