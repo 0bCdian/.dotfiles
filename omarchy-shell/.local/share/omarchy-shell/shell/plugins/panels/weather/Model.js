@@ -1,15 +1,3 @@
-function parseWeatherStatus(raw) {
-  try {
-    var data = JSON.parse(String(raw || "{}"))
-    return {
-      label: data.text || "",
-      klass: data.class || ""
-    }
-  } catch (e) {
-    return { label: "", klass: "" }
-  }
-}
-
 // weather.json holds {"name": ..., "latitude": ..., "longitude": ...} (see
 // omarchy-weather-location, which owns the format). Missing, blank, or
 // unparseable means the location is auto-detected from the IP address.
@@ -194,6 +182,12 @@ function currentIcon(current, fallback) {
   return fallback || ""
 }
 
+// wttr.in has no day/night flag. Use its icon only to fill an empty initial
+// state, never to replace a day/night-aware icon resolved by Open-Meteo.
+function provisionalCurrentIcon(current, resolvedIcon) {
+  return resolvedIcon || currentIcon(current, "")
+}
+
 function weatherResponseCompletesSave(hasConfiguredCoordinates, source) {
   return hasConfiguredCoordinates ? source === "open-meteo" : source === "wttr"
 }
@@ -273,7 +267,6 @@ function iconForCode(code, night) {
 
 if (typeof module !== "undefined") {
   module.exports = {
-    parseWeatherStatus: parseWeatherStatus,
     parseLocationFile: parseLocationFile,
     wttrLocationQuery: wttrLocationQuery,
     parseGeocodingResults: parseGeocodingResults,
@@ -290,6 +283,7 @@ if (typeof module !== "undefined") {
     openMeteoForecastDays: openMeteoForecastDays,
     openMeteoCurrentCondition: openMeteoCurrentCondition,
     currentIcon: currentIcon,
+    provisionalCurrentIcon: provisionalCurrentIcon,
     weatherResponseCompletesSave: weatherResponseCompletesSave,
     wttrNextForecastDays: wttrNextForecastDays,
     buildForecastDays: buildForecastDays,

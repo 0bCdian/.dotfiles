@@ -13,8 +13,8 @@ stay_awake_enabled() {
   [[ -f $STATE_FILE ]]
 }
 
-# hypridle (not quickshell) drives the actual lock/screensaver timeouts, and
-# already respects `systemd-inhibit --what=idle` out of the box. Holding one
+# Fork: hypridle (not quickshell) drives the actual lock/screensaver timeouts,
+# and already respects `systemd-inhibit --what=idle` out of the box. Holding one
 # here is how this toggle reaches hypridle without hypridle needing to know
 # anything about omarchy's stay-awake state.
 start_inhibitor() {
@@ -47,6 +47,9 @@ print_idle_state() {
   fi
 }
 
+# The shell's omarchy.idle service watches STATE_DIR, so touching/removing the
+# state file is enough to refresh the bar indicator — the old
+# `omarchy-shell -q omarchy.indicators refresh` IPC no longer exists.
 apply_state() {
   case "$1" in
     stay-awake)
@@ -59,8 +62,6 @@ apply_state() {
       stop_inhibitor
       ;;
   esac
-
-  omarchy-shell -q omarchy.indicators refresh
 }
 
 case "${1:-toggle}" in

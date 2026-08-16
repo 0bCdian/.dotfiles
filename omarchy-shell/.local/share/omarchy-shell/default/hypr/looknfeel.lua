@@ -42,7 +42,7 @@ hl.config({
       font_family = "monospace",
       font_weight_active = "ultraheavy",
       font_weight_inactive = "normal",
-      indicator_height = 0,
+      indicator_height = 1,
       indicator_gap = 5,
       height = 22,
       gaps_in = 5,
@@ -109,6 +109,10 @@ hl.config({
     focus_on_activate = true,
     anr_missed_pings = 3,
     on_focus_under_fullscreen = 1,
+    initial_workspace_tracking = 0,
+    -- Let a fresh shell re-acquire the session lock after the lock client
+    -- died, so omarchy-restart-shell can recover the LOCK failsafe.
+    allow_session_lock_restore = true,
   },
 
   cursor = {

@@ -76,12 +76,12 @@
 "ui.bufferline.active" = { fg = "foreground", bg = "background", underline = { color = "color5", style = "line" } }
 
 "ui.text" = "foreground"
-"ui.text.focus" = { fg = "foreground", bg = "color0", modifiers = ["bold"] }
+"ui.text.focus" = { fg = "foreground", bg = "lighter_background", modifiers = ["bold"] }
 "ui.text.inactive" = { fg = "color8" }
 "ui.text.directory" = { fg = "color4" }
 
 "ui.virtual" = "color8"
-"ui.virtual.ruler" = { bg = "color0" }
+"ui.virtual.ruler" = { bg = "lighter_background" }
 "ui.virtual.indent-guide" = "color8"
 "ui.virtual.inlay-hint" = { fg = "color8" }
 "ui.virtual.jump-label" = { fg = "color1", modifiers = ["bold"] }
@@ -96,9 +96,9 @@
 "ui.cursor.primary.insert" = { fg = "background", bg = "color2" }
 "ui.cursor.primary.select" = { fg = "background", bg = "color5" }
 
-"ui.cursorline.primary" = { bg = "color0" }
+"ui.cursorline.primary" = { bg = "lighter_background" }
 
-"ui.highlight" = { bg = "color0", modifiers = ["bold"] }
+"ui.highlight" = { bg = "lighter_background", modifiers = ["bold"] }
 
 "ui.menu" = { fg = "foreground", bg = "background" }
 "ui.menu.selected" = { fg = "background", bg = "foreground", modifiers = ["bold"] }
@@ -116,17 +116,18 @@ info = "color4"
 hint = "color6"
 
 [palette]
-background = "{{ bg }}"
-foreground = "{{ fg }}"
-cursor = "{{ bright_fg }}"
+background = "{{ background }}"
+foreground = "{{ foreground }}"
+lighter_background = "{{ lighter_background }}"
+cursor = "{{ bright_foreground }}"
 selection_background = "{{ selection_background }}"
 selection_foreground = "{{ selection_foreground }}"
-color0 = "{{ bg }}"
+color0 = "{{ background }}"
 color1 = "{{ red }}"
 color2 = "{{ green }}"
 color3 = "{{ yellow }}"
 color4 = "{{ blue }}"
 color5 = "{{ magenta }}"
 color6 = "{{ cyan }}"
-color7 = "{{ fg }}"
+color7 = "{{ foreground }}"
 color8 = "{{ muted }}"

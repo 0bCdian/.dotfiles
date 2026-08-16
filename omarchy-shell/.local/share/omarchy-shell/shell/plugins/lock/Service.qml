@@ -31,6 +31,8 @@ Item {
   property int backgroundVersion: 0
   property string lastEvent: "init"
   property string lastEventAt: ""
+  property bool strandedLock: false
+  property bool strandedLockResolved: false
 
   readonly property bool locked: lockRequested || sessionLock.locked || sessionLock.secure
   readonly property bool authenticating: authenticatingPassword || fingerprintAuthenticating
@@ -74,6 +76,29 @@ Item {
     sessionLock.locked = true
   }
 
+  // ext-session-lock outlives its client, and a restart carries no lock over, so
+  // a session locked this early is an orphan behind Hyprland's failsafe. Outputs
+  // are often still absent here, so ask until the answer means something.
+  function checkStrandedLock() {
+    if (strandedLockResolved || strandedLockCheckProc.running) return
+
+    // A lock this shell took is nobody's orphan.
+    if (locked || lockRequested) {
+      strandedLockResolved = true
+      return
+    }
+
+    strandedLockCheckProc.running = true
+  }
+
+  function recoverStrandedLock() {
+    if (!strandedLock || locked || !passwordPamConfigured) return
+
+    strandedLock = false
+    logEvent("lock-stranded: recovering")
+    beginLock()
+  }
+
   function refreshBackground() {
     if (!readlinkProc.running) readlinkProc.running = true
   }
@@ -108,7 +133,7 @@ Item {
 
     resetAuthenticationState()
     lockRequested = true
-    idleBlankTimer.restart()
+    armBlankTimer()
     logEvent("lock-requested")
     queueSessionLock()
 
@@ -134,9 +159,14 @@ Item {
     runWake()
   }
 
+  function armBlankTimer() {
+    idleBlankTimer.armedAt = Date.now()
+    idleBlankTimer.restart()
+  }
+
   function runWake() {
     if (!wakeProcess.running) wakeProcess.running = true
-    if (lockRequested) idleBlankTimer.restart()
+    if (lockRequested) armBlankTimer()
   }
 
   function runBlank() {
@@ -349,7 +379,7 @@ Item {
 
   Process {
     id: fingerprintCheckProc
-    command: ["bash", "-lc", "if [[ -f /etc/pam.d/omarchy-lock-fingerprint ]] && command -v fprintd-list >/dev/null 2>&1 && fprintd-list \"$USER\" 2>/dev/null | grep -qi finger; then echo yes; else echo no; fi"]
+    command: ["bash", "-c", "if [[ -f /etc/pam.d/omarchy-lock-fingerprint ]] && command -v fprintd-list >/dev/null 2>&1 && fprintd-list \"$USER\" 2>/dev/null | grep -qi finger; then echo yes; else echo no; fi"]
     stdout: StdioCollector { id: fingerprintCheckStdout; waitForEnd: true }
     onExited: {
       root.fingerprintConfigured = String(fingerprintCheckStdout.text || "").trim() === "yes"
@@ -359,20 +389,48 @@ Item {
   }
 
   Process {
+    id: strandedLockCheckProc
+    command: ["bash", "-c", "omarchy-hyprland-session-locked"]
+    onExited: function(exitCode) {
+      // No output to read the lock off yet.
+      if (exitCode === 2) return
+
+      root.strandedLockResolved = true
+
+      // A lock taken while this was in flight is this shell's own.
+      root.strandedLock = exitCode === 0 && !root.locked && !root.lockRequested
+      root.recoverStrandedLock()
+    }
+  }
+
+  Process {
     id: wakeProcess
-    command: ["bash", "-lc", "omarchy-system-wake"]
+    command: ["bash", "-c", "omarchy-system-wake"]
   }
 
   Process {
     id: blankProcess
-    command: ["bash", "-lc", "omarchy-brightness-keyboard off; omarchy-brightness-display off"]
+    command: ["bash", "-c", "omarchy-brightness-keyboard off; omarchy-brightness-display off"]
   }
 
   Timer {
     id: idleBlankTimer
     interval: 5000
     repeat: false
-    onTriggered: if (root.lockRequested && !root.authenticating) root.runBlank()
+    property double armedAt: 0
+    onTriggered: {
+      // A countdown frozen by suspend fires right after resume, which would
+      // blank the freshly woken unlock screen under the user. Wall-clock time
+      // exposes the gap: take a fresh run-up instead of blanking.
+      if (Date.now() - armedAt > interval + 2000) {
+        root.armBlankTimer()
+        return
+      }
+      // Only a password check in flight should hold the display up. The
+      // fingerprint PAM stays armed for the whole lock, so gating on
+      // `authenticating` here would keep the panel lit until unlock.
+      if (root.lockRequested && !root.authenticatingPassword) root.runBlank()
+    }
   }
 
   Timer {
@@ -389,15 +447,40 @@ Item {
     onTriggered: root.requestSessionLock()
   }
 
-  Connections {
-    target: Quickshell
-    function onScreensChanged() { root.requestSessionLock() }
+  Timer {
+    id: strandedLockRetryTimer
+    interval: 500
+    repeat: true
+    // Covers the compositor settling; screens coming back re-arm it.
+    readonly property int budget: 20
+    property int remaining: 20
+    running: !root.strandedLockResolved && remaining > 0
+
+    function rearm() {
+      if (!root.strandedLockResolved) remaining = budget
+    }
+
+    onTriggered: {
+      remaining -= 1
+      root.checkStrandedLock()
+    }
   }
 
-  onAuthenticatingChanged: {
+  Connections {
+    target: Quickshell
+    function onScreensChanged() {
+      root.requestSessionLock()
+
+      // A monitor still coming up has no workspace, so cannot answer yet.
+      strandedLockRetryTimer.rearm()
+      root.checkStrandedLock()
+    }
+  }
+
+  onAuthenticatingPasswordChanged: {
     if (!lockRequested) return
-    if (authenticating) idleBlankTimer.stop()
-    else idleBlankTimer.restart()
+    if (authenticatingPassword) idleBlankTimer.stop()
+    else armBlankTimer()
   }
 
   FileView {
@@ -409,9 +492,21 @@ Item {
     onFileChanged: reload()
   }
 
+  // No lock before PAM is known good. An answer from before then may be stale --
+  // the failsafe can be cleared from a TTY -- so re-ask rather than act on it.
+  onPasswordPamConfiguredChanged: {
+    if (!passwordPamConfigured) return
+
+    strandedLock = false
+    strandedLockResolved = false
+    strandedLockRetryTimer.rearm()
+    checkStrandedLock()
+  }
+
   Component.onCompleted: {
     refreshBackground()
     refreshFingerprintStatus()
+    checkStrandedLock()
   }
 
   IpcHandler {

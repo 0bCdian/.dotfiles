@@ -20,9 +20,6 @@ PopupWindow {
   // "click" — uses HyprlandFocusGrab so clicking outside dismisses the popup.
   // "hover" — passive overlay; the owning widget controls open via hover.
   property string triggerMode: "click"
-  // Suspend the outside-click grab while a native submenu (its own untracked
-  // window) is showing, so Hyprland doesn't see focus leave and clear the grab.
-  property bool grabEnabled: true
 
   readonly property var coordinatorKey: owner || root
   readonly property var anchorWindow: anchorItem ? anchorItem.QsWindow.window : null
@@ -83,7 +80,7 @@ PopupWindow {
   // grab and we close the popup. Skipped for hover-mode popups so the cursor
   // can move freely between the trigger and the popup.
   HyprlandFocusGrab {
-    active: root.open && root.triggerMode === "click" && root.grabEnabled
+    active: root.open && root.triggerMode === "click"
     windows: root.anchorWindow ? [root, root.anchorWindow] : [root]
     onCleared: root.close()
   }
