@@ -193,8 +193,9 @@ BorderSurface {
   Item {
     anchors.top: parent.top
     anchors.right: parent.right
-    anchors.topMargin: root.borderTop + Style.space(3)
-    anchors.rightMargin: root.borderRight + Style.space(3)
+    // Fork: 3 -> 8 so the glyph sits off the corner rather than tucked into it.
+    anchors.topMargin: root.borderTop + Style.space(8)
+    anchors.rightMargin: root.borderRight + Style.space(8)
     width: Style.space(18)
     height: Style.space(18)
     visible: opacity > 0

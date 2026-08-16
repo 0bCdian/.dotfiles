@@ -275,7 +275,9 @@ Panel {
             tooltipText: "Clear notifications"
             foreground: root.foreground
             fontFamily: root.fontFamily
-            enabled: root.hasRows
+            // Hidden rather than disabled: with nothing to clear it is not a
+            // control that is temporarily unavailable, it is one with no job.
+            visible: root.hasRows
             Layout.alignment: Qt.AlignVCenter
             onClicked: root.clearAll()
           }
