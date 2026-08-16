@@ -138,15 +138,48 @@ hl.layer_rule({ match = { namespace = "notifications" },   blur = true, ignore_a
 -- inside a comment, so it did nothing. Restoring the intended blur here:
 hl.layer_rule({ match = { namespace = "logout_dialog" },   blur = true })
 
--- Omarchy shell overlays: blur behind the summoned panels (frosted-glass look
--- like ii). Paired with lowered scrim/background alpha in the theme shell.toml.
-hl.layer_rule({ match = { namespace = "omarchy-launcher" },     blur = true, ignore_alpha = 0.1 })
-hl.layer_rule({ match = { namespace = "omarchy-menu" },         blur = true, ignore_alpha = 0.1 })
-hl.layer_rule({ match = { namespace = "omarchy-clipboard" },    blur = true, ignore_alpha = 0.1 })
-hl.layer_rule({ match = { namespace = "omarchy-emojis" },       blur = true, ignore_alpha = 0.1 })
--- No scrim behind toasts (unlike the other omarchy-* overlays), so blurring
--- the live desktop here just looks soft/blurry instead of frosted-glass.
-hl.layer_rule({ match = { namespace = "omarchy-notifications" }, blur = false })
+-- Omarchy shell overlays. No blur/transparency by design here: panels are
+-- already fully opaque at the QML level (Color.qml defaults
+-- popups.background-alpha to 1.0, and the active theme doesn't override it),
+-- so blur/ignore_alpha were purely a frosted-glass effect layered on top —
+-- removed per preference. xray = false stays regardless of blur, since the
+-- blanket `namespace = ".*"` rule above sets xray = true for every surface,
+-- and leaving it on is never correct even without blur.
+-- blur = false is explicit, not just omitted: Hyprland layer rules merge by
+-- property rather than replace wholesale, and a handful of pre-existing
+-- generic-namespace rules above (e.g. "launcher", "bar[0-9]*") are unanchored
+-- regexes that happen to substring-match "omarchy-launcher"/"omarchy-bar" and
+-- re-enable blur if we don't override it back to false here.
+hl.layer_rule({ match = { namespace = "omarchy-launcher" },       xray = false, blur = false })
+hl.layer_rule({ match = { namespace = "omarchy-menu" },           xray = false, blur = false })
+hl.layer_rule({ match = { namespace = "omarchy-clipboard" },      xray = false, blur = false })
+hl.layer_rule({ match = { namespace = "omarchy-emojis" },         xray = false, blur = false })
+hl.layer_rule({ match = { namespace = "omarchy-image-selector" }, xray = false, blur = false })
+hl.layer_rule({ match = { namespace = "omarchy-reminders" },      xray = false, blur = false })
+hl.layer_rule({ match = { namespace = "omarchy-notifications" },  xray = false, blur = false })
+
+-- Shared popup base (KeyboardPanel.qml) for every bar-widget dropdown: the
+-- network/bluetooth/audio/power panels, DNS pills, tray menu, etc. all map
+-- to this one namespace. KeyboardPanel already fades its own opacity in QML
+-- (see the `Behavior on opacity` on its `card`), so no_anim avoids
+-- Hyprland's layer animation fighting with that.
+hl.layer_rule({ match = { namespace = "omarchy-keyboard-panel" }, xray = false, blur = false, no_anim = true })
+
+-- Bar and background self-animate in QML already; no_anim keeps Hyprland
+-- from adding a second, conflicting transition on top.
+hl.layer_rule({ match = { namespace = "omarchy-bar" },        no_anim = true, blur = false })
+hl.layer_rule({ match = { namespace = "omarchy-background" }, no_anim = true })
+
+-- PolkitAgent also self-animates; matches ii's own "quickshell:polkit" choice.
+hl.layer_rule({ match = { namespace = "omarchy-polkit" }, no_anim = true })
+
+-- Pre-lock wallpaper preview: closest analog to ii's "quickshell:session".
+hl.layer_rule({ match = { namespace = "omarchy-lock-preview" }, no_anim = true })
+
+-- OSD is a small toast with no scrim behind it (see its empty click-through
+-- `mask` in Osd.qml) — blur would just look soft, not frosted-glass, so this
+-- only restores the ii-equivalent alpha/no_anim treatment, not blur.
+hl.layer_rule({ match = { namespace = "omarchy-osd" }, ignore_alpha = 1, no_anim = true })
 
 -- ags-era layers
 hl.layer_rule({ match = { namespace = "sideleft.*" },  animation = "slide left" })
@@ -162,37 +195,11 @@ hl.layer_rule({ match = { namespace = "sideright[0-9]*" }, blur = true, ignore_a
 hl.layer_rule({ match = { namespace = "sideleft[0-9]*" },  blur = true, ignore_alpha = 0.6 })
 hl.layer_rule({ match = { namespace = "osk[0-9]*" },       blur = true, ignore_alpha = 0.6 })
 
--- Quickshell: illogical-impulse
-hl.layer_rule({ match = { namespace = "quickshell:.*" }, blur_popups = true })
-hl.layer_rule({ match = { namespace = "quickshell:.*" }, blur = true })
-hl.layer_rule({ match = { namespace = "quickshell:.*" }, ignore_alpha = 0.79 })
-hl.layer_rule({ match = { namespace = "quickshell:bar" },               animation = "slide" })
-hl.layer_rule({ match = { namespace = "quickshell:actionCenter" },      no_anim = true })
-hl.layer_rule({ match = { namespace = "quickshell:cheatsheet" },        animation = "slide bottom" })
-hl.layer_rule({ match = { namespace = "quickshell:dock" },              animation = "slide bottom" })
-hl.layer_rule({ match = { namespace = "quickshell:screenCorners" },     animation = "popin 120%" })
-hl.layer_rule({ match = { namespace = "quickshell:lockWindowPusher" },  no_anim = true })
-hl.layer_rule({ match = { namespace = "quickshell:notificationPopup" }, animation = "fade" })
-hl.layer_rule({ match = { namespace = "quickshell:overlay" },           no_anim = true, ignore_alpha = 1 })
-hl.layer_rule({ match = { namespace = "quickshell:overview" },          no_anim = true })
-hl.layer_rule({ match = { namespace = "quickshell:osk" },               animation = "slide bottom", order = -1 })
-hl.layer_rule({ match = { namespace = "quickshell:polkit" },            no_anim = true })
-hl.layer_rule({ match = { namespace = "quickshell:popup" },             xray = false, ignore_alpha = 1 })
-hl.layer_rule({ match = { namespace = "quickshell:mediaControls" },     ignore_alpha = 1 })
-hl.layer_rule({ match = { namespace = "quickshell:reloadPopup" },       animation = "slide" })
-hl.layer_rule({ match = { namespace = "quickshell:regionSelector" },    no_anim = true })
-hl.layer_rule({ match = { namespace = "quickshell:screenshot" },        no_anim = true })
-hl.layer_rule({ match = { namespace = "quickshell:session" }, blur = true, no_anim = true, ignore_alpha = 0 })
-hl.layer_rule({ match = { namespace = "quickshell:sidebarRight" },      animation = "slide right" })
-hl.layer_rule({ match = { namespace = "quickshell:sidebarLeft" },       animation = "slide left" })
-hl.layer_rule({ match = { namespace = "quickshell:verticalBar" },       animation = "slide" })
-
--- Quickshell: waffles
-hl.layer_rule({ match = { namespace = "quickshell:wallpaperSelector" },    animation = "slide top" })
-hl.layer_rule({ match = { namespace = "quickshell:wNotificationCenter" },  no_anim = true })
-hl.layer_rule({ match = { namespace = "quickshell:wOnScreenDisplay" },     no_anim = true })
-hl.layer_rule({ match = { namespace = "quickshell:wStartMenu" },           no_anim = true })
-hl.layer_rule({ match = { namespace = "quickshell:wTaskView" },            no_anim = true, ignore_alpha = 0 })
+-- NOTE: this used to carry two blocks of `quickshell:*` / `quickshell:w*`
+-- rules ported from end-4/dots-hyprland (ii) and its "waffle" variant.
+-- omarchy-shell's layer-shell surfaces are all namespaced "omarchy-*" (see
+-- the block above) — none of those old rules ever matched anything here, so
+-- they were dead weight. Removed rather than left stale.
 
 -- Launchers need to be FAST
 hl.layer_rule({ match = { namespace = "gtk4-layer-shell" }, no_anim = true })

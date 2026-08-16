@@ -159,18 +159,18 @@ countdown        = "{{ accent }}"
 [launcher]
 # Same six tokens as [menu], applied to the launcher overlay. Alpha
 # companions go from 0 (invisible) to 1 (opaque). scrim is the full-screen
-# dim layer behind the card; background is the card itself. Defaults
-# mirror [menu] with the card at 0.95 to preserve the legacy translucency.
+# dim layer behind the card; background is the card itself.
 background                = "{{ bg }}"
-background-alpha          = 0.85
+background-alpha          = 1.0
 text                      = "{{ fg }}"
 border                    = "hyprland.active-border-foreground"
 border-alpha              = 1.0
 # Fork: match Hyprland window border_size (1).
 border-width              = 1
 scrim                     = "{{ bg }}"
-# Fork: scrim removed (0.5 -> 0) so the bar shows through overlays; card kept
-# translucent (0.85) so the Hyprland blur is visible behind it.
+# Fork: scrim removed (0.5 -> 0) so the bar shows through overlays; card is
+# fully opaque (Hyprland blur is disabled shell-wide, see rules.lua
+# omarchy-* blur=false — no reason to keep the card translucent for it).
 scrim-alpha               = 0.0
 selected-background       = "{{ fg }}"
 selected-background-alpha = 0.08
@@ -183,7 +183,7 @@ selected-border-alpha     = 0.25
 # go from 0 (invisible) to 1 (opaque). scrim is the full-screen dim layer
 # behind the card. Clipboard and emojis inherit these tokens.
 background                = "{{ bg }}"
-background-alpha          = 0.90
+background-alpha          = 1.0
 text                      = "{{ fg }}"
 border                    = "hyprland.active-border-foreground"
 border-alpha              = 1.0

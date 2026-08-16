@@ -7,9 +7,28 @@
 
 STATE_DIR="$HOME/.local/state/omarchy/indicators"
 STATE_FILE="$STATE_DIR/stay-awake"
+INHIBIT_PID_FILE="$STATE_DIR/stay-awake.inhibit.pid"
 
 stay_awake_enabled() {
   [[ -f $STATE_FILE ]]
+}
+
+# hypridle (not quickshell) drives the actual lock/screensaver timeouts, and
+# already respects `systemd-inhibit --what=idle` out of the box. Holding one
+# here is how this toggle reaches hypridle without hypridle needing to know
+# anything about omarchy's stay-awake state.
+start_inhibitor() {
+  if [[ -f $INHIBIT_PID_FILE ]] && kill -0 "$(cat "$INHIBIT_PID_FILE")" 2>/dev/null; then
+    return
+  fi
+  systemd-inhibit --what=idle --who=omarchy --why="Stay awake requested" --mode=block sleep infinity &
+  echo $! >"$INHIBIT_PID_FILE"
+  disown
+}
+
+stop_inhibitor() {
+  [[ -f $INHIBIT_PID_FILE ]] && kill "$(cat "$INHIBIT_PID_FILE")" 2>/dev/null
+  rm -f "$INHIBIT_PID_FILE"
 }
 
 print_status() {
@@ -33,11 +52,11 @@ apply_state() {
     stay-awake)
       mkdir -p "$STATE_DIR"
       touch "$STATE_FILE"
-      omarchy-shell -q idle disable
+      start_inhibitor
       ;;
     allow-idle)
       rm -f "$STATE_FILE"
-      omarchy-shell -q idle enable
+      stop_inhibitor
       ;;
   esac
 
@@ -63,6 +82,11 @@ case "${1:-toggle}" in
     ;;
   status|--status)
     print_status
+    ;;
+  reconcile)
+    # Re-arm the inhibitor hold on shell startup; the systemd-inhibit process
+    # itself doesn't survive a reboot/logout even though the state file does.
+    if stay_awake_enabled; then start_inhibitor; else stop_inhibitor; fi
     ;;
   *)
     echo "Usage: omarchy-toggle-idle [toggle|stay-awake|allow-idle|status]" >&2

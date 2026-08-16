@@ -20,7 +20,9 @@ hl.env("XDG_DATA_DIRS",
 
 -- ###### Themes ######
 hl.env("QT_QPA_PLATFORM", "wayland;xcb")
-hl.env("QT_QPA_PLATFORMTHEME", "kde")
+-- gtk3 (not kde/kvantum) so native Qt widgets pull their palette from the
+-- GTK theme, which Omarchy's theme switcher actually keeps in sync.
+hl.env("QT_QPA_PLATFORMTHEME", "gtk3")
 hl.env("XDG_MENU_PREFIX", "plasma-")
 
 -- ###### Virtual environment ######

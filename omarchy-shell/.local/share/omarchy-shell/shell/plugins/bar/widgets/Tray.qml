@@ -16,6 +16,7 @@ BarWidget {
   property bool trayMenuOpen: false
   property var activeTrayItem: null
   property var activeTrayAnchor: null
+  property bool submenuActive: false
   readonly property color foreground: bar ? bar.foreground : Color.foreground
   readonly property string fontFamily: bar ? bar.fontFamily : Style.font.family
   readonly property var pinnedIds: settings.pinned instanceof Array ? settings.pinned : []
@@ -442,6 +443,7 @@ BarWidget {
     owner: root
     bar: root.bar
     open: root.trayMenuOpen
+    grabEnabled: !root.submenuActive
     padding: Style.space(8)
     borderColor: Qt.rgba(root.foreground.r, root.foreground.g, root.foreground.b, 0.45)
     contentWidth: trayMenuPopup.fittedContentWidth(Style.space(232))
@@ -540,16 +542,61 @@ BarWidget {
             font.pixelSize: Style.font.bodySmall
           }
 
+          function openSubmenu() {
+            var point = menuRow.QsWindow.contentItem.mapFromItem(menuRow, menuRow.width, menuRow.height / 2)
+            menuRow.modelData.display(menuRow.QsWindow.window, point.x, point.y)
+          }
+
+          // Mirrors native menu convention: hovering a row with children opens
+          // its submenu after a short delay, same as clicking it.
+          Timer {
+            id: submenuHoverTimer
+            interval: 180
+            onTriggered: menuRow.openSubmenu()
+          }
+
+          // The submenu is a separate native window Hyprland's focus grab
+          // doesn't know about; suspend the grab while it's up so opening it
+          // doesn't read as "focus left the popup" and close the whole menu.
+          // A native QMenu also grabs the pointer itself, so the first outside
+          // click just closes the submenu (never reaching our grab) — without
+          // this, a second click was needed to dismiss the tray menu. Once the
+          // submenu is done (closed and nothing reopened it within the grace
+          // window, i.e. not just hovering to a sibling submenu), close the
+          // whole tray menu instead of waiting for that click.
+          // ponytail: collapses the whole chain on any submenu dismissal
+          // (hover-away included) rather than only its own submenu; a real
+          // per-submenu close would need tracking each nested QMenu's geometry.
+          Connections {
+            target: menuRow.modelData
+            function onOpened() {
+              root.submenuActive = true
+              submenuCloseGrace.stop()
+            }
+            function onClosed() {
+              root.submenuActive = false
+              submenuCloseGrace.restart()
+            }
+          }
+
+          Timer {
+            id: submenuCloseGrace
+            interval: 150
+            onTriggered: root.close()
+          }
+
           MouseArea {
             id: rowMouse
             anchors.fill: parent
             hoverEnabled: true
             enabled: !menuRow.modelData.isSeparator && menuRow.modelData.enabled
             cursorShape: enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
+            onEntered: if (menuRow.modelData.hasChildren) submenuHoverTimer.restart()
+            onExited: submenuHoverTimer.stop()
             onClicked: {
               if (menuRow.modelData.hasChildren) {
-                var point = menuRow.QsWindow.contentItem.mapFromItem(menuRow, menuRow.width, menuRow.height / 2)
-                menuRow.modelData.display(menuRow.QsWindow.window, point.x, point.y)
+                submenuHoverTimer.stop()
+                menuRow.openSubmenu()
               } else {
                 menuRow.modelData.triggered()
                 root.close()

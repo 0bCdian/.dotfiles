@@ -25,9 +25,14 @@ hl.on("hyprland.start", function()
 
     -- Core components (authentication, lock screen, notification daemon)
     hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
-    -- hypridle replaced by omarchy.idle (timings in ~/.config/omarchy/shell.json).
-    -- ROLLBACK: uncomment to restore hypridle.
-    -- hl.exec_cmd("hypridle")
+    -- hypridle drives lock/screensaver timeouts (it respects Firefox/Zen's
+    -- D-Bus org.freedesktop.ScreenSaver.Inhibit, which omarchy.idle's
+    -- Wayland-only IdleMonitor never sees). omarchy.idle's own timeouts are
+    -- inflated in shell.json so they're structurally inert; the bar's
+    -- Stay Awake toggle now pauses hypridle via a systemd-inhibit hold
+    -- (see omarchy-toggle-idle) instead of touching omarchy.idle.
+    hl.exec_cmd("hypridle")
+    hl.exec_cmd("sleep 2 && omarchy-toggle-idle reconcile")
     hl.exec_cmd("dbus-update-activation-environment --all")
     -- Some fix idk
     hl.exec_cmd("sleep 1 && dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")

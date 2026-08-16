@@ -9,23 +9,23 @@
 
 -- A small Lua loop instead of writing 10 nearly identical lines.
 -- `ipairs` walks an array in order, giving us index + value.
-local layout = {
-    { ws = 1,  monitor = "DP-1" },
-    { ws = 2,  monitor = "DP-1" },
-    { ws = 3,  monitor = "DP-1" },
-    { ws = 4,  monitor = "DP-1" },
-    { ws = 5,  monitor = "DP-1" },
-    { ws = 6,  monitor = "DP-1" },
-    { ws = 7,  monitor = "HDMI-A-1" },
-    { ws = 8,  monitor = "HDMI-A-1" },
-    { ws = 9,  monitor = "HDMI-A-1" },
-    { ws = 10, monitor = "HDMI-A-1" },
-}
-
-for _, w in ipairs(layout) do
-    hl.workspace_rule({
-        workspace = tostring(w.ws), -- workspace selector is a string
-        monitor   = w.monitor,
-        default   = true,
-    })
-end
+-- local layout = {
+--     { ws = 1,  monitor = "DP-1" },
+--     { ws = 2,  monitor = "DP-1" },
+--     { ws = 3,  monitor = "DP-1" },
+--     { ws = 4,  monitor = "DP-1" },
+--     { ws = 5,  monitor = "DP-1" },
+--     { ws = 6,  monitor = "DP-1" },
+--     { ws = 7,  monitor = "HDMI-A-1" },
+--     { ws = 8,  monitor = "HDMI-A-1" },
+--     { ws = 9,  monitor = "HDMI-A-1" },
+--     { ws = 10, monitor = "HDMI-A-1" },
+-- }
+--
+-- for _, w in ipairs(layout) do
+--     hl.workspace_rule({
+--         workspace = tostring(w.ws), -- workspace selector is a string
+--         monitor   = w.monitor,
+--         default   = true,
+--     })
+-- end
