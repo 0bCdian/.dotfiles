@@ -73,12 +73,17 @@ ln -sfn ~/.config/omarchy/themes/gruvbox-material ~/.local/state/omarchy/current
 > `docs/superpowers/plans/2026-07-19-omarchy-shell-fork.md`; the design rationale
 > is in `docs/superpowers/specs/2026-07-19-omarchy-shell-fork-design.md`.
 
-### Rollback to `ii`
+### Relationship to end4 / `ii`
 
-Every swap keeps the old line commented with a `ROLLBACK` note. To revert:
-uncomment the `qs -c ii`, `hypridle`, cliphist, and `vicinae server` lines in
-`hypr/.config/hypr/hyprland/execs.lua`, restore the old binds, and pick the plain
-`hyprland` session at the greeter. The `ii` config is left untouched on disk.
+These dotfiles used to run the end4/illogical-impulse (`ii`) Quickshell shell.
+That is fully retired: the `ii` packages (`eww`, `waybar`, `swaync`, `rofi`) and
+the `ROLLBACK` scaffolding that kept it revivable are gone, so there is no
+in-repo path back to it. The last commit that still carried `ii` is tagged
+`end4-final` if it is ever needed.
+
+The shell is now maintained as an independent fork of omarchy's, tracking
+upstream selectively rather than following it. See `docs/` for the re-vendor
+procedure.
 
 ---
 

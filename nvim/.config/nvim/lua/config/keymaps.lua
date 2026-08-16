@@ -23,3 +23,10 @@
 -- vim.keymap.set("o", "i", "a", { silent = true, noremap = true })
 -- vim.keymap.set("o", "A", "I", { silent = true, noremap = true })
 -- vim.keymap.set("o", "I", "A", { silent = true, noremap = true })
+-- require("mini.files").setup()
+-- local minifiles_toggle = function()
+--   if not MiniFiles.close() then
+--     MiniFiles.open()
+--   end
+-- end
+-- vim.keymap.set("n", "<Leader>e", minifiles_toggle)
