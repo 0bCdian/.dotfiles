@@ -36,7 +36,7 @@ TERM = "alacritty"
 size = 16.0
 
 [font.bold]
-family = "JetBrains Mono Nerd Font"
+family = "JetBrainsMono Nerd Font"
 style = "Bold"
 
 [font.bold_italic]
@@ -44,7 +44,7 @@ family = "JetBrainsMono Nerd Font"
 style = "Bold Italic"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font "
+family = "JetBrainsMono Nerd Font"
 style = "Italic"
 
 [font.normal]

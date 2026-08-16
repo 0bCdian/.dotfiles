@@ -12,7 +12,7 @@ slurp_select_area="slurp -d -b '#ebdbb244' -c '#323232FF' -B '#323232FF' -F 'Jet
 # Theme Elements
 prompt='Screenshot'
 mesg="DIR: $(xdg-user-dir PICTURES)/Screenshots"
-background_image="$(jq '.[0].currentImage' $HOME/.cache/waypaper_engine/monitors.json)"
+#background_image="$(jq '.[0].currentImage' $HOME/.cache/waypaper_engine/monitors.json)"
 
 if [[ "$theme" == *'type-1'* ]]; then
   list_col='1'
@@ -49,11 +49,12 @@ else
 fi
 
 # Rofi CMD
+
+#-theme-str 'inputbar {background-image: url('$background_image', width);}' \
 rofi_cmd() {
   rofi -theme-str "window {width: $win_width;}" \
     -theme-str "listview {columns: $list_col; lines: $list_row;}" \
     -theme-str 'textbox-prompt-colon {str: " ";}' \
-    -theme-str 'inputbar {background-image: url('$background_image', width);}' \
     -dmenu \
     -p "$prompt" \
     -mesg "$mesg" \
