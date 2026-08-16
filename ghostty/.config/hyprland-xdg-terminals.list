@@ -1,0 +1,11 @@
+# Terminal emulator preference order for xdg-terminal-exec.
+#
+# Omarchy launches every terminal it spawns through xdg-terminal-exec
+# (see omarchy-launch-terminal), so this file is what decides which terminal
+# opens when you edit a config from the menu, run a floating command, etc.
+#
+# xdg-terminal-exec prefers ${XDG_CURRENT_DESKTOP,,}-xdg-terminals.list over
+# the generic xdg-terminals.list. Under Hyprland that means this file shadows
+# ~/.config/xdg-terminals.list entirely — setting only the generic one has no
+# effect here. Omarchy's own default ships foot.desktop.
+com.mitchellh.ghostty.desktop
