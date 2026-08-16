@@ -55,6 +55,9 @@
         },
         {
           "id": "omarchy.power"
+        },
+        {
+          "id": "obsy.notification-center"
         }
       ]
     }
