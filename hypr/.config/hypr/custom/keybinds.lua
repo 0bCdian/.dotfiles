@@ -42,14 +42,18 @@ local mod_alt = "SUPER + ALT"
 local mod_ctl = "SUPER + CTRL"
 
 ------------------------------ User ------------------------------
+-- Both of these pointed at paths that no longer exist: the ii shell config
+-- (~/.config/illogical-impulse/config.json) and the pre-Lua keybinds.conf.
+-- omarchy-launch-editor honours the configured default editor instead of
+-- whatever xdg-open picks for .json/.lua.
 hl.bind(
 	"CTRL + SUPER + Slash",
-	hl.dsp.exec_cmd("xdg-open " .. home .. "/.config/illogical-impulse/config.json"),
+	hl.dsp.exec_cmd("omarchy-launch-editor " .. home .. "/.config/omarchy/shell.json"),
 	{ description = "Edit shell config" }
 )
 hl.bind(
 	"CTRL + SUPER + ALT + Slash",
-	hl.dsp.exec_cmd("xdg-open " .. home .. "/.config/hypr/custom/keybinds.conf"),
+	hl.dsp.exec_cmd("omarchy-launch-editor " .. home .. "/.config/hypr/custom/keybinds.lua"),
 	{ description = "Edit extra keybinds" }
 )
 
@@ -178,11 +182,11 @@ end
 -- The old `[float]` exec prefix (a window rule for the spawned window) is kept
 -- inline in the command string.
 hl.bind(mod .. " + E", hl.dsp.exec_cmd("dolphin"))
--- Launcher: vicinae retired -> omarchy.launcher (summoned over shell IPC).
--- ROLLBACK: swap the next line back to: hl.dsp.exec_cmd("vicinae toggle")
--- hl.bind(mod .. " + space", hl.dsp.exec_cmd("omarchy-shell shell toggle omarchy.launcher"))
-hl.bind(mod .. " + space", hl.dsp.exec_cmd("vicinae toggle"))
-hl.bind(mod .. " + Return", hl.dsp.exec_cmd("ghostty"))
+-- Launcher: vicinae, kept over omarchy's own launcher. Note quattro folded the
+-- launcher into the menu, so the omarchy alternative is now
+-- `omarchy-shell shell toggle omarchy.menu` — omarchy.launcher no longer exists.
+hl.bind(mod .. " + space", hl.dsp.exec_cmd("vicinae toggle"), { description = "Launch apps (vicinae)" })
+hl.bind(mod .. " + Return", hl.dsp.exec_cmd("ghostty"), { description = "Terminal" })
 -- ROLLBACK: swap back to hl.dsp.exec_cmd("bemoji -n")
 hl.bind(
 	mod_shift .. " + E",
