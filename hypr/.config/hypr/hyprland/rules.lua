@@ -147,11 +147,13 @@ hl.layer_rule({ match = { namespace = "logout_dialog" },   blur = true })
 -- and leaving it on is never correct even without blur.
 -- blur = false is explicit, not just omitted: Hyprland layer rules merge by
 -- property rather than replace wholesale, and a handful of pre-existing
--- generic-namespace rules above (e.g. "launcher", "bar[0-9]*") are unanchored
--- regexes that happen to substring-match "omarchy-launcher"/"omarchy-bar" and
--- re-enable blur if we don't override it back to false here.
-hl.layer_rule({ match = { namespace = "omarchy-launcher" },       xray = false, blur = false })
+-- generic-namespace rules above (e.g. "notifications", "bar[0-9]*") are
+-- unanchored regexes that happen to substring-match "omarchy-notifications"/
+-- "omarchy-bar" and re-enable blur if we don't override it back to false here.
+-- (quattro merged the launcher into the menu, so there is no omarchy-launcher
+-- surface any more — omarchy-menu covers both roles.)
 hl.layer_rule({ match = { namespace = "omarchy-menu" },           xray = false, blur = false })
+hl.layer_rule({ match = { namespace = "omarchy-network-qr" },     xray = false, blur = false })
 hl.layer_rule({ match = { namespace = "omarchy-clipboard" },      xray = false, blur = false })
 hl.layer_rule({ match = { namespace = "omarchy-emojis" },         xray = false, blur = false })
 hl.layer_rule({ match = { namespace = "omarchy-image-selector" }, xray = false, blur = false })
@@ -165,9 +167,19 @@ hl.layer_rule({ match = { namespace = "omarchy-notifications" },  xray = false, 
 -- Hyprland's layer animation fighting with that.
 hl.layer_rule({ match = { namespace = "omarchy-keyboard-panel" }, xray = false, blur = false, no_anim = true })
 
+-- Invisible full-screen click-catcher the keyboard panel maps on every *other*
+-- output so a click there dismisses the panel. Nothing is drawn, so blur/xray
+-- would only cost compositing on a transparent surface.
+hl.layer_rule({ match = { namespace = "omarchy-keyboard-panel-dismiss" }, xray = false, blur = false, no_anim = true })
+
 -- Bar and background self-animate in QML already; no_anim keeps Hyprland
 -- from adding a second, conflicting transition on top.
 hl.layer_rule({ match = { namespace = "omarchy-bar" },        no_anim = true, blur = false })
+
+-- Transparent ghosts quattro maps while dragging/reordering bar widgets. They
+-- follow the pointer, so a Hyprland layer animation lags them behind the cursor.
+hl.layer_rule({ match = { namespace = "omarchy-bar-drag-ghost" }, xray = false, blur = false, no_anim = true })
+hl.layer_rule({ match = { namespace = "omarchy-bar-move-ghost" }, xray = false, blur = false, no_anim = true })
 hl.layer_rule({ match = { namespace = "omarchy-background" }, no_anim = true })
 
 -- PolkitAgent also self-animates; matches ii's own "quickshell:polkit" choice.
