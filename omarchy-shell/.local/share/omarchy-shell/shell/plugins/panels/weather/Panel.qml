@@ -492,7 +492,9 @@ Panel {
     open: root.opened
     centerOnBar: true
     focusTarget: keyCatcher
-    contentWidth: panel.fittedContentWidth(Style.space(480))
+    // Fork: 480 -> 540 to fit the hero row once heroRight flows after heroLeft
+    // rather than being pinned to the right edge (see the hero row below).
+    contentWidth: panel.fittedContentWidth(Style.space(540))
     contentHeight: panel.fittedContentHeight(weatherColumn.implicitHeight)
 
     PanelKeyCatcher {
@@ -569,8 +571,12 @@ Panel {
         Column {
           id: heroRight
           width: weatherStats.implicitWidth
-          anchors.right: parent.right
-          anchors.rightMargin: Style.space(20)
+          // Fork: flow after heroLeft instead of pinning to the panel's right
+          // edge. Right-anchoring lets the two sides collide once native text
+          // rendering (Ui/AppText) measures the oversized 64px icon and 56px
+          // temperature wider than Qt's default renderer did.
+          anchors.left: heroLeft.right
+          anchors.leftMargin: Style.space(20)
           anchors.verticalCenter: parent.verticalCenter
           spacing: Style.space(12)
 
