@@ -1,10 +1,10 @@
 theme = gruvboxMaterial
 shell-integration = fish
 shell-integration-features = true
-font-size = 16
+font-size = 14
 font-family = "JetBrainsMono Nerd Font"
 window-padding-x = 12
-window-padding-y = 12,0
+window-padding-y = 6
 window-padding-balance = false
 window-inherit-working-directory = true
 window-decoration = false
@@ -21,9 +21,5 @@ cursor-style-blink = true
 cursor-click-to-move = true
 mouse-hide-while-typing = true
 mouse-shift-capture = true
-gtk-adwaita = false
-
-#Keybinds
-
 keybind = alt+o=toggle_tab_overview
 
