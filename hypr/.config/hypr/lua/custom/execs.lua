@@ -1,6 +1,0 @@
--- custom/execs.lua  (translated from custom/execs.conf)
--- Make apps auto-start here. Run-once at login:
---   hl.on("hyprland.start", function()
---       hl.exec_cmd("nm-applet")
---   end)
--- Docs: https://wiki.hypr.land/Configuring/Basics/Autostart/

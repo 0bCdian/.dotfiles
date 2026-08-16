@@ -16,8 +16,6 @@
 hl.on("hyprland.start", function()
 	-- Bar, wallpaper
 	hl.exec_cmd("~/.config/hypr/hyprland/scripts/start_geoclue_agent.sh")
-	-- ROLLBACK: to return to end4 ii, uncomment the next line and comment the omarchy one.
-	-- hl.exec_cmd("qs -c " .. qsConfig .. " &")
 	-- Omarchy shell (Quickshell). Requires the uwsm session so OMARCHY_PATH/PATH
 	-- are set from ~/.config/uwsm/env.d. Launched as a uwsm scope like omarchy does.
 	hl.exec_cmd("uwsm app -- quickshell -n -p " .. os.getenv("HOME") .. "/.local/share/omarchy-shell/shell")
@@ -41,9 +39,6 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("easyeffects --hide-window --service-mode")
 
 	-- Clipboard history: omarchy.clipboard runs its own capture inside the shell.
-	-- ROLLBACK (ii): uncomment the two lines below.
-	-- hl.exec_cmd("wl-paste --type text --watch bash -c 'cliphist store && qs -c " .. qsConfig .. " ipc call cliphistService update'")
-	-- hl.exec_cmd("wl-paste --type image --watch bash -c 'cliphist store && qs -c " .. qsConfig .. " ipc call cliphistService update'")
 
 	-- Cursor
 	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 24")

@@ -12,14 +12,12 @@
 --     global, NAME                          -> hl.dsp.global("NAME")
 -- ============================================================================
 
--- Wallpaper selector: ii's IPC global is gone; open the waypaper-engine GUI.
--- ROLLBACK (ii): hl.dsp.global("quickshell:wallpaperSelectorToggle")
+-- Wallpaper selector: the waypaper-engine GUI owns wallpapers.
 hl.bind("CTRL + SUPER + T",
     hl.dsp.exec_cmd("waypaper-engine"),
     { description = "Open wallpaper selector (waypaper-engine)" })
 
--- Restart the shell: omarchy shell replaces ii.
--- ROLLBACK (ii): hl.dsp.exec_cmd("killall ags agsv1 gjs ydotool qs quickshell; qs -c " .. qsConfig .. " &")
+-- Restart the omarchy shell.
 hl.bind("CTRL + SUPER + R",
     hl.dsp.exec_cmd("omarchy-restart-shell"),
     { description = "Restart omarchy shell" })

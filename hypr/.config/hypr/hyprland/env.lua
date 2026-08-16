@@ -29,4 +29,4 @@ hl.env("XDG_MENU_PREFIX", "plasma-")
 hl.env("ILLOGICAL_IMPULSE_VIRTUAL_ENV", home .. "/.local/state/quickshell/.venv")
 
 -- ###### Terminal application ######
-hl.env("TERMINAL", "kitty -1")
+hl.env("TERMINAL", "ghostty")

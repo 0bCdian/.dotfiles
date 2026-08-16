@@ -11,10 +11,6 @@
 --  relative to the config directory, runs it once, and caches the result.
 -- ============================================================================
 
--- A plain global so every required module can read it.
--- Original: `$qsConfig = ii` in hyprland.conf. Quickshell config name.
-qsConfig = "ii"
-
 -- NOTE on the old `submap = global` catch-all:
 -- The original hyprland.conf opened a "global" submap so illogical-impulse's
 -- catch-all search binds could work. You have all of those binds commented
