@@ -59,14 +59,14 @@ hl.bind(
 
 ------------------------------ System ------------------------------
 -- Mouse move/resize (bindm)
-hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true, description = "Move window (drag)" })
+hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true, description = "Resize window (drag)" })
 
 -- Move window in a direction (Super+Ctrl + jlik)
-hl.bind(mod_ctl .. " + J", hl.dsp.window.move({ direction = "left" }))
-hl.bind(mod_ctl .. " + L", hl.dsp.window.move({ direction = "right" }))
-hl.bind(mod_ctl .. " + I", hl.dsp.window.move({ direction = "up" }))
-hl.bind(mod_ctl .. " + K", hl.dsp.window.move({ direction = "down" }))
+hl.bind(mod_ctl .. " + J", hl.dsp.window.move({ direction = "left" }), { description = "Move window left" })
+hl.bind(mod_ctl .. " + L", hl.dsp.window.move({ direction = "right" }), { description = "Move window right" })
+hl.bind(mod_ctl .. " + I", hl.dsp.window.move({ direction = "up" }), { description = "Move window up" })
+hl.bind(mod_ctl .. " + K", hl.dsp.window.move({ direction = "down" }), { description = "Move window down" })
 
 -- Misc system keys
 -- ROLLBACK: swap back to hl.dsp.exec_cmd(home .. "/.config/rofi/applets/bin/screenshot.sh")
@@ -87,23 +87,23 @@ hl.bind(
 	hl.dsp.exec_cmd("omarchy-capture-text"),
 	{ description = "Extract text (OCR) from screenshot" }
 )
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 30+"))
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 30-"))
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("amixer set Master 5%+"))
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("amixer set Master 5%-"))
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("amixer set Master toggle"))
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 30+"), { description = "Brightness up" })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 30-"), { description = "Brightness down" })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("amixer set Master 5%+"), { description = "Volume up" })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("amixer set Master 5%-"), { description = "Volume down" })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("amixer set Master toggle"), { description = "Mute audio" })
 
-hl.bind(mod_shift .. " + F", hl.dsp.window.fullscreen())
-hl.bind(mod .. " + Q", hl.dsp.window.close())
-hl.bind(mod .. " + P", hl.dsp.window.pin())
-hl.bind(mod_shift .. " + K", hl.dsp.exec_cmd("hyprctl kill"))
+hl.bind(mod_shift .. " + F", hl.dsp.window.fullscreen(), { description = "Full screen" })
+hl.bind(mod .. " + Q", hl.dsp.window.close(), { description = "Close window" })
+hl.bind(mod .. " + P", hl.dsp.window.pin(), { description = "Pin window above others" })
+hl.bind(mod_shift .. " + K", hl.dsp.exec_cmd("hyprctl kill"), { description = "Kill mode (click a window to force-quit it)" })
 -- ROLLBACK: swap back to hl.dsp.exec_cmd(home .. "/.config/rofi/applets/bin/powermenu.sh")
 hl.bind(
 	mod .. " + M",
 	hl.dsp.exec_cmd("omarchy-menu toggle power-menu"),
 	{ description = "Power menu (lock/suspend/hibernate/logout/restart/shutdown)" }
 )
-hl.bind(mod .. " + F", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mod .. " + F", hl.dsp.window.float({ action = "toggle" }), { description = "Toggle window floating" })
 
 -- ROLLBACK: swap back to hl.dsp.workspace.toggle_special("clipboard")
 hl.bind(
@@ -113,36 +113,40 @@ hl.bind(
 )
 
 -- Workspace nav by relative index
-hl.bind(mod .. " + left", hl.dsp.focus({ workspace = "r-1" }))
-hl.bind(mod .. " + right", hl.dsp.focus({ workspace = "r+1" }))
+hl.bind(mod .. " + left", hl.dsp.focus({ workspace = "r-1" }), { description = "Previous workspace" })
+hl.bind(mod .. " + right", hl.dsp.focus({ workspace = "r+1" }), { description = "Next workspace" })
 
 -- Move focus (Super + jlik)
-hl.bind(mod .. " + J", hl.dsp.focus({ direction = "left" }))
-hl.bind(mod .. " + L", hl.dsp.focus({ direction = "right" }))
-hl.bind(mod .. " + K", hl.dsp.focus({ direction = "down" }))
-hl.bind(mod .. " + I", hl.dsp.focus({ direction = "up" }))
+hl.bind(mod .. " + J", hl.dsp.focus({ direction = "left" }), { description = "Focus left" })
+hl.bind(mod .. " + L", hl.dsp.focus({ direction = "right" }), { description = "Focus right" })
+hl.bind(mod .. " + K", hl.dsp.focus({ direction = "down" }), { description = "Focus down" })
+hl.bind(mod .. " + I", hl.dsp.focus({ direction = "up" }), { description = "Focus up" })
 
 -- Resize active window (binde -> repeating). resizeactive deltas are relative.
-hl.bind(mod_alt .. " + L", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true })
-hl.bind(mod_alt .. " + J", hl.dsp.window.resize({ x = -50, y = 0, relative = true }), { repeating = true })
-hl.bind(mod_alt .. " + I", hl.dsp.window.resize({ x = 0, y = -50, relative = true }), { repeating = true })
-hl.bind(mod_alt .. " + K", hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true })
+hl.bind(mod_alt .. " + L", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true, description = "Resize window wider" })
+hl.bind(mod_alt .. " + J", hl.dsp.window.resize({ x = -50, y = 0, relative = true }), { repeating = true, description = "Resize window narrower" })
+hl.bind(mod_alt .. " + I", hl.dsp.window.resize({ x = 0, y = -50, relative = true }), { repeating = true, description = "Resize window shorter" })
+hl.bind(mod_alt .. " + K", hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true, description = "Resize window taller" })
 
 -- Special "hidden" scratchpad
-hl.bind(mod .. " + S", hl.dsp.workspace.toggle_special("hidden"), { release = true }) -- bindr
-hl.bind(mod .. " + up", hl.dsp.window.move({ workspace = "special:hidden", follow = false }))
-hl.bind(mod .. " + down", hl.dsp.exec_cmd(home .. "/.config/hypr/custom/scripts/move_to_active_workspace.sh"))
+hl.bind(mod .. " + S", hl.dsp.workspace.toggle_special("hidden"), { release = true, description = "Toggle hidden scratchpad" }) -- bindr
+hl.bind(mod .. " + up", hl.dsp.window.move({ workspace = "special:hidden", follow = false }), { description = "Send window to hidden scratchpad" })
+hl.bind(
+	mod .. " + down",
+	hl.dsp.exec_cmd(home .. "/.config/hypr/custom/scripts/move_to_active_workspace.sh"),
+	{ description = "Pull window out of the scratchpad to this workspace" }
+)
 
 -- Move window to relative workspace
-hl.bind(mod_shift .. " + left", hl.dsp.window.move({ workspace = "r-1" }))
-hl.bind(mod_shift .. " + right", hl.dsp.window.move({ workspace = "r+1" }))
+hl.bind(mod_shift .. " + left", hl.dsp.window.move({ workspace = "r-1" }), { description = "Move window to previous workspace" })
+hl.bind(mod_shift .. " + right", hl.dsp.window.move({ workspace = "r+1" }), { description = "Move window to next workspace" })
 
 -- Scroll through workspaces
-hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }), { description = "Scroll active workspace forward" })
+hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }), { description = "Scroll active workspace back" })
 
-hl.bind(mod .. " + G", hl.dsp.group.toggle())
-hl.bind(mod .. " + Tab", hl.dsp.focus({ workspace = "previous" }))
+hl.bind(mod .. " + G", hl.dsp.group.toggle(), { description = "Toggle window group" })
+hl.bind(mod .. " + Tab", hl.dsp.focus({ workspace = "previous" }), { description = "Former workspace" })
 
 -- ALT+TAB ran FOUR dispatchers on one key. In Lua we run them all from a
 -- single callback function so order is guaranteed.
@@ -151,9 +155,13 @@ hl.bind("ALT + Tab", function()
 	hl.dispatch(hl.dsp.window.center())
 	hl.dispatch(hl.dsp.window.bring_to_top())
 	hl.dispatch(hl.dsp.group.next()) -- changegroupactive (cycle forward in group)
-end)
+end, { description = "Cycle to next window" })
 
-hl.bind(mod_shift .. " + T", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"))
+hl.bind(
+	mod_shift .. " + T",
+	hl.dsp.exec_cmd("hyprctl switchxkblayout all next"),
+	{ description = "Cycle keyboard layout" }
+)
 -- ROLLBACK: ags is not installed; this bind was already dead. Swap back to hl.dsp.exec_cmd("ags -r 'recorder.start()'") if ags returns.
 hl.bind(
 	mod .. " + R",
@@ -164,8 +172,8 @@ hl.bind(
 )
 
 -- Laptop lid switch (bindl -> locked)
-hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd("systemctl suspend"), { locked = true })
-hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd("hyprctl dpms on"), { locked = true })
+hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd("systemctl suspend"), { locked = true, description = "Lid closed: suspend" })
+hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd("hyprctl dpms on"), { locked = true, description = "Lid opened: wake displays" })
 
 ------------------------ Workspace switch / move ------------------------
 -- Old: 20 nearly identical lines. A Lua loop does both directions at once.
@@ -174,14 +182,18 @@ hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd("hyprctl dpms on"), { locked = 
 -- The number key for workspace 10 is "0".
 for i = 1, 10 do
 	local key = (i % 10) -- 10 -> "0"
-	hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-	hl.bind(mod_shift .. " + " .. key, hl.dsp.window.move({ workspace = i }))
+	hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = i }), { description = "Switch to workspace " .. i })
+	hl.bind(
+		mod_shift .. " + " .. key,
+		hl.dsp.window.move({ workspace = i }),
+		{ description = "Move window to workspace " .. i }
+	)
 end
 
 ------------------------------ Programs ------------------------------
 -- The old `[float]` exec prefix (a window rule for the spawned window) is kept
 -- inline in the command string.
-hl.bind(mod .. " + E", hl.dsp.exec_cmd("dolphin"))
+hl.bind(mod .. " + E", hl.dsp.exec_cmd("dolphin"), { description = "File manager" })
 -- Launcher: vicinae, kept over omarchy's own launcher. Note quattro folded the
 -- launcher into the menu, so the omarchy alternative is now
 -- `omarchy-shell shell toggle omarchy.menu` — omarchy.launcher no longer exists.
