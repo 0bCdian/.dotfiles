@@ -103,27 +103,12 @@ hl.config({
 		rounding_power = 2.4,
 		rounding = 8,
 
+		-- Blur off entirely. The tuning keys (size, passes, vibrancy, xray, the
+		-- popup/input-method variants) and every window and layer rule that
+		-- switched blur on or off are deleted with it — they only did anything
+		-- while blur was enabled.
 		blur = {
-			enabled = true,
-			-- xray makes a blurred surface sample the wallpaper instead of the
-			-- windows behind it, which shows up as a slab of blurred wallpaper
-			-- painted over open windows. Off globally; nothing here wants it.
-			-- (misc.session_lock_xray below is unrelated: it keeps window
-			-- content off the lock screen, and stays on.)
-			xray = false,
-			special = false,
-			new_optimizations = true,
-			size = 10,
-			passes = 3,
-			brightness = 1,
-			noise = 0.05,
-			contrast = 0.89,
-			vibrancy = 0.5,
-			vibrancy_darkness = 0.5,
-			popups = false,
-			popups_ignorealpha = 0.6,
-			input_methods = true,
-			input_methods_ignorealpha = 0.8,
+			enabled = false,
 		},
 
 		shadow = {

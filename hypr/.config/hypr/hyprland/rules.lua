@@ -20,12 +20,6 @@
 
 -------------------- Window rules --------------------
 
--- Disable blur for xwayland context menus (empty class + empty title)
-hl.window_rule({ match = { class = "^()$", title = "^()$" }, no_blur = true })
-
--- Disable blur for every window
-hl.window_rule({ match = { class = ".*" }, no_blur = true })
-
 -- ---- Floating dialogs (center + float) ----
 hl.window_rule({ match = { title = "^(Open File)(.*)$" },       center = true, float = true })
 hl.window_rule({ match = { title = "^(Select a File)(.*)$" },   center = true, float = true })
@@ -129,12 +123,9 @@ hl.workspace_rule({ workspace = "special:special", gaps_out = 30 })
 -- Old: layerrule = match:namespace NS, effect [arg]
 -- New: hl.layer_rule{ match = { namespace = NS }, <effect> = <value> }
 -- Layer effect fields are well-defined:
---   no_anim, blur, blur_popups, ignore_alpha, xray, dim_around, animation,
---   order, above_lock, no_screen_share
+--   no_anim, animation, dim_around, order, above_lock, no_screen_share
+--   (blur/ignore_alpha/xray omitted: blur is disabled globally)
 
--- (no xray rule here: decoration.blur.xray is off globally, so layers inherit
--- that. The ii config used to force xray = true on every layer, which is what
--- made surfaces paint blurred wallpaper over open windows.)
 -- (no_anim for all was commented out in your conf)
 
 hl.layer_rule({ match = { namespace = "walker" },      no_anim = true })
@@ -146,57 +137,29 @@ hl.layer_rule({ match = { namespace = "osk" },         no_anim = true })
 hl.layer_rule({ match = { namespace = "hyprpicker" },  no_anim = true })
 
 hl.layer_rule({ match = { namespace = "noanim" },          no_anim = true })
-hl.layer_rule({ match = { namespace = "gtk-layer-shell" }, blur = true, ignore_alpha = 0 })
-hl.layer_rule({ match = { namespace = "launcher" },        blur = true, ignore_alpha = 0.5 })
-hl.layer_rule({ match = { namespace = "notifications" },   blur = true, ignore_alpha = 0.69 })
--- NOTE: the original line `logout_dialog # wlogout, blur on` had its effect
--- inside a comment, so it did nothing. Restoring the intended blur here:
-hl.layer_rule({ match = { namespace = "logout_dialog" },   blur = true })
 
--- Omarchy shell overlays. No blur/transparency by design here: panels are
--- already fully opaque at the QML level (Color.qml defaults
--- popups.background-alpha to 1.0, and the active theme doesn't override it),
--- so blur/ignore_alpha were purely a frosted-glass effect layered on top —
--- removed per preference.
--- blur = false is explicit, not just omitted: Hyprland layer rules merge by
--- property rather than replace wholesale, and a handful of pre-existing
--- generic-namespace rules above (e.g. "notifications", "bar[0-9]*") are
--- unanchored regexes that happen to substring-match "omarchy-notifications"/
--- "omarchy-bar" and re-enable blur if we don't override it back to false here.
--- (quattro merged the launcher into the menu, so there is no omarchy-launcher
--- surface any more — omarchy-menu covers both roles.)
--- Vicinae is the launcher, so it gets the same treatment as the omarchy
--- surfaces below.
-hl.layer_rule({ match = { namespace = "vicinae" },                blur = false })
-
-hl.layer_rule({ match = { namespace = "omarchy-menu" },           blur = false })
-hl.layer_rule({ match = { namespace = "omarchy-network-qr" },     blur = false })
-hl.layer_rule({ match = { namespace = "omarchy-clipboard" },      blur = false })
-hl.layer_rule({ match = { namespace = "omarchy-emojis" },         blur = false })
-hl.layer_rule({ match = { namespace = "omarchy-image-selector" }, blur = false })
-hl.layer_rule({ match = { namespace = "omarchy-reminders" },      blur = false })
-hl.layer_rule({ match = { namespace = "omarchy-notifications" },  blur = false })
+-- Omarchy shell overlays. Only animation behaviour is set here now; blur is
+-- off globally, so nothing needs to opt out of it.
 
 -- Shared popup base (KeyboardPanel.qml) for every bar-widget dropdown: the
 -- network/bluetooth/audio/power panels, DNS pills, tray menu, etc. all map
 -- to this one namespace. KeyboardPanel already fades its own opacity in QML
 -- (see the `Behavior on opacity` on its `card`), so no_anim avoids
 -- Hyprland's layer animation fighting with that.
-hl.layer_rule({ match = { namespace = "omarchy-keyboard-panel" }, blur = false, no_anim = true })
+hl.layer_rule({ match = { namespace = "omarchy-keyboard-panel" }, no_anim = true })
 
 -- Invisible full-screen click-catcher the keyboard panel maps on every *other*
--- output so a click there dismisses the panel. Nothing is drawn, so blur would
--- only cost compositing on a transparent surface.
-hl.layer_rule({ match = { namespace = "omarchy-keyboard-panel-dismiss" }, blur = false, no_anim = true })
+-- output so a click there dismisses the panel.
+hl.layer_rule({ match = { namespace = "omarchy-keyboard-panel-dismiss" }, no_anim = true })
 
 -- Bar and background self-animate in QML already; no_anim keeps Hyprland
 -- from adding a second, conflicting transition on top.
-hl.layer_rule({ match = { namespace = "omarchy-bar" },        no_anim = true, blur = false })
+hl.layer_rule({ match = { namespace = "omarchy-bar" },        no_anim = true })
 
 -- Transparent ghosts quattro maps while dragging/reordering bar widgets. They
 -- follow the pointer, so a Hyprland layer animation lags them behind the cursor.
-hl.layer_rule({ match = { namespace = "omarchy-bar-drag-ghost" }, blur = false, no_anim = true })
-hl.layer_rule({ match = { namespace = "omarchy-bar-move-ghost" }, blur = false, no_anim = true })
+hl.layer_rule({ match = { namespace = "omarchy-bar-drag-ghost" }, no_anim = true })
+hl.layer_rule({ match = { namespace = "omarchy-bar-move-ghost" }, no_anim = true })
 hl.layer_rule({ match = { namespace = "omarchy-background" }, no_anim = true })
 
 -- PolkitAgent also self-animates; matches ii's own "quickshell:polkit" choice.
@@ -206,23 +169,12 @@ hl.layer_rule({ match = { namespace = "omarchy-polkit" }, no_anim = true })
 hl.layer_rule({ match = { namespace = "omarchy-lock-preview" }, no_anim = true })
 
 -- OSD is a small toast with no scrim behind it (see its empty click-through
--- `mask` in Osd.qml) — blur would just look soft, not frosted-glass, so this
--- only restores the ii-equivalent alpha/no_anim treatment, not blur.
-hl.layer_rule({ match = { namespace = "omarchy-osd" }, ignore_alpha = 1, no_anim = true })
+-- `mask` in Osd.qml); it self-animates, so no_anim keeps Hyprland out of it.
+hl.layer_rule({ match = { namespace = "omarchy-osd" }, no_anim = true })
 
 -- ags-era layers
 hl.layer_rule({ match = { namespace = "sideleft.*" },  animation = "slide left" })
 hl.layer_rule({ match = { namespace = "sideright.*" }, animation = "slide right" })
-hl.layer_rule({ match = { namespace = "session[0-9]*" },   blur = true })
-hl.layer_rule({ match = { namespace = "bar[0-9]*" },       blur = true, ignore_alpha = 0.6 })
-hl.layer_rule({ match = { namespace = "barcorner.*" },     blur = true, ignore_alpha = 0.6 })
-hl.layer_rule({ match = { namespace = "dock[0-9]*" },      blur = true, ignore_alpha = 0.6 })
-hl.layer_rule({ match = { namespace = "indicator.*" },     blur = true, ignore_alpha = 0.6 })
-hl.layer_rule({ match = { namespace = "overview[0-9]*" },  blur = true, ignore_alpha = 0.6 })
-hl.layer_rule({ match = { namespace = "cheatsheet[0-9]*" },blur = true, ignore_alpha = 0.6 })
-hl.layer_rule({ match = { namespace = "sideright[0-9]*" }, blur = true, ignore_alpha = 0.6 })
-hl.layer_rule({ match = { namespace = "sideleft[0-9]*" },  blur = true, ignore_alpha = 0.6 })
-hl.layer_rule({ match = { namespace = "osk[0-9]*" },       blur = true, ignore_alpha = 0.6 })
 
 -- NOTE: this used to carry two blocks of `quickshell:*` / `quickshell:w*`
 -- rules ported from end-4/dots-hyprland (ii) and its "waffle" variant.
