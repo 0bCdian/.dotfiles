@@ -165,6 +165,13 @@ hl.layer_rule({ match = { namespace = "logout_dialog" },   blur = true })
 -- "omarchy-bar" and re-enable blur if we don't override it back to false here.
 -- (quattro merged the launcher into the menu, so there is no omarchy-launcher
 -- surface any more — omarchy-menu covers both roles.)
+-- Vicinae is the launcher, so it gets the same treatment as the omarchy
+-- surfaces below. Without this it falls through to the blanket
+-- `namespace = ".*"` xray rule, and its blurred surface samples the wallpaper
+-- instead of the windows underneath — opening it flashes a big rectangle of
+-- blurred wallpaper over whatever was on screen.
+hl.layer_rule({ match = { namespace = "vicinae" },                xray = false, blur = false })
+
 hl.layer_rule({ match = { namespace = "omarchy-menu" },           xray = false, blur = false })
 hl.layer_rule({ match = { namespace = "omarchy-network-qr" },     xray = false, blur = false })
 hl.layer_rule({ match = { namespace = "omarchy-clipboard" },      xray = false, blur = false })
