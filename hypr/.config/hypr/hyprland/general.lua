@@ -105,7 +105,12 @@ hl.config({
 
 		blur = {
 			enabled = true,
-			xray = true,
+			-- xray makes a blurred surface sample the wallpaper instead of the
+			-- windows behind it, which shows up as a slab of blurred wallpaper
+			-- painted over open windows. Off globally; nothing here wants it.
+			-- (misc.session_lock_xray below is unrelated: it keeps window
+			-- content off the lock screen, and stays on.)
+			xray = false,
 			special = false,
 			new_optimizations = true,
 			size = 10,
