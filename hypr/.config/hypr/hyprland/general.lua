@@ -73,9 +73,13 @@ hl.config({
 		gaps_workspaces = 50,
 
 		border_size = 1,
+		-- Live values. These used to be overridden by hyprland/colors.lua, which
+		-- loaded afterwards and silently won, so editing them here did nothing.
+		-- colors.lua was ii's generated theme file; nothing regenerates it now,
+		-- so it is deleted and its values live here.
 		col = {
-			active_border = "rgba(0DB7D455)",
-			inactive_border = "rgba(31313600)",
+			active_border = "rgba(8b919877)",
+			inactive_border = "rgba(41484d55)",
 		},
 		resize_on_border = true,
 
@@ -144,6 +148,7 @@ hl.config({
 	},
 
 	misc = {
+		background_color = "rgba(101417FF)", -- was hyprland/colors.lua
 		disable_hyprland_logo = true,
 		disable_splash_rendering = true,
 		vrr = 1,
