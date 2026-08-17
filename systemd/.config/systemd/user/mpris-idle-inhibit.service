@@ -1,0 +1,20 @@
+[Unit]
+Description=Hold an idle inhibitor while MPRIS media is playing
+Documentation=man:playerctl(1)
+# Needs the session bus to reach MPRIS players, and only makes sense once a
+# graphical session exists to keep awake.
+PartOf=graphical-session.target
+After=graphical-session.target dbus.socket
+Requires=dbus.socket
+
+[Service]
+Type=simple
+# playerctl is the only hard dependency; skip cleanly rather than restart-loop
+# on a machine that does not have it.
+ExecCondition=/usr/bin/test -x /usr/bin/playerctl
+ExecStart=%h/.config/hypr/custom/scripts/mpris-idle-inhibit.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target

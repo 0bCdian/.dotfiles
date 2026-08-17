@@ -107,6 +107,20 @@ hl.window_rule({
 -- No shadow for tiled windows (windows that are not floating)
 hl.window_rule({ match = { float = false }, no_shadow = true })
 
+-- ---- Idle ----
+-- Anything fullscreen holds the idle inhibitor: a fullscreen window is
+-- video, a game, or a presentation, and none of those want the screensaver.
+-- hypridle honours the compositor's inhibitor, so this reaches it without
+-- hypridle needing a rule of its own.
+--
+-- Deliberately no title-based YouTube rule. Titles are a moving target
+-- ("<video> - YouTube — Zen Browser", and nothing at all once the tab is
+-- backgrounded), and `focus` would stop inhibiting the moment you alt-tab
+-- away from a video that is still playing. The MPRIS watcher
+-- (custom/scripts/mpris-idle-inhibit.sh) covers playback properly, whatever
+-- the window is called and whether or not it is focused.
+hl.window_rule({ match = { class = ".*" }, idle_inhibit = "fullscreen" })
+
 -------------------- Workspace rules --------------------
 -- workspace = special:special, gapsout:30
 hl.workspace_rule({ workspace = "special:special", gaps_out = 30 })
